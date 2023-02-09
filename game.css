@@ -1,0 +1,126 @@
+body {
+    aspect-ratio: 16/9;
+    width: 100vw;
+}
+
+#screen {
+    aspect-ratio: 16/9;
+    position: absolute;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* background-color: blue; */
+}
+
+#game {
+    aspect-ratio: 16/9;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* background-color: red; */
+}
+
+#start {
+    aspect-ratio: 16 / 9;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* background-color: orange; */
+}
+
+#game_over {
+    aspect-ratio: 16 / 9;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* background-color: green; */
+}
+
+#level_complete {
+    aspect-ratio: 16 / 9;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* background-color: brown; */
+}
+
+#game_background {
+    background-image: url(gui/background/bg.png);
+    aspect-ratio: 16 / 9;
+    width: 100vw;
+}
+
+#game_elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    aspect-ratio: 16/9;
+}
+
+#game_ui {
+    aspect-ratio: 16/9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+}
+
+#game_ui h3 {
+    font-size: 3vw;
+}
+
+#game_ui_container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+#score_board {
+    grid-row: 1/5;
+    grid-column: 2/9;
+    color: white;
+}
+
+#score_icon {
+    grid-row: 1/5;
+    grid-column: 1/9;
+}
+
+#life_board {
+    grid-row: 1/5;
+    grid-column: 7/9;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#time_board {
+    grid-row: 1/5;
+    grid-column: 5/9;
+    color: white;
+}
+
+#time_icon {
+    grid-row: 1/5;
+    grid-column: 4/9;
+}
+
+#pause_button {
+    grid-row: 5/5;
+    grid-column: 1/9;
+}
+
+#restart_button {
+    grid-row: 5/5;
+    grid-column: 2/9;
+}
+
+#game_ui_container img {
+    width: 10vw;
+}
