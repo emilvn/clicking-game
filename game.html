@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="screen">
+        <div id="game">
+            <div id="game_background"></div>
+            <div id="game_elements">
+                <!-- alle spilelementer + evt. mellemgrund -->
+                <div id="troll1_container">
+                    <img id="troll1_sprite" src="sprites/Troll_01.png">
+                </div>
+                <div id="troll2_container">
+                    <img id="troll2_sprite" src="sprites/Troll_02.png">
+                </div>
+                <div id="troll3_container">
+                    <img id="troll3_sprite" src="sprites/Troll_03.png">
+                </div>
+                <div id="knight1_container">
+                    <img id="knight1_sprite" src="sprites/Knight_01.png">
+                </div>
+                <div id="knight2_container">
+                    <img id="knight2_sprite" src="sprites/Knight_02.png">
+                </div>
+                <div id="knight3_container">
+                    <img id="knight3_sprite" src="sprites/Knight_03.png">
+                </div>
+            </div>
+            <div id="game_foreground">
+                <!-- ikke et krav -->
+            </div>
+            <div id="game_ui">
+                <div id="score_board">
+                    <p>score</p>
+                    <img id="score_star" src="gui/scoreboard/star.png">
+                </div>
+                <div id="life_board">
+                    <img id="life_heart" src="gui/life/heart.png">
+                </div>
+                <div id="time_board">
+                    <p>timeleft</p>
+                    <img id="time_clock" src="gui/time/time.png">
+                </div>
+                <div id="game_menu">
+                    <div id="pause_container">
+                        <img id="pause_button" src="gui/buttons/pause.png">
+                    </div>
+                    <div id="restart_container">
+                        <img id="restart_button" src="gui/buttons/restart.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="start"></div>
+        <div id="game_over"></div>
+        <div id="level_complete"></div>
+    </div>
+</body>
+</html>
