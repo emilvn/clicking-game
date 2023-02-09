@@ -56,6 +56,11 @@ body {
     position: absolute;
 }
 
+#game_foreground {
+    position: absolute;
+    width: 100%
+}
+
 #game_ui {
     aspect-ratio: 16/9;
     position: absolute;
