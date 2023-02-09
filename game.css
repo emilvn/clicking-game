@@ -1,52 +1,42 @@
 body {
     aspect-ratio: 16/9;
     width: 100vw;
+    margin: 0;
+}
+
+.position1 {
+    top: 0;
+    left: 0;
 }
 
 #screen {
     aspect-ratio: 16/9;
     position: absolute;
     width: 100vw;
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* background-color: blue; */
 }
 
 #game {
     aspect-ratio: 16/9;
     width: 100vw;
     position: absolute;
-    top: 0;
-    left: 0;
-    /* background-color: red; */
 }
 
 #start {
     aspect-ratio: 16 / 9;
     width: 100vw;
     position: absolute;
-    top: 0;
-    left: 0;
-    /* background-color: orange; */
 }
 
 #game_over {
     aspect-ratio: 16 / 9;
     width: 100vw;
     position: absolute;
-    top: 0;
-    left: 0;
-    /* background-color: green; */
 }
 
 #level_complete {
     aspect-ratio: 16 / 9;
     width: 100vw;
     position: absolute;
-    top: 0;
-    left: 0;
-    /* background-color: brown; */
 }
 
 #game_background {
@@ -57,17 +47,18 @@ body {
 
 #game_elements {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100vw;
     aspect-ratio: 16/9;
+}
+
+#game_elements img {
+    width: 100%;
+    position: absolute;
 }
 
 #game_ui {
     aspect-ratio: 16/9;
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100vw;
 }
 
