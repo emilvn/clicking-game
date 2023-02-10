@@ -1,11 +1,118 @@
 #troll1_sprite {
     animation-name: troll1;
-    animation-duration: 5s;
+    animation-duration: 8s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
 
 @keyframes troll1 {
-    from { transform: translate(-150%, -150%);}
-    to {transform: translate(150%, 150%);}
+    from { top:-75%;
+        left: -75%;
+        transform: scale(0.2);
+    }
+    to {
+        top: 50%;
+        left: 50%;
+        transform: scale(0.5);
+    }
+}
+
+#troll2_sprite {
+    animation-name: troll2;
+    animation-duration: 8s;
+    animation-delay: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes troll2 {
+    from { top:-75%;
+        left: 0%;
+        transform: scale(0.2);
+    }
+    to {
+        top: 50%;
+        left: -50%;
+        transform: scale(0.5);
+    }
+}
+
+#troll3_sprite {
+    animation-name: troll3;
+    animation-duration: 5s;
+    animation-delay: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes troll3 {
+    from { top:-75%;
+        left: 20%;
+        transform: scale(0.2);
+    }
+    to {
+        top: 50%;
+        left: -40%;
+        transform: scale(0.5);
+    }
+}
+
+
+#knight1_sprite {
+    animation-name: knight1;
+    animation-duration: 8s;
+    animation-delay: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes knight1 {
+    from { top:-75%;
+        left: 75%;
+        transform: scale(0.2);
+    }
+    to {
+        top: 50%;
+        left: 0%;
+        transform: scale(0.5);
+    }
+}
+#knight2_sprite {
+    animation-name: knight2;
+    animation-duration: 4s;
+    animation-delay: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes knight2 {
+    from { top:-75%;
+        left: 0%;
+        transform: scale(0.2);
+    }
+    to {
+        top: 50%;
+        left: 0%;
+        transform: scale(0.5);
+    }
+}
+
+#knight3_sprite {
+    animation-name: knight3;
+    animation-duration: 6s;
+    animation-delay: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes knight3 {
+    from { top:-75%;
+        left: -40%;
+        transform: scale(0.2);
+    }
+    to {
+        top: 50%;
+        left: 30%;
+        transform: scale(0.5);
+    }
 }

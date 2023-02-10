@@ -54,6 +54,7 @@ body {
 
 #game_elements img {
     width: 100%;
+    aspect-ratio: 16/9;
     position: absolute;
 }
 
@@ -108,20 +109,6 @@ body {
     grid-column: 4/9;
 }
 
-#pause_button {
-    grid-row: 5/5;
-    grid-column: 1/9;
-}
-
-#restart_button {
-    grid-row: 5/5;
-    grid-column: 2/9;
-}
-
 #game_ui_container img {
     width: 10vw;
-}
-
-#troll1_container {
-    width: 100%;
 }
