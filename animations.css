@@ -1,0 +1,11 @@
+#troll1_sprite {
+    animation-name: troll1;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes troll1 {
+    from { transform: translate(-150%, -150%);}
+    to {transform: translate(150%, 150%);}
+}

@@ -43,6 +43,7 @@ body {
     background-image: url(gui/background/bg.png);
     aspect-ratio: 16 / 9;
     width: 100vw;
+    background-size: 100%;
 }
 
 #game_elements {
@@ -119,4 +120,8 @@ body {
 
 #game_ui_container img {
     width: 10vw;
+}
+
+#troll1_container {
+    width: 100%;
 }
