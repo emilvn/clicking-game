@@ -1,19 +1,21 @@
 #troll1_sprite {
     animation-name: troll1;
     animation-duration: 8s;
+    animation-delay: 3s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+    transform: scale(0);
 }
 
 @keyframes troll1 {
     from { top:-75%;
         left: -75%;
-        transform: scale(0.2);
+        transform: scale(0.1) rotate(-90deg);
     }
     to {
         top: 50%;
         left: 50%;
-        transform: scale(0.5);
+        transform: scale(0.2) rotate(90deg);
     }
 }
 
@@ -23,17 +25,18 @@
     animation-delay: 3s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+    transform: scale(0);
 }
 
 @keyframes troll2 {
     from { top:-75%;
         left: 0%;
-        transform: scale(0.2);
+        transform: scale(0.1);
     }
     to {
         top: 50%;
         left: -50%;
-        transform: scale(0.5);
+        transform: scale(0.2);
     }
 }
 
@@ -43,17 +46,18 @@
     animation-delay: 2s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+    transform: scale(0);
 }
 
 @keyframes troll3 {
     from { top:-75%;
         left: 20%;
-        transform: scale(0.2);
+        transform: scale(0.1);
     }
     to {
         top: 50%;
         left: -40%;
-        transform: scale(0.5);
+        transform: scale(0.2);
     }
 }
 
@@ -64,17 +68,18 @@
     animation-delay: 1s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+    transform: scale(0);
 }
 
 @keyframes knight1 {
     from { top:-75%;
         left: 75%;
-        transform: scale(0.2);
+        transform: scale(0.1);
     }
     to {
         top: 50%;
         left: 0%;
-        transform: scale(0.5);
+        transform: scale(0.2) rotate(-45deg);
     }
 }
 #knight2_sprite {
@@ -83,17 +88,18 @@
     animation-delay: 2s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+    transform: scale(0);
 }
 
 @keyframes knight2 {
     from { top:-75%;
         left: 0%;
-        transform: scale(0.2);
+        transform: scale(0.1);
     }
     to {
         top: 50%;
         left: 0%;
-        transform: scale(0.5);
+        transform: scale(0.2) rotate(360deg);
     }
 }
 
@@ -103,16 +109,17 @@
     animation-delay: 1s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+    transform: scale(0);
 }
 
 @keyframes knight3 {
     from { top:-75%;
         left: -40%;
-        transform: scale(0.2);
+        transform: scale(0.1);
     }
     to {
         top: 50%;
         left: 30%;
-        transform: scale(0.5);
+        transform: scale(0.2) rotate(45deg);
     }
 }

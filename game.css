@@ -76,39 +76,40 @@ body {
 #game_ui_container {
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    height: 100%;
+    grid-template-columns: repeat(7, 1fr);
 }
 
 #score_board {
-    grid-row: 1/5;
-    grid-column: 2/9;
+    grid-row: 1/2;
+    grid-column: 2/7;
     color: white;
 }
 
 #score_icon {
-    grid-row: 1/5;
-    grid-column: 1/9;
+    grid-row: 1/2;
+    grid-column: 1/7;
+    width: 50%;
 }
 
 #life_board {
-    grid-row: 1/5;
-    grid-column: 7/9;
+    grid-row: 1/2;
+    grid-column: 7/7;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
 #time_board {
-    grid-row: 1/5;
-    grid-column: 5/9;
+    grid-row: 1/2;
+    grid-column: 5/7;
     color: white;
 }
 
 #time_icon {
-    grid-row: 1/5;
-    grid-column: 4/9;
+    grid-row: 1/2;
+    grid-column: 4/7;
 }
 
 #game_ui_container img {
-    width: 10vw;
+    width: 7vw;
 }
