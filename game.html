@@ -7,6 +7,7 @@
     <title>Knights vs Trolls</title>
     <link rel="stylesheet" href="game.css">
     <link rel="stylesheet" href="animations.css">
+    <script src="game.js"></script>
 </head>
 <body>
     <div id="screen" class="position1">
@@ -38,7 +39,7 @@
             <div id="game_ui" class="position1">
                 <div id="game_ui_container" class="position1">
                     <div id="score_board">
-                        <h3>score</h3>
+                        <span id="score_id"></span>
                     </div>
                     <div id="score_icon">
                         <img src="gui/scoreboard/star.png">
@@ -51,11 +52,11 @@
                     </div>
                     
                     <div id="time_board">
-                        <h3>05:25</h3>
+                        <span id="seconds"></span>
                     </div>
                     
                     <div id="time_icon">
-                    <img src="gui/time/time.png">
+                        <img src="gui/time/time.png">
                     </div>
                 </div>
             </div>
