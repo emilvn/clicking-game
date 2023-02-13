@@ -1,3 +1,24 @@
+#front_clock img{
+    animation-name: clock;
+    animation-duration: 60s;
+    animation-delay: 0;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+}
+
+@keyframes clock {
+    0%{
+        filter: drop-shadow(0 0 20px lime);
+    }
+    75% {
+        filter: drop-shadow(0 0 20px lime);
+    }
+    100% {
+        transform: rotate(300deg);
+        filter: drop-shadow(0 0 20px red);
+    }
+}
+
 #syringe_sprite {
     animation-name: syringe;
     animation-duration: 8s;
@@ -8,8 +29,8 @@
 }
 
 @keyframes syringe {
-    from { top:-75%;
-        left: -75%;
+    from { top:-50%;
+        left: -50%;
         transform: scale(0.05, 0.1) rotate(-90deg);
     }
     to {
@@ -21,7 +42,7 @@
 
 #chicken_sprite {
     animation-name: chicken;
-    animation-duration: 8s;
+    animation-duration: 4s;
     animation-delay: 3s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
@@ -29,19 +50,14 @@
 }
 
 @keyframes chicken {
-    0% { top:-75%;
-        left: 0%;
+    0% { top: -50%;
+        left: 45%;
         transform: scale(0.1);
-    }
-
-    50% { top:-15%;
-        left: -45%;
-        transform: scale(0.15) rotate(45deg);
     }
 
     100% {
         top: 50%;
-        left: -10%;
+        left: 45%;
         transform: scale(0.2) rotate(-45deg);
     }
 }
@@ -58,12 +74,12 @@
 @keyframes protein {
     from { top:-75%;
         left: 20%;
-        transform: scale(0.1);
+        transform: scale(0.05,0.1);
     }
     to {
         top: 50%;
         left: -40%;
-        transform: scale(0.2);
+        transform: scale(0.1,0.2);
     }
 }
 
@@ -80,12 +96,12 @@
 @keyframes beer {
     from { top:-75%;
         left: 75%;
-        transform: scale(0.1);
+        transform: scale(0.05, 0.1);
     }
     to {
         top: 50%;
         left: 0%;
-        transform: scale(0.2) rotate(-45deg);
+        transform: scale(0.1,0.2) rotate(-45deg);
     }
 }
 #pommes_sprite {
@@ -100,11 +116,12 @@
 @keyframes pommes {
     from { top:-75%;
         left: 0%;
-        transform: scale(0.1);
+        transform: scale(0.05,0.1);
     }
     to {
         top: 50%;
         left: 0%;
-        transform: scale(0.2) rotate(360deg);
+        transform: scale(0.1,0.2) rotate(360deg);
     }
 }
+
