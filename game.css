@@ -15,6 +15,18 @@ body {
     width: 100vw;
 }
 
+#game_foreground {
+    aspect-ratio: 16/9;
+    position: absolute;
+    width: 100vw;
+}
+
+#game_foreground img {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+}
+
 #game {
     aspect-ratio: 16/9;
     width: 100vw;
@@ -40,7 +52,7 @@ body {
 }
 
 #game_background {
-    background-image: url(gui/background/bg.png);
+    background-image: url(gui/background/bg.jpg);
     aspect-ratio: 16 / 9;
     width: 100vw;
     background-size: 100%;
@@ -56,11 +68,6 @@ body {
     width: 100%;
     aspect-ratio: 16/9;
     position: absolute;
-}
-
-#game_foreground {
-    position: absolute;
-    width: 100%
 }
 
 #game_ui {
@@ -121,4 +128,10 @@ body {
 
 #game_ui_container img {
     width: 7vw;
+}
+
+#player {
+    grid-row: 2/2;
+    grid-column: 2/7;
+    width: 100px;
 }

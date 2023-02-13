@@ -1,5 +1,5 @@
-#troll1_sprite {
-    animation-name: troll1;
+#syringe_sprite {
+    animation-name: syringe;
     animation-duration: 8s;
     animation-delay: 3s;
     animation-timing-function: linear;
@@ -7,20 +7,20 @@
     transform: scale(0);
 }
 
-@keyframes troll1 {
+@keyframes syringe {
     from { top:-75%;
         left: -75%;
-        transform: scale(0.1) rotate(-90deg);
+        transform: scale(0.05, 0.1) rotate(-90deg);
     }
     to {
         top: 50%;
         left: 50%;
-        transform: scale(0.2) rotate(90deg);
+        transform: scale(0.1, 0.2) rotate(90deg);
     }
 }
 
-#troll2_sprite {
-    animation-name: troll2;
+#chicken_sprite {
+    animation-name: chicken;
     animation-duration: 8s;
     animation-delay: 3s;
     animation-timing-function: linear;
@@ -28,7 +28,7 @@
     transform: scale(0);
 }
 
-@keyframes troll2 {
+@keyframes chicken {
     0% { top:-75%;
         left: 0%;
         transform: scale(0.1);
@@ -46,8 +46,8 @@
     }
 }
 
-#troll3_sprite {
-    animation-name: troll3;
+#protein_sprite {
+    animation-name: protein;
     animation-duration: 5s;
     animation-delay: 2s;
     animation-timing-function: linear;
@@ -55,7 +55,7 @@
     transform: scale(0);
 }
 
-@keyframes troll3 {
+@keyframes protein {
     from { top:-75%;
         left: 20%;
         transform: scale(0.1);
@@ -68,8 +68,8 @@
 }
 
 
-#knight1_sprite {
-    animation-name: knight1;
+#beer_sprite {
+    animation-name: beer;
     animation-duration: 8s;
     animation-delay: 1s;
     animation-timing-function: linear;
@@ -77,7 +77,7 @@
     transform: scale(0);
 }
 
-@keyframes knight1 {
+@keyframes beer {
     from { top:-75%;
         left: 75%;
         transform: scale(0.1);
@@ -88,8 +88,8 @@
         transform: scale(0.2) rotate(-45deg);
     }
 }
-#knight2_sprite {
-    animation-name: knight2;
+#pommes_sprite {
+    animation-name: pommes;
     animation-duration: 4s;
     animation-delay: 2s;
     animation-timing-function: linear;
@@ -97,7 +97,7 @@
     transform: scale(0);
 }
 
-@keyframes knight2 {
+@keyframes pommes {
     from { top:-75%;
         left: 0%;
         transform: scale(0.1);
@@ -106,26 +106,5 @@
         top: 50%;
         left: 0%;
         transform: scale(0.2) rotate(360deg);
-    }
-}
-
-#knight3_sprite {
-    animation-name: knight3;
-    animation-duration: 6s;
-    animation-delay: 1s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    transform: scale(0);
-}
-
-@keyframes knight3 {
-    from { top:-75%;
-        left: -40%;
-        transform: scale(0.1);
-    }
-    to {
-        top: 50%;
-        left: 30%;
-        transform: scale(0.2) rotate(45deg);
     }
 }
