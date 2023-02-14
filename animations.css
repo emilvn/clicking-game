@@ -104,8 +104,8 @@
         transform: scale(0.1,0.2) rotate(-45deg);
     }
 }
-#pommes_sprite {
-    animation-name: pommes;
+#vodka_sprite {
+    animation-name: vodka;
     animation-duration: 4s;
     animation-delay: 2s;
     animation-timing-function: linear;
@@ -113,7 +113,7 @@
     transform: scale(0);
 }
 
-@keyframes pommes {
+@keyframes vodka {
     from { top:-75%;
         left: 0%;
         transform: scale(0.05,0.1);
@@ -121,7 +121,7 @@
     to {
         top: 50%;
         left: 0%;
-        transform: scale(0.1,0.2) rotate(360deg);
+        transform: scale(0.1,0.2);
     }
 }
 
