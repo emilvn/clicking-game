@@ -10,8 +10,11 @@
     0%{
         filter: drop-shadow(0 0 20px lime);
     }
-    75% {
+    50% {
         filter: drop-shadow(0 0 20px lime);
+    }
+    75% {
+        filter: drop-shadow(0 0 20px yellow)
     }
     100% {
         transform: rotate(300deg);
