@@ -13,6 +13,9 @@ body {
     aspect-ratio: 16/9;
     position: absolute;
     width: 100vw;
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: 1;
 }
 
 #game_foreground {
