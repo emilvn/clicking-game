@@ -62,6 +62,7 @@ body {
     position: absolute;
     width: 100vw;
     aspect-ratio: 16/9;
+    overflow: hidden;
 }
 
 #game_elements img {
