@@ -9,6 +9,10 @@ body {
     left: 0;
 }
 
+.hidden {
+    scale: 0;
+}
+
 #screen {
     aspect-ratio: 16/9;
     position: absolute;
@@ -41,25 +45,50 @@ body {
     aspect-ratio: 16 / 9;
     width: 100vw;
     position: absolute;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 1;
+}
+
+#start_img {
+    grid-column: 2/3;
+    width: 100%;
 }
 
 #game_over {
     aspect-ratio: 16 / 9;
     width: 100vw;
     position: absolute;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 1;
+}
+
+#game_over_img {
+    grid-column: 2/3;
+    width: 100%;
 }
 
 #level_complete {
     aspect-ratio: 16 / 9;
     width: 100vw;
     position: absolute;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 1;
+}
+
+#level_complete_img {
+    grid-column: 2/3;
+    width: 100%;
 }
 
 #game_background {
-    background-image: url(gui/background/bg.jpg);
+    background-image: url(gui/bg.jpg);
     aspect-ratio: 16 / 9;
     width: 100vw;
-    background-size: 100%;
+    background-size: cover;
 }
 
 #game_elements {
@@ -104,13 +133,6 @@ body {
     aspect-ratio: 16/9;
     position: absolute;
     width: 100vw;
-}
-
-#game_ui h3 {
-    font-size: 3vw;
-}
-
-#game_ui_container {
     display: grid;
     width: 100%;
     height: 100%;

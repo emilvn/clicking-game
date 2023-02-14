@@ -34,35 +34,39 @@
                 <img src="sprites/bodybuilder.png">
             </div>
             <div id="game_ui" class="position1">
-                <div id="game_ui_container" class="position1">
-                    <div id="score_board">
-                        <span id="score_id"></span>
-                    </div>
-                    <div id="score_icon">
-                        <img src="gui/scoreboard/star.png">
-                    </div>
-                    
-                    <div id="life_board">
-                        <img id="life_heart1" src="gui/life/heart.png">
-                        <img id="life_heart2" src="gui/life/heart.png">
-                        <img id="life_heart3" src="gui/life/heart.png">
-                    </div>
-                    
-                    <div id="time_board">
-                        <span id="seconds"></span>
-                    </div>
-                    
-                    <div id="time_icon">
-                        <div id="front_clock">
-                            <img src="gui/time/clock.png" width="100%">    
-                        </div>
+                <div id="score_board">
+                    <span id="score_id"></span>
+                </div>
+                <div id="score_icon">
+                    <img src="gui/star.png">
+                </div>
+                
+                <div id="life_board">
+                    <img id="life_heart1" src="gui/heart.png">
+                    <img id="life_heart2" src="gui/heart.png">
+                    <img id="life_heart3" src="gui/heart.png">
+                </div>
+                
+                <div id="time_board">
+                    <span id="seconds"></span>
+                </div>
+                
+                <div id="time_icon">
+                    <div id="front_clock">
+                        <img src="gui/clock.png" width="100%">    
                     </div>
                 </div>
             </div>
         </div>
-        <div id="start" class="hidden" class="position1"></div>
-        <div id="game_over" class="hidden" class="position1"></div>
-        <div id="level_complete" class="hidden" class="position1"></div>
+        <div id="start" class="hidden" class="position1">
+            <img id="start_img" src="gui/startscreen/start.png">
+        </div>
+        <div id="game_over" class="hidden" class="position1">
+            <img id="game_over_img" src="gui/gameover/game_over.png">
+        </div>
+        <div id="level_complete" class="hidden" class="position1">
+            <img id="level_complete_img" src="gui/levelcomplete/level_complete.png">
+        </div>
     </div>
     <script src="game.js"></script>
 </body>
