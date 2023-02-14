@@ -24,7 +24,7 @@
 
 #syringe_container {
     animation-name: syringe;
-    animation-duration: 8s;
+    animation-duration: 4s;
     animation-delay: 3s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
@@ -32,11 +32,18 @@
 }
 
 @keyframes syringe {
-    from { top:0%;
-        left: 100%;
+    0% { top:0%;
+        left: 50%;
         transform: scale(1);
     }
-    to {
+
+    50% {
+        top: 50%;
+        left: 90%;
+        transform: scale(1);
+    }
+
+    100% {
         top: 100%;
         left: 50%;
         transform: scale(1);
