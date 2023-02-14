@@ -1,4 +1,4 @@
-#front_clock img{
+ #front_clock img{
     animation-name: clock;
     animation-duration: 60s;
     animation-delay: 0;
@@ -22,7 +22,7 @@
     }
 }
 
-#syringe_sprite {
+#syringe_container {
     animation-name: syringe;
     animation-duration: 8s;
     animation-delay: 3s;
@@ -32,18 +32,18 @@
 }
 
 @keyframes syringe {
-    from { top:-50%;
-        left: -50%;
-        transform: scale(0.05, 0.1);
+    from { top:0%;
+        left: 0%;
+        transform: scale(1);
     }
     to {
-        top: 50%;
-        left: 50%;
-        transform: scale(0.1, 0.2);
+        top: 100%;
+        left: 100%;
+        transform: scale(1);
     }
 }
 
-#chicken_sprite {
+#chicken_container {
     animation-name: chicken;
     animation-duration: 4s;
     animation-delay: 3s;
@@ -55,17 +55,17 @@
 @keyframes chicken {
     0% { top: -50%;
         left: 45%;
-        transform: scale(0.1);
+        transform: scale(1);
     }
 
     100% {
         top: 50%;
         left: 45%;
-        transform: scale(0.2) rotate(-45deg);
+        transform: scale(1);
     }
 }
 
-#protein_sprite {
+#protein_container {
     animation-name: protein;
     animation-duration: 5s;
     animation-delay: 2s;
@@ -75,19 +75,19 @@
 }
 
 @keyframes protein {
-    from { top:-75%;
+    from { top:0%;
         left: 20%;
-        transform: scale(0.05,0.1);
+        transform: scale(1);
     }
     to {
-        top: 50%;
-        left: -40%;
-        transform: scale(0.1,0.2);
+        top: 100%;
+        left: 40%;
+        transform: scale(1);
     }
 }
 
 
-#beer_sprite {
+#beer_container {
     animation-name: beer;
     animation-duration: 8s;
     animation-delay: 1s;
@@ -97,17 +97,17 @@
 }
 
 @keyframes beer {
-    from { top:-75%;
+    from { top:0%;
         left: 75%;
-        transform: scale(0.1, 0.2);
+        transform: scale(1);
     }
     to {
         top: 50%;
         left: 0%;
-        transform: scale(0.1,0.2);
+        transform: scale(1);
     }
 }
-#vodka_sprite {
+#vodka_container {
     animation-name: vodka;
     animation-duration: 4s;
     animation-delay: 2s;
@@ -117,14 +117,13 @@
 }
 
 @keyframes vodka {
-    from { top:-75%;
-        left: 0%;
-        transform: scale(0.05,0.2);
+    from { top:0%;
+        left: 40%;
+        transform: scale(1);
     }
     to {
-        top: 50%;
-        left: 0%;
-        transform: scale(0.05,0.2);
+        top: 100%;
+        left: 50%;
+        transform: scale(1);
     }
 }
-

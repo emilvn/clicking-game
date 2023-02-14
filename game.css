@@ -60,14 +60,39 @@ body {
 
 #game_elements {
     position: absolute;
-    width: 100vw;
+    width: 100%;
     aspect-ratio: 16/9;
     overflow: hidden;
 }
 
+#syringe_container {
+    position: absolute;
+    width: 10vw;
+}
+
+#protein_container {
+    position: absolute;
+    width: 7vw;
+}
+
+#chicken_container {
+    position: absolute;
+    width: 10vw;
+}
+
+#beer_container {
+    position: absolute;
+    width: 5vw;
+}
+
+#vodka_container {
+    position: absolute;
+    width: 5vw;
+}
+
+
 #game_elements img {
     width: 100%;
-    aspect-ratio: 16/9;
     position: absolute;
 }
 
@@ -133,3 +158,4 @@ body {
     width: 11vw;
     transform: rotate(-60deg);
 }
+
