@@ -32,7 +32,7 @@
 }
 
 @keyframes syringe {
-    0% { top:0%;
+    0% { top:-10%;
         left: 50%;
         transform: scale(1);
     }
@@ -60,13 +60,13 @@
 }
 
 @keyframes chicken {
-    0% { top: 0%;
+    0% { top: -10%;
         left: 60%;
         transform: scale(1);
     }
 
     100% {
-        top: 50%;
+        top: 100%;
         left: 60%;
         transform: scale(1);
     }
@@ -82,7 +82,7 @@
 }
 
 @keyframes protein {
-    from { top:0%;
+    from { top:-10%;
         left: 40%;
         transform: scale(1);
     }
@@ -104,7 +104,7 @@
 }
 
 @keyframes beer {
-    from { top:0%;
+    from { top:-10%;
         left: 75%;
         transform: scale(1);
     }
@@ -124,7 +124,7 @@
 }
 
 @keyframes vodka {
-    from { top:0%;
+    from { top:-10%;
         left: 50%;
         transform: scale(1);
     }
