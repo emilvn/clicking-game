@@ -130,9 +130,9 @@ body {
     height: 10vw;
 }
 
-
 #game_elements img {
     width: 100%;
+    position: inherit;
 }
 
 #game_ui {

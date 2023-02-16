@@ -63,6 +63,40 @@
     }
 }
 
+.blur_in_out {
+    animation-name: blurinout;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes blurinout {
+    0%{
+        opacity: 0;
+        filter: blur(10vw);
+        transform: scale(0.5);
+    }
+    
+    10%{
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+    }
+    50%{
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+    }
+    
+    100% {
+        opacity: 0;
+        filter: blur(10vw);
+        transform: scale(0.5);
+    }
+}
+
 .explodeout {
     animation-name: explodeout;
     animation-duration: 0.5s;
