@@ -22,115 +22,202 @@
     }
 }
 
-#syringe_container {
-    animation-name: syringe;
-    animation-duration: 4s;
-    animation-delay: 3s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+.zoomaway {
+    animation-name: zoomaway;
+    animation-duration: 1s;
+    animation-delay: 0;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    transform-origin: 0 100%;
     transform: scale(0);
 }
 
-@keyframes syringe {
-    0% { top:-10%;
-        left: 50%;
+@keyframes zoomaway {
+    0% {
         transform: scale(1);
     }
-
-    50% {
-        top: 50%;
-        left: 90%;
-        transform: scale(1);
-    }
-
     100% {
-        top: 100%;
-        left: 50%;
-        transform: scale(1);
+        transform: scale(0);
     }
+    
 }
 
-#chicken_container {
-    animation-name: chicken;
-    animation-duration: 4s;
-    animation-delay: 3s;
+.pause {
+    animation-play-state: paused;
+}
+
+.blurout {
+    animation-name: blurout;
+    animation-duration: 0.5s;
     animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    transform: scale(0);
+    animation-iteration-count: 1;
 }
 
-@keyframes chicken {
-    0% { top: -10%;
-        left: 60%;
-        transform: scale(1);
-    }
-
+@keyframes blurout {
     100% {
-        top: 100%;
-        left: 60%;
-        transform: scale(1);
+        opacity: 0;
+        filter: blur(10vw);
+        transform: scale(0.5);
     }
 }
 
-#protein_container {
-    animation-name: protein;
-    animation-duration: 5s;
-    animation-delay: 2s;
+.explodeout {
+    animation-name: explodeout;
+    animation-duration: 0.5s;
     animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    transform: scale(0);
+    animation-iteration-count: 1;
 }
 
-@keyframes protein {
-    from { top:-10%;
-        left: 40%;
-        transform: scale(1);
-    }
-    to {
-        top: 100%;
-        left: 40%;
-        transform: scale(1);
+@keyframes explodeout {
+    100% {
+        opacity: 0;
+        filter: blur(10vw);
+        transform: scale(10);
     }
 }
 
-
-#beer_container {
-    animation-name: beer;
-    animation-duration: 8s;
+.falling1 {
+    animation-name: falling1;
+    animation-duration: 3s;
     animation-delay: 1s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     transform: scale(0);
 }
 
-@keyframes beer {
-    from { top:-10%;
-        left: 75%;
+@keyframes falling1 {
+    0%, 100% {
         transform: scale(1);
     }
-    to {
-        top: 100%;
-        left: 75%;
-        transform: scale(1);
+    0% {
+        transform: translate(50vw, -10%);
+    }
+    100% {
+        transform: translate(50vw, 1000%);
     }
 }
-#vodka_container {
-    animation-name: vodka;
-    animation-duration: 4s;
+.falling2 {
+    animation-name: falling2;
+    animation-duration: 3s;
     animation-delay: 2s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     transform: scale(0);
 }
 
-@keyframes vodka {
-    from { top:-10%;
-        left: 50%;
+@keyframes falling2 {
+    0%, 100% {
         transform: scale(1);
     }
-    to {
-        top: 100%;
-        left: 50%;
+    0% {
+        transform: translate(60vw, -10%);
+    }
+    100% {
+        transform: translate(60vw, 1000%);
+    }
+}
+.falling3 {
+    animation-name: falling3;
+    animation-duration: 4s;
+    animation-delay: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform: scale(0);
+}
+
+@keyframes falling3 {
+    0%, 100% {
         transform: scale(1);
     }
+    0% {
+        transform: translate(70vw, -10%);
+    }
+    100% {
+        transform: translate(70vw, 1000%);
+    }
+}
+.falling4 {
+    animation-name: falling4;
+    animation-duration: 2s;
+    animation-delay: 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform: scale(0);
+}
+
+@keyframes falling4 {
+    0%, 100% {
+        transform: scale(1);
+    }
+    0% {
+        transform: translate(80vw, -10%);
+    }
+    100% {
+        transform: translate(80vw, 1000%);
+    }
+}
+.falling5 {
+    animation-name: falling5;
+    animation-duration: 3s;
+    animation-delay: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform: scale(0);
+}
+
+@keyframes falling5 {
+    0%, 100% {
+        transform: scale(1);
+    }
+    0% {
+        transform: translate(90vw, -10%);
+    }
+    100% {
+        transform: translate(90vw, 1000%);
+    }
+}
+
+.side_to_side1 {
+    animation-name: side_to_side1;
+    animation-duration: 4s;
+    animation-delay: 0s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform: scale(0);
+}
+
+@keyframes side_to_side1 {
+    0%, 100% {transform: scale(1)}
+    0% {
+        transform: translate(50vw, -10%);
+    }
+    50% {
+        transform: translate(90vw, 500%);
+    }
+    100% {
+        transform: translate(50vw, 1000%);
+    }
+
+}
+.side_to_side2 {
+    animation-name: side_to_side2;
+    animation-duration: 4s;
+    animation-delay: 0s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform: scale(0);
+}
+
+@keyframes side_to_side2 {
+    0%, 100% {transform: scale(1)}
+    0% {
+        transform: translate(100vw, -10%);
+    }
+    50% {
+        transform: translate(50vw, 500%);
+    }
+    100% {
+        transform: translate(100vw, 1000%);
+    }
+
 }
