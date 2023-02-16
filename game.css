@@ -209,3 +209,15 @@ body {
 #start_button img{
     width: 100%;
 }
+
+.restart_button {
+    position: absolute;
+    width: 10vw;
+    height: 10vw;
+    top: 61%;
+    left: 45%;
+}
+
+.restart_button img {
+    width: 100%;
+}

@@ -58,7 +58,7 @@
                 </div>
             </div>
         </div>
-        <div id="start" class="" class="position1">
+        <div id="start" class="hidden" class="position1">
             <img id="start_img" src="gui/startscreen/start.png">
             <div id="start_button">
                 <img src="gui/startscreen/play.png">
@@ -71,9 +71,15 @@
         </div>
         <div id="game_over" class="hidden" class="position1">
             <img id="game_over_img" src="gui/gameover/game_over.png">
+            <div class="restart_button">
+                <img src="gui/gameover/restart.png">
+            </div>
         </div>
-        <div id="level_complete" class="hidden" class="position1">
+        <div id="level_complete" class="zoomaway" class="position1">
             <img id="level_complete_img" src="gui/levelcomplete/level_complete.png">
+            <div class="restart_button">
+                <img src="gui/gameover/restart.png">
+            </div>
         </div>
     </div>
     <script src="game.js"></script>
