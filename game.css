@@ -2,6 +2,7 @@ body {
     aspect-ratio: 16/9;
     width: 100vw;
     margin: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .position1 {
@@ -188,4 +189,23 @@ body {
 #time_icon img {
     width: 11vw;
     transform: rotate(-60deg);
+}
+
+#start_button {
+    position: absolute;
+    width: 10vw;
+    height: 10vw;
+    top: 40%;
+    left: 35%;
+}
+
+#start_intro {
+    position: absolute;
+    width: 20vw;
+    top: 27%;
+    left: 47%;
+}
+
+#start_button img{
+    width: 100%;
 }
