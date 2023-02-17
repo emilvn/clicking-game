@@ -59,6 +59,10 @@ body {
     width: 100%;
 }
 
+#start_intro {
+    font-size: 2.1vw;
+}
+
 #game_over {
     aspect-ratio: 16 / 9;
     width: 100vw;
