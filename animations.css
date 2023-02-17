@@ -1,12 +1,12 @@
- #front_clock img{
-    animation-name: clock;
+ .timer{
+    animation-name: timer;
     animation-duration: 60s;
     animation-delay: 0;
     animation-timing-function: linear;
     animation-iteration-count: 1;
 }
 
-@keyframes clock {
+@keyframes timer {
     0%{
         filter: drop-shadow(0 0 20px lime);
     }
