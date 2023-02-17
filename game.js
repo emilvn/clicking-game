@@ -1,4 +1,5 @@
-function healthBar(lives_left){
+//grayscales the hearts depending on how many lives are left
+function healthBar(lives_left) {
 const style = document.createElement('style');
 if (lives_left == 3){
     return
@@ -35,9 +36,8 @@ function addClass(element, animation) {
     element.className += ` ${animation}`;
 }
 
+//stores the players lives in a variable
 let player_lives = 3;
-
-healthBar(player_lives);
 
 //stores the game element containers in variables
 let syringe = document.getElementById("syringe_container");
@@ -73,3 +73,6 @@ protein.addEventListener('click', function () { addClass(protein, "pause"); addC
 chicken.addEventListener('click', function () { addClass(chicken, "pause"); addClass(chicken_sprite, "blurout"); addClass(chicken_splash, "blur_in_out"); });
 beer.addEventListener('click', function () { addClass(beer, "pause"); addClass(beer_sprite, "explodeout"); addClass(beer_splash, "blur_in_out"); });
 vodka.addEventListener('click', function () { addClass(vodka, "pause"); addClass(vodka_sprite, "explodeout"); addClass(vodka_splash, "blur_in_out"); });
+
+//calling the healthbar function
+healthBar(player_lives);
