@@ -30,6 +30,6 @@ else {
 document.head.append(style);
 }
 
-var player_lives = 3;
+let player_lives = 3;
 
 healthBar(player_lives)

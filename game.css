@@ -170,8 +170,9 @@ body {
 #time_board {
     grid-row: 1/2;
     grid-column: 4/5;
-    margin-top: 1vw;
-    width: 12vw;
+    margin-top: 5vw;
+    width: 40vw;
+    position: relative;
 }
 
 #score_icon img {
@@ -184,7 +185,12 @@ body {
 
 #time_board img {
     width: 100%;
-    transform: rotate(-60deg);
+}
+
+#time_bar {
+    scale: 0.99 0.8;
+    top: 0%;
+    position: absolute;
 }
 
 #start_button {

@@ -4,21 +4,12 @@
     animation-delay: 0;
     animation-timing-function: linear;
     animation-iteration-count: 1;
+    transform-origin: center left;
 }
 
 @keyframes timer {
-    0%{
-        filter: drop-shadow(0 0 20px lime);
-    }
-    50% {
-        filter: drop-shadow(0 0 20px lime);
-    }
-    75% {
-        filter: drop-shadow(0 0 20px yellow)
-    }
     100% {
-        transform: rotate(300deg);
-        filter: drop-shadow(0 0 20px red);
+        transform: scale(0, 0.8);
     }
 }
 
