@@ -98,36 +98,47 @@ body {
     width: 100%;
     aspect-ratio: 16/9;
     overflow: hidden;
+    z-index: 10;
 }
 
 #syringe_container {
     position: absolute;
     width: 10vw;
     height: 10vw;
+    cursor: pointer;
+    z-index: 11;
 }
 
 #protein_container {
     position: absolute;
     width: 7vw;
     height: 10vw;
+    cursor: pointer;
+    z-index: 11;
 }
 
 #chicken_container {
     position: absolute;
     width: 10vw;
     height: 10vw;
+    cursor: pointer;
+    z-index: 11;
 }
 
 #beer_container {
     position: absolute;
     width: 7vw;
     height: 10vw;
+    cursor: pointer;
+    z-index: 11;
 }
 
 #vodka_container {
     position: absolute;
     width: 5vw;
     height: 10vw;
+    z-index: 11;
+    cursor: pointer;
 }
 
 #game_elements img {
@@ -240,4 +251,8 @@ body {
 
 .restart_button img {
     width: 100%;
+}
+
+.hidden_splash {
+    opacity: 0;
 }

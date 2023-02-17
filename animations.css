@@ -57,7 +57,7 @@
 .blur_in_out {
     animation-name: blurinout;
     animation-duration: 1s;
-    animation-delay: 0s;
+    animation-delay: 0.5s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
@@ -66,46 +66,42 @@
 @keyframes blurinout {
     0%{
         opacity: 0;
-        filter: blur(10vw);
         transform: scale(0.5);
     }
-    
-    10%{
-        opacity: 1;
-        filter: blur(0);
-        transform: scale(1);
-    }
+
     50%{
         opacity: 1;
-        filter: blur(0);
         transform: scale(1);
     }
     
     100% {
         opacity: 0;
-        filter: blur(10vw);
         transform: scale(0.5);
     }
 }
 
 .explodeout {
     animation-name: explodeout;
-    animation-duration: 0.5s;
+    animation-duration: 1s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 }
 
 @keyframes explodeout {
-    100% {
+    99% {
         opacity: 0;
         filter: blur(10vw);
         transform: scale(10);
+    }
+    100% {
+        opacity: 0;
     }
 }
 
 .falling1 {
     animation-name: falling1;
-    animation-duration: 3s;
+    animation-duration: 6s;
     animation-delay: 1s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
@@ -125,7 +121,7 @@
 }
 .falling2 {
     animation-name: falling2;
-    animation-duration: 3s;
+    animation-duration: 5s;
     animation-delay: 2s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
@@ -145,7 +141,7 @@
 }
 .falling3 {
     animation-name: falling3;
-    animation-duration: 4s;
+    animation-duration: 6s;
     animation-delay: 3s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
@@ -165,7 +161,7 @@
 }
 .falling4 {
     animation-name: falling4;
-    animation-duration: 2s;
+    animation-duration: 4s;
     animation-delay: 4s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
@@ -185,7 +181,7 @@
 }
 .falling5 {
     animation-name: falling5;
-    animation-duration: 3s;
+    animation-duration: 4s;
     animation-delay: 5s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
@@ -206,7 +202,7 @@
 
 .side_to_side1 {
     animation-name: side_to_side1;
-    animation-duration: 4s;
+    animation-duration: 5s;
     animation-delay: 0s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
@@ -228,7 +224,7 @@
 }
 .side_to_side2 {
     animation-name: side_to_side2;
-    animation-duration: 4s;
+    animation-duration: 5s;
     animation-delay: 0s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
