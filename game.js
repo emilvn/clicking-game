@@ -25,7 +25,6 @@ function updateHealth(lives_left) {
     else {
         return
     }
-    document.head.append(style);
 }
 
 /*updates the scoreboard to show the input score*/
@@ -42,18 +41,27 @@ function pickAnimation() {
     return arr[i];
 }
 
+function resetAnimation(element) {
+    element.offsetHeight;
+}
+
 /*adds the input class to the input element*/
-function addClass(element, animation) {
+function addAnimation(element, animation) {
     element.classList.add(animation);
+}
+
+function toggleAnimation(element, animation) {
+    element.classList.toggle(animation);
 }
 /*replaces the class of the input element with the input class*/
 function replaceClass(element, animation) {
     element.className = animation;
 }
-/*starts timer animation*/
+/*starts timer*/
 function startTimer() {
     let timer = document.getElementById("time_bar_img");
     timer.className = "timer";
+
 }
 /*shows game over screen*/
 function showGameover() {
@@ -67,11 +75,11 @@ function showLevelcomplete() {
 /*starts animations*/
 function startAnimations() {
     //adds falling animations to the game element containers
-    addClass(syringe, pickAnimation());
-    addClass(protein, pickAnimation());
-    addClass(chicken, pickAnimation());
-    addClass(beer, pickAnimation());
-    addClass(vodka, pickAnimation());
+    addAnimation(syringe, pickAnimation());
+    addAnimation(protein, pickAnimation());
+    addAnimation(chicken, pickAnimation());
+    addAnimation(beer, pickAnimation());
+    addAnimation(vodka, pickAnimation());
 }
 
 /*start, game over and level complete variables*/
@@ -114,46 +122,101 @@ let vodka_splash = document.getElementById("vodka_splash");
 let player_lives = 3;
 let player_score = 0;
 
-/*onclick events for pausing animation,
+/*when element is clicked: playing pause animation,
 playing sprite/splash effect animations
-adding points/ subtracting lives
+adding points/subtracting lives where needed
 updating scoreboard and/or health bar*/
 syringe.addEventListener("click", function () {
-    addClass(this, "pause");
-    addClass(syringe_sprite, "explodeout");
-    addClass(syringe_splash, "blur_in_out");
-    player_score += 50;
+    addAnimation(this, "pause");
+    toggleAnimation(syringe_sprite, "explodeout");
+    toggleAnimation(syringe_splash, "blur_in_out");
+    player_score += 75;
     player_lives--;
     updateScore(player_score);
     updateHealth(player_lives);
+    setTimeout(function () {
+        syringe.className = "";
+        resetAnimation(syringe);
+        addAnimation(syringe, pickAnimation());
+        toggleAnimation(syringe_sprite, "explodeout");
+        toggleAnimation(syringe_splash, "blur_in_out");
+    }, 1500);
 });
+/*if the element reaches bottom of screen without being clicked
+resets animation and picks a new animation*/
+syringe.addEventListener("animationend", function () {
+  this.className = "";
+  resetAnimation(this);
+  addAnimation(this, pickAnimation());
+  toggleAnimation(syringe_sprite, "explodeout");
+  toggleAnimation(syringe_splash, "blur_in_out");
+});
+
 protein.addEventListener("click", function () {
-    addClass(this, "pause");
-    addClass(protein_sprite, "explodeout");
-    addClass(protein_splash, "blur_in_out");
-    player_score += 10;
+    addAnimation(this, "pause");
+    addAnimation(protein_sprite, "explodeout");
+    addAnimation(protein_splash, "blur_in_out");
+    player_score += 15;
     updateScore(player_score);
+    setTimeout(function () {
+        protein.className = "";
+        resetAnimation(protein);
+        addAnimation(protein, pickAnimation());
+        toggleAnimation(protein_sprite, "explodeout");
+        toggleAnimation(protein_splash, "blur_in_out");
+    }, 1500);
 });
+protein.addEventListener("animationend", function () {
+    this.className = "";
+    resetAnimation(this);
+    addAnimation(this, pickAnimation());
+    toggleAnimation(protein_sprite, "explodeout");
+    toggleAnimation(protein_splash, "blur_in_out");
+});
+
 chicken.addEventListener("click", function () {
-    addClass(this, "pause");
-    addClass(chicken_sprite, "explodeout");
-    addClass(chicken_splash, "blur_in_out");
-    player_score += 10;
+    addAnimation(this, "pause");
+    addAnimation(chicken_sprite, "explodeout");
+    addAnimation(chicken_splash, "blur_in_out");
+    player_score += 15;
     updateScore(player_score);
 });
+chicken.addEventListener("animationend", function () {
+  this.className = "";
+  resetAnimation(this);
+  addAnimation(this, pickAnimation());
+  toggleAnimation(chicken_sprite, "explodeout");
+  toggleAnimation(chicken_splash, "blur_in_out");
+});
+
 beer.addEventListener("click", function () {
-    addClass(this, "pause");
-    addClass(beer_sprite, "explodeout");
-    addClass(beer_splash, "blur_in_out");
+    addAnimation(this, "pause");
+    addAnimation(beer_sprite, "explodeout");
+    addAnimation(beer_splash, "blur_in_out");
     player_lives--;
     updateHealth(player_lives);
 });
+beer.addEventListener("animationend", function () {
+  this.className = "";
+  resetAnimation(this);
+  addAnimation(this, pickAnimation());
+  toggleAnimation(beer_sprite, "explodeout");
+  toggleAnimation(beer_splash, "blur_in_out");
+});
+
 vodka.addEventListener("click", function () {
-    addClass(this, "pause");
-    addClass(vodka_sprite, "explodeout");
-    addClass(vodka_splash, "blur_in_out");
+    addAnimation(this, "pause");
+    addAnimation(vodka_sprite, "explodeout");
+    addAnimation(vodka_splash, "blur_in_out");
     player_lives--; 
     updateHealth(player_lives);
+});
+vodka.addEventListener("animationend", function () {
+  this.className = "";
+  resetAnimation(this);
+  addAnimation(this, pickAnimation());
+  toggleAnimation(vodka_sprite, "explodeout");
+  toggleAnimation(vodka_splash, "blur_in_out");
 });
 
 /*maximize start menu*/
