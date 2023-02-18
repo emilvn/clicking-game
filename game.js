@@ -19,12 +19,15 @@ else if (lives_left == 1){
     }
     `
 }
+//if there are no more lives left, grays out all hearts and
+//maximizes game over screen
 else if (lives_left == 0) {
     style.textContent = `
     #life_heart3, #life_heart2, #life_heart1 {
         filter: grayscale(1);
     }
     `;
+    game_over.className = "maximize";
 }
 else {
     return
@@ -36,6 +39,13 @@ document.head.append(style);
 function updateScore(score) {
     let score_element = document.getElementById("score_number");
     score_element.innerHTML = score;
+}
+
+function pickAnimation() {
+    let arr = ["falling1", "falling2", "falling3", "falling4", "falling5", "side_to_side1", "side_to_side2"];
+    let i = Math.floor(Math.random() * arr.length);
+
+    return arr[i];
 }
 
 //adds a class to the element
@@ -53,11 +63,11 @@ function playGame() {
     let timer = document.getElementById("time_bar_img");
 
     //adds falling animations to the game element containers
-    addClass(syringe, "side_to_side1");
-    addClass(protein, "falling1");
-    addClass(chicken, "falling2");
-    addClass(beer, "falling3");
-    addClass(vodka, "falling4");
+    addClass(syringe, pickAnimation());
+    addClass(protein, pickAnimation());
+    addClass(chicken, pickAnimation());
+    addClass(beer, pickAnimation());
+    addClass(vodka, pickAnimation());
     
     //starts the timer animation
     timer.className = "timer";
@@ -120,39 +130,38 @@ syringe.addEventListener("click", function () {
     addClass(syringe_sprite, "explodeout");
     addClass(syringe_splash, "blur_in_out");
     player_score += 50;
-    player_lives -= 1;
+    player_lives--;
+    updateScore(player_score);
+    updateHealth(player_lives);
 });
 protein.addEventListener("click", function () {
     addClass(this, "pause");
     addClass(protein_sprite, "explodeout");
     addClass(protein_splash, "blur_in_out");
     player_score += 10;
+    updateScore(player_score);
 });
 chicken.addEventListener("click", function () {
     addClass(this, "pause");
     addClass(chicken_sprite, "explodeout");
     addClass(chicken_splash, "blur_in_out");
     player_score += 10;
+    updateScore(player_score);
 });
 beer.addEventListener("click", function () {
     addClass(this, "pause");
     addClass(beer_sprite, "explodeout");
     addClass(beer_splash, "blur_in_out");
-    player_lives -= 1;
+    player_lives--;
+    updateHealth(player_lives);
 });
 vodka.addEventListener("click", function () {
     addClass(this, "pause");
     addClass(vodka_sprite, "explodeout");
     addClass(vodka_splash, "blur_in_out");
-    player_lives -= 1;
+    player_lives--; //
+    updateHealth(player_lives); //updates player health
 });
-
-
-
-//updates the health bar
-updateHealth(player_lives);
-//updates the scoreboard
-updateScore(player_score);
 
 //maximizes the start menu
 start_menu.className = "maximize";
