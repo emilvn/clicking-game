@@ -38,7 +38,7 @@ function updateHealth(lives_left) {
 //updates the scoreboard to show the input score
 function updateScore(score) {
     let score_element = document.getElementById("score_number");
-    score_element.innerHTML = score;
+    score_element.textContent = score;
 }
 
 //randomly returns a class from an array of the animation classes
