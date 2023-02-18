@@ -1,47 +1,40 @@
-//updates the health hearts to grayscale the hearts
-//depending on how many lives are left
+/*makes the health hearts grey depending on how many lives are left
+and pulls up the game over screen if no more lives are left*/
 function updateHealth(lives_left) {
     let heart1 = document.getElementById("life_heart1");
     let heart2 = document.getElementById("life_heart2");
     let heart3 = document.getElementById("life_heart3");
-    //does nothing if 3 lives are left
+    
     if (lives_left == 3) {
         return;
     }
-    
-    //grays out 1 heart if 2 lives are left
     else if (lives_left == 2){
         heart3.style.filter = "grayscale(1)";
     }
-    //grays out 2 hearts if 1 life is left
     else if (lives_left == 1){
         heart2.style.filter = "grayscale(1)";
         heart3.style.filter = "grayscale(1)";
     }
-    //if there are no more lives left, grays out all hearts and
-    //maximizes game over screen
     else if (lives_left == 0) {
         heart1.style.filter = "grayscale(1)";
         heart2.style.filter = "grayscale(1)";
         heart3.style.filter = "grayscale(1)";
         
-        game_over.className = "maximize";
+        showGameover();
     }
-    //does nothing if lives_left has other values than 0-3
     else {
         return
     }
-    //adds the style from the if else if statements to the head of the html
     document.head.append(style);
 }
 
-//updates the scoreboard to show the input score
+/*updates the scoreboard to show the input score*/
 function updateScore(score) {
     let score_element = document.getElementById("score_number");
     score_element.textContent = score;
 }
 
-//randomly returns a class from an array of the animation classes
+/*randomly returns a class from an array of the animation classes*/
 function pickAnimation() {
     let arr = ["falling1", "falling2", "falling3", "falling4", "falling5", "side_to_side1", "side_to_side2"];
     let i = Math.floor(Math.random() * arr.length);
@@ -49,86 +42,82 @@ function pickAnimation() {
     return arr[i];
 }
 
-//adds a class to the element
+/*adds the input class to the input element*/
 function addClass(element, animation) {
     element.classList.add(animation);
 }
-//replaces the class of the element with the input class
+/*replaces the class of the input element with the input class*/
 function replaceClass(element, animation) {
     element.className = animation;
 }
-
-//plays on game start
-function playGame() {
-    //timer varible
+/*starts timer animation*/
+function startTimer() {
     let timer = document.getElementById("time_bar_img");
+    timer.className = "timer";
+}
+/*shows game over screen*/
+function showGameover() {
+    game_over.className = "maximize";
+}
+/*shows level complete screen*/
+function showLevelcomplete() {
+    level_complete.className = "maximize";
+}
 
+/*starts animations*/
+function startAnimations() {
     //adds falling animations to the game element containers
     addClass(syringe, pickAnimation());
     addClass(protein, pickAnimation());
     addClass(chicken, pickAnimation());
     addClass(beer, pickAnimation());
     addClass(vodka, pickAnimation());
-    
-    //starts the timer animation
-    timer.className = "timer";
-
-    //when timer animation ends, tests if player has high enough score
-    //and pops up the "game over" or "level complete" screen depending on the score
-    timer.addEventListener("animationend", function () {
-        if (player_score >= 300) {
-            level_complete.className = "maximize";
-        }
-        else {
-            game_over.className = "maximize";
-        }
-  });
 }
 
-//stores the menu, game over and level complete screens in variables
+/*start, game over and level complete variables*/
 let start_menu = document.getElementById("start");
 let game_over = document.getElementById("game_over");
 let level_complete = document.getElementById("level_complete");
 
-//stores the start and restart buttons in variables
+/*start and restart button variables*/
 let start_button = document.getElementById("start_button");
 let restart_button1 = document.getElementById("restart_button1");
 let restart_button2 = document.getElementById("restart_button2");
 
-//onclick listeners that calls playGame function and minimizes the window
-start_button.addEventListener('click', function () { playGame(); replaceClass(start_menu, "minimize");});
+/*onclick listeners for starting the game and minimizing the menu*/
+start_button.addEventListener('click', function () { startAnimations(); replaceClass(start_menu, "minimize"); startTimer(); });
 restart_button1.addEventListener('click', function () { playGame(); replaceClass(game_over, "minimize"); });
 restart_button2.addEventListener('click', function () { playGame(); replaceClass(level_complete, "minimize"); });
 
-//stores the game element containers in variables
+/*game element container variables*/
 let syringe = document.getElementById("syringe_container");
 let protein = document.getElementById("protein_container");
 let chicken = document.getElementById("chicken_container");
 let beer = document.getElementById("beer_container");
 let vodka = document.getElementById("vodka_container");
 
-//stores the game element sprites in variables
+/*game element sprite variables*/
 let syringe_sprite = document.getElementById("syringe_sprite");
 let protein_sprite = document.getElementById("protein_sprite");
 let chicken_sprite = document.getElementById("chicken_sprite");
 let beer_sprite = document.getElementById("beer_sprite");
 let vodka_sprite = document.getElementById("vodka_sprite");
 
-//stores the game element splashes in variables
+/*game element splash effect variables*/
 let syringe_splash = document.getElementById("syringe_splash");
 let protein_splash = document.getElementById("protein_splash");
 let chicken_splash = document.getElementById("chicken_splash");
 let beer_splash = document.getElementById("beer_splash");
 let vodka_splash = document.getElementById("vodka_splash");
 
-//variables for the players lives and score
+/*variables for the players lives and score*/
 let player_lives = 3;
 let player_score = 0;
 
-//adds onclick events that pauses the falling animations
-//plays the animations for the sprites and splashes
-//adds points on good things, subtracts lives on bad things
-//then updates the scoreboard and health bar
+/*onclick events for pausing animation,
+playing sprite/splash effect animations
+adding points/ subtracting lives
+updating scoreboard and/or health bar*/
 syringe.addEventListener("click", function () {
     addClass(this, "pause");
     addClass(syringe_sprite, "explodeout");
@@ -167,5 +156,5 @@ vodka.addEventListener("click", function () {
     updateHealth(player_lives);
 });
 
-//maximizes the start menu
+/*maximize start menu*/
 start_menu.className = "maximize";
