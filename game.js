@@ -1,7 +1,9 @@
 //updates the health hearts to grayscale the hearts
 //depending on how many lives are left
 function updateHealth(lives_left) {
-const style = document.createElement('style');
+    let heart1 = document.getElementById("life_heart1");
+    let heart2 = document.getElementById("life_heart2");
+    let heart3 = document.getElementById("life_heart3");
     //does nothing if 3 lives are left
     if (lives_left == 3) {
         return;
@@ -9,28 +11,20 @@ const style = document.createElement('style');
     
     //grays out 1 heart if 2 lives are left
     else if (lives_left == 2){
-        style.textContent = `
-            #life_heart3 {
-                filter: grayscale(1);
-            }
-        `;
+        heart3.style.filter = "grayscale(1)";
     }
     //grays out 2 hearts if 1 life is left
     else if (lives_left == 1){
-        style.textContent = `
-            #life_heart3, #life_heart2 {
-                filter: grayscale(1);
-            }
-        `;
+        heart2.style.filter = "grayscale(1)";
+        heart3.style.filter = "grayscale(1)";
     }
     //if there are no more lives left, grays out all hearts and
     //maximizes game over screen
     else if (lives_left == 0) {
-        style.textContent = `
-            #life_heart3, #life_heart2, #life_heart1 {
-                filter: grayscale(1);
-            }
-        `;
+        heart1.style.filter = "grayscale(1)";
+        heart2.style.filter = "grayscale(1)";
+        heart3.style.filter = "grayscale(1)";
+        
         game_over.className = "maximize";
     }
     //does nothing if lives_left has other values than 0-3
