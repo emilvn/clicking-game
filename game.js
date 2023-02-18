@@ -2,37 +2,43 @@
 //depending on how many lives are left
 function updateHealth(lives_left) {
 const style = document.createElement('style');
-if (lives_left == 3){
-    return
-}
-else if (lives_left == 2){
-    style.textContent = `
-    #life_heart3 {
-        filter: grayscale(1);
+    //does nothing if 3 lives are left
+    if (lives_left == 3) {
+        return;
     }
-    `
-}
-else if (lives_left == 1){
-    style.textContent = `
-    #life_heart3, #life_heart2 {
-        filter: grayscale(1);
+    
+    //grays out 1 heart if 2 lives are left
+    else if (lives_left == 2){
+        style.textContent = `
+            #life_heart3 {
+                filter: grayscale(1);
+            }
+        `;
     }
-    `
-}
-//if there are no more lives left, grays out all hearts and
-//maximizes game over screen
-else if (lives_left == 0) {
-    style.textContent = `
-    #life_heart3, #life_heart2, #life_heart1 {
-        filter: grayscale(1);
+    //grays out 2 hearts if 1 life is left
+    else if (lives_left == 1){
+        style.textContent = `
+            #life_heart3, #life_heart2 {
+                filter: grayscale(1);
+            }
+        `;
     }
-    `;
-    game_over.className = "maximize";
-}
-else {
-    return
-}
-document.head.append(style);
+    //if there are no more lives left, grays out all hearts and
+    //maximizes game over screen
+    else if (lives_left == 0) {
+        style.textContent = `
+            #life_heart3, #life_heart2, #life_heart1 {
+                filter: grayscale(1);
+            }
+        `;
+        game_over.className = "maximize";
+    }
+    //does nothing if lives_left has other values than 0-3
+    else {
+        return
+    }
+    //adds the style from the if else if statements to the head of the html
+    document.head.append(style);
 }
 
 //updates the scoreboard to show the input score
@@ -41,6 +47,7 @@ function updateScore(score) {
     score_element.innerHTML = score;
 }
 
+//randomly returns a class from an array of the animation classes
 function pickAnimation() {
     let arr = ["falling1", "falling2", "falling3", "falling4", "falling5", "side_to_side1", "side_to_side2"];
     let i = Math.floor(Math.random() * arr.length);
@@ -124,7 +131,10 @@ let vodka_splash = document.getElementById("vodka_splash");
 let player_lives = 3;
 let player_score = 0;
 
-//adds an onclick event that pauses the falling animation and plays the animations for the sprites and splashes of the elements
+//adds onclick events that pauses the falling animations
+//plays the animations for the sprites and splashes
+//adds points on good things, subtracts lives on bad things
+//then updates the scoreboard and health bar
 syringe.addEventListener("click", function () {
     addClass(this, "pause");
     addClass(syringe_sprite, "explodeout");
@@ -159,8 +169,8 @@ vodka.addEventListener("click", function () {
     addClass(this, "pause");
     addClass(vodka_sprite, "explodeout");
     addClass(vodka_splash, "blur_in_out");
-    player_lives--; //
-    updateHealth(player_lives); //updates player health
+    player_lives--; 
+    updateHealth(player_lives);
 });
 
 //maximizes the start menu
