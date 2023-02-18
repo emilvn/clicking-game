@@ -1,5 +1,6 @@
-//grayscales the hearts depending on how many lives are left
-function healthBar(lives_left) {
+//updates the health hearts to grayscale the hearts
+//depending on how many lives are left
+function updateHealth(lives_left) {
 const style = document.createElement('style');
 if (lives_left == 3){
     return
@@ -31,22 +32,23 @@ else {
 document.head.append(style);
 }
 
-//changes the scoreboard to show the input score
-function scoreBoard(score) {
+//updates the scoreboard to show the input score
+function updateScore(score) {
     let score_element = document.getElementById("score_number");
     score_element.innerHTML = score;
 }
 
-//adds an animation class to the element
+//adds a class to the element
 function addClass(element, animation) {
-    element.className += ` ${animation}`;
+    element.classList.add(animation);
 }
+//replaces the class of the element with the input class
 function replaceClass(element, animation) {
-    element.className = ` ${animation}`;
+    element.className = animation;
 }
 
 //plays on game start
-function gameStart() {
+function playGame() {
     //timer varible
     let timer = document.getElementById("time_bar_img");
 
@@ -82,10 +84,10 @@ let start_button = document.getElementById("start_button");
 let restart_button1 = document.getElementById("restart_button1");
 let restart_button2 = document.getElementById("restart_button2");
 
-//onclick listeners that calls gamestart function and minimizes the window
-start_button.addEventListener('click', function () { gameStart(); replaceClass(start_menu, "minimize"); });
-restart_button1.addEventListener('click', function () { gameStart(); replaceClass(game_over, "minimize"); });
-restart_button2.addEventListener('click', function () { gameStart(); replaceClass(level_complete, "minimize"); });
+//onclick listeners that calls playGame function and minimizes the window
+start_button.addEventListener('click', function () { playGame(); replaceClass(start_menu, "minimize");});
+restart_button1.addEventListener('click', function () { playGame(); replaceClass(game_over, "minimize"); });
+restart_button2.addEventListener('click', function () { playGame(); replaceClass(level_complete, "minimize"); });
 
 //stores the game element containers in variables
 let syringe = document.getElementById("syringe_container");
@@ -148,9 +150,9 @@ vodka.addEventListener("click", function () {
 
 
 //updates the health bar
-healthBar(player_lives);
+updateHealth(player_lives);
 //updates the scoreboard
-scoreBoard(player_score);
+updateScore(player_score);
 
 //maximizes the start menu
 start_menu.className = "maximize";
