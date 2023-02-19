@@ -17,7 +17,7 @@ function updateHealth(lives_left) {
         heart2.style.filter = "grayscale(1)";
         heart3.style.filter = "grayscale(1)";
     }
-    else if (lives_left == 0) {
+    else if (lives_left == 0){
         heart1.style.filter = "grayscale(1)";
         heart2.style.filter = "grayscale(1)";
         heart3.style.filter = "grayscale(1)";
@@ -43,6 +43,7 @@ function pickAnimation() {
     return arr[i];
 }
 
+/* resets the animation by asking for the height of the element */
 function resetAnimation(element) {
     element.offsetHeight;
 }
@@ -52,6 +53,7 @@ function addAnimation(element, animation) {
     element.classList.add(animation);
 }
 
+/* toggles a given class on an element */
 function toggleAnimation(element, animation) {
     element.classList.toggle(animation);
 }
@@ -65,6 +67,7 @@ function startTimer() {
     timer.className = "timer";
 
 }
+
 /* shows game over screen */
 function showGameover() {
     game_over.className = "maximize";
@@ -124,12 +127,16 @@ let player_lives = 3;
 let player_score = 0;
 
 /*
-when element is clicked: playing pause animation,
-playing sprite/splash effect animations
+when element is clicked: 
+becomes unclickable
+gets paused
+sprite animation plays
+splash animation plays
 adding points/subtracting lives where needed
 updating scoreboard and/or health bar
 */
 syringe.addEventListener("click", function () {
+    this.style.pointerEvents = "none";
     addAnimation(this, "pause");
     toggleAnimation(syringe_sprite, "explodeout");
     toggleAnimation(syringe_splash, "blur_in_out");
@@ -137,42 +144,32 @@ syringe.addEventListener("click", function () {
     player_lives--;
     updateScore(player_score);
     updateHealth(player_lives);
-    setTimeout(function () {
-        syringe.className = "";
-        resetAnimation(syringe);
-        addAnimation(syringe, pickAnimation());
-        toggleAnimation(syringe_sprite, "explodeout");
-        toggleAnimation(syringe_splash, "blur_in_out");
-    }, 1500);
 });
+
 /*
-if the element reaches bottom of screen without being clicked
-resets animation and picks a new animation
+when the animation of the element stops
+resets animations and picks a new animation
 */
 syringe.addEventListener("animationend", function () {
-  this.className = "";
-  resetAnimation(this);
-  addAnimation(this, pickAnimation());
-  toggleAnimation(syringe_sprite, "explodeout");
-  toggleAnimation(syringe_splash, "blur_in_out");
+    this.style.pointerEvents = "";
+    this.className = "";
+    resetAnimation(this);
+    addAnimation(this, pickAnimation());
+    toggleAnimation(syringe_sprite, "explodeout");
+    toggleAnimation(syringe_splash, "blur_in_out");
 });
 
 /* repeating above process on each game element */
 protein.addEventListener("click", function () {
+    this.style.pointerEvents = "none";
     addAnimation(this, "pause");
     addAnimation(protein_sprite, "explodeout");
     addAnimation(protein_splash, "blur_in_out");
     player_score += 15;
     updateScore(player_score);
-    setTimeout(function () {
-        protein.className = "";
-        resetAnimation(protein);
-        addAnimation(protein, pickAnimation());
-        toggleAnimation(protein_sprite, "explodeout");
-        toggleAnimation(protein_splash, "blur_in_out");
-    }, 1500);
 });
 protein.addEventListener("animationend", function () {
+    this.style.pointerEvents = "";
     this.className = "";
     resetAnimation(this);
     addAnimation(this, pickAnimation());
@@ -181,6 +178,7 @@ protein.addEventListener("animationend", function () {
 });
 
 chicken.addEventListener("click", function () {
+    this.style.pointerEvents = "none";
     addAnimation(this, "pause");
     addAnimation(chicken_sprite, "explodeout");
     addAnimation(chicken_splash, "blur_in_out");
@@ -188,14 +186,16 @@ chicken.addEventListener("click", function () {
     updateScore(player_score);
 });
 chicken.addEventListener("animationend", function () {
-  this.className = "";
-  resetAnimation(this);
-  addAnimation(this, pickAnimation());
-  toggleAnimation(chicken_sprite, "explodeout");
-  toggleAnimation(chicken_splash, "blur_in_out");
+    this.style.pointerEvents = "";
+    this.className = "";
+    resetAnimation(this);
+    addAnimation(this, pickAnimation());
+    toggleAnimation(chicken_sprite, "explodeout");
+    toggleAnimation(chicken_splash, "blur_in_out");
 });
 
 beer.addEventListener("click", function () {
+    this.style.pointerEvents = "none";
     addAnimation(this, "pause");
     addAnimation(beer_sprite, "explodeout");
     addAnimation(beer_splash, "blur_in_out");
@@ -203,14 +203,16 @@ beer.addEventListener("click", function () {
     updateHealth(player_lives);
 });
 beer.addEventListener("animationend", function () {
-  this.className = "";
-  resetAnimation(this);
-  addAnimation(this, pickAnimation());
-  toggleAnimation(beer_sprite, "explodeout");
-  toggleAnimation(beer_splash, "blur_in_out");
+    this.style.pointerEvents = "";
+    this.className = "";
+    resetAnimation(this);
+    addAnimation(this, pickAnimation());
+    toggleAnimation(beer_sprite, "explodeout");
+    toggleAnimation(beer_splash, "blur_in_out");
 });
 
 vodka.addEventListener("click", function () {
+    this.style.pointerEvents = "none";
     addAnimation(this, "pause");
     addAnimation(vodka_sprite, "explodeout");
     addAnimation(vodka_splash, "blur_in_out");
@@ -218,12 +220,24 @@ vodka.addEventListener("click", function () {
     updateHealth(player_lives);
 });
 vodka.addEventListener("animationend", function () {
-  this.className = "";
-  resetAnimation(this);
-  addAnimation(this, pickAnimation());
-  toggleAnimation(vodka_sprite, "explodeout");
-  toggleAnimation(vodka_splash, "blur_in_out");
+    this.style.pointerEvents = "";
+    this.className = "";
+    resetAnimation(this);
+    addAnimation(this, pickAnimation());
+    toggleAnimation(vodka_sprite, "explodeout");
+    toggleAnimation(vodka_splash, "blur_in_out");
 });
 
 /* maximize start menu */
 start_menu.className = "maximize";
+
+
+let timer = document.getElementById("time_bar_img");
+timer.addEventListener("animationend", function(){
+    if (player_score >= 300){
+        showLevelcomplete();
+    }
+    else {
+        showGameover();
+    }
+});

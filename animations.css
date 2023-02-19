@@ -60,8 +60,7 @@
 
 .blur_in_out {
     animation-name: blurinout;
-    animation-duration: 1s;
-    animation-delay: 0.5s;
+    animation-duration: 1.5s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
