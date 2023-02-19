@@ -264,18 +264,20 @@ function game() {
     addEvents("vodka");
 }
 
+function endGame() {
+    let timer = document.getElementById("time_bar_img");
+    timer.addEventListener("animationend", function () {
+      if (player_score >= 300) {
+        showLevelcomplete();
+      } else {
+        showGameover();
+      }
+    });
+}
+
 /* variables for the players lives and score */
 let player_lives = 3;
 let player_score = 0;
 
 game();
-
-let timer = document.getElementById("time_bar_img");
-timer.addEventListener("animationend", function(){
-    if (player_score >= 300){
-        showLevelcomplete();
-    }
-    else {
-        showGameover();
-    }
-});
+endGame;
