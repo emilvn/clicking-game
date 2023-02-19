@@ -25,17 +25,13 @@ body {
 }
 
 #game_foreground {
-    aspect-ratio: 16/9;
     position: absolute;
-    width: 100vw;
-}
-
-#game_foreground img {
-   position: absolute;
-   bottom: 0;
-   left: 0;
-   width: 30%;
-   z-index: 6;
+    aspect-ratio: 16/9;
+    width: 100%;
+    background-image: url(sprites/bodybuilder.png);
+    background-size: 100%;
+    z-index: 6;
+    pointer-events: none;
 }
 
 #game {
