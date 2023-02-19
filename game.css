@@ -28,7 +28,7 @@ body {
     position: absolute;
     aspect-ratio: 16/9;
     width: 100%;
-    background-image: url(sprites/bodybuilder.png);
+    background-image: url(images/sprites/bodybuilder.png);
     background-size: 100%;
     z-index: 6;
     pointer-events: none;
@@ -91,7 +91,7 @@ body {
 }
 
 #game_background {
-    background-image: url(gui/bg.jpg);
+    background-image: url(images/gui/bg.jpg);
     aspect-ratio: 16 / 9;
     width: 100vw;
     background-size: cover;
