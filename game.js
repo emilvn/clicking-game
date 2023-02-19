@@ -30,6 +30,8 @@ function updateHealth(lives_left) {
     }
 }
 
+/* resets the player lives variable to 3
+and resets the player hearts */
 function resetHealth() {
     let heart1 = document.getElementById("life_heart1");
     let heart2 = document.getElementById("life_heart2");
@@ -48,6 +50,7 @@ function updateScore(score) {
     score_element.textContent = score;
 }
 
+/* resets the player score to 0 */
 function resetScore() {
     player_score = 0;
     updateScore(player_score);
@@ -142,12 +145,21 @@ function hideElements() {
     vodka.className = "hidden";
 }
 
+/* 
+starts the game by calling startAnimation 
+minimizing the start window and calling startTimer
+*/
 function startGame() {
     startAnimations();
     replaceClass(start_menu, "minimize");
     startTimer();
 }
 
+/*
+restarts the game by starting the animation and the timer
+minimizes either the game over or level complete window depending on which is open
+resets the score and health
+*/
 function restartGame() {
     startAnimations();
     if (game_over.className == "maximize") {    
