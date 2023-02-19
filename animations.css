@@ -58,15 +58,15 @@
     animation-play-state: paused;
 }
 
-.blur_in_out {
-    animation-name: blurinout;
+.fade_in_out {
+    animation-name: fade_in_out;
     animation-duration: 1.5s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
 
-@keyframes blurinout {
+@keyframes fade_in_out {
     0%{
         opacity: 0;
         transform: scale(0.5);
@@ -83,15 +83,15 @@
     }
 }
 
-.explodeout {
-    animation-name: explodeout;
+.explode_away {
+    animation-name: explode_away;
     animation-duration: 1s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
 
-@keyframes explodeout {
+@keyframes explode_away {
     99% {
         opacity: 0;
         filter: blur(10vw);
@@ -102,16 +102,36 @@
     }
 }
 
-.falling1 {
-    animation-name: falling1;
+.falling_pos_1 {
+    animation-name: falling_pos_1;
     animation-duration: 5s;
-    animation-delay: 0.5s;
+    animation-delay: 0.1s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     transform: scale(0);
 }
 
-@keyframes falling1 {
+@keyframes falling_pos_1 {
+    0%, 100% {
+        transform: scale(1);
+    }
+    0% {
+        transform: translate(35vw, -57vw);
+    }
+    100% {
+        transform: translate(35vw, 57vw);
+    }
+}
+.falling_pos_2 {
+    animation-name: falling_pos_2;
+    animation-duration: 5s;
+    animation-delay: 0.2s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    transform: scale(0);
+}
+
+@keyframes falling_pos_2 {
     0%, 100% {
         transform: scale(1);
     }
@@ -122,28 +142,8 @@
         transform: translate(50vw, 57vw);
     }
 }
-.falling2 {
-    animation-name: falling2;
-    animation-duration: 5s;
-    animation-delay: 0.4s;
-    animation-timing-function: linear;
-    animation-iteration-count: 1;
-    transform: scale(0);
-}
-
-@keyframes falling2 {
-    0%, 100% {
-        transform: scale(1);
-    }
-    0% {
-        transform: translate(60vw, -57vw);
-    }
-    100% {
-        transform: translate(60vw, 57vw);
-    }
-}
-.falling3 {
-    animation-name: falling3;
+.falling_pos_3 {
+    animation-name: falling_pos_3;
     animation-duration: 5s;
     animation-delay: 0.3s;
     animation-timing-function: linear;
@@ -151,27 +151,27 @@
     transform: scale(0);
 }
 
-@keyframes falling3 {
+@keyframes falling_pos_3 {
     0%, 100% {
         transform: scale(1);
     }
     0% {
-        transform: translate(70vw, -57vw);
+        transform: translate(65vw, -57vw);
     }
     100% {
-        transform: translate(70vw, 57vw);
+        transform: translate(65vw, 57vw);
     }
 }
-.falling4 {
-    animation-name: falling4;
+.falling_pos_4 {
+    animation-name: falling_pos_4;
     animation-duration: 5s;
-    animation-delay: 0.2s;
+    animation-delay: 0.4s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     transform: scale(0);
 }
 
-@keyframes falling4 {
+@keyframes falling_pos_4 {
     0%, 100% {
         transform: scale(1);
     }
@@ -182,16 +182,16 @@
         transform: translate(80vw, 57vw);
     }
 }
-.falling5 {
-    animation-name: falling5;
+.falling_pos_5 {
+    animation-name: falling_pos_5;
     animation-duration: 5s;
-    animation-delay: 0.1s;
+    animation-delay: 0.5s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     transform: scale(0);
 }
 
-@keyframes falling5 {
+@keyframes falling_pos_5 {
     0%, 100% {
         transform: scale(1);
     }
@@ -203,8 +203,8 @@
     }
 }
 
-.side_to_side1 {
-    animation-name: side_to_side1;
+.zigzag_right {
+    animation-name: zigzag_right;
     animation-duration: 5s;
     animation-delay: 0s;
     animation-timing-function: linear;
@@ -212,38 +212,37 @@
     transform: scale(0);
 }
 
-@keyframes side_to_side1 {
+@keyframes zigzag_right {
     0%, 100% {transform: scale(1)}
     0% {
-        transform: translate(50vw, -57vw);
+        transform: translate(33vw, -57vw);
     }
     50% {
         transform: translate(90vw, 20vw);
     }
     100% {
-        transform: translate(50vw, 57vw);
+        transform: translate(33vw, 57vw);
     }
 
 }
-.side_to_side2 {
-    animation-name: side_to_side2;
+.zigzag_left {
+    animation-name: zigzag_left;
     animation-duration: 5s;
-    animation-delay: 0.5s;
+    animation-delay: 0.1s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     transform: scale(0);
 }
 
-@keyframes side_to_side2 {
+@keyframes zigzag_left {
     0%, 100% {transform: scale(1)}
     0% {
         transform: translate(100vw, -57vw);
     }
     50% {
-        transform: translate(50vw, 20vw);
+        transform: translate(33vw, 20vw);
     }
     100% {
         transform: translate(100vw, 57vw);
     }
-
 }

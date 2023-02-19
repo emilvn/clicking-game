@@ -58,7 +58,7 @@ function resetScore() {
 
 /* randomly returns a class from an array of the animation classes */
 function pickAnimation() {
-    let arr = ["falling1", "falling2", "falling3", "falling4", "falling5", "side_to_side1", "side_to_side2"];
+    let arr = ["falling_pos_1", "falling_pos_2", "falling_pos_3", "falling_pos_4", "falling_pos_5", "zigzag_right", "zigzag_left"];
     let i = Math.floor(Math.random() * arr.length);
 
     return arr[i];
@@ -184,8 +184,8 @@ function addEvents(game_element) {
     container.addEventListener("click", function () {
         this.style.pointerEvents = "none";
         addAnimation(this, "pause");
-        toggleAnimation(sprite, "explodeout");
-        toggleAnimation(splash, "blur_in_out");
+        toggleAnimation(sprite, "explode_away");
+        toggleAnimation(splash, "fade_in_out");
         player_score += points;
         player_lives -= lives_lost;
         updateScore(player_score);
@@ -197,8 +197,8 @@ function addEvents(game_element) {
         this.className = "";
         resetAnimation(this);
         addAnimation(this, pickAnimation());
-        toggleAnimation(sprite, "explodeout");
-        toggleAnimation(splash, "blur_in_out");
+        toggleAnimation(sprite, "explode_away");
+        toggleAnimation(splash, "fade_in_out");
     });
 }
 
