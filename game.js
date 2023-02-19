@@ -104,13 +104,13 @@ function resetTimer() {
 /* shows game over screen and stops the animations*/
 function showGameover() {
     let game_over = document.getElementById("game_over");
-    game_over.className = "maximize";
+    replaceClass(game_over, "maximize");
     hideElements();
 }
 /* shows level complete screen and stops the animations*/
 function showLevelcomplete() {
     let level_complete = document.getElementById("level_complete");
-    level_complete.className = "maximize";
+    replaceClass(level_complete, "maximize");
     hideElements();
 }
 
@@ -208,6 +208,8 @@ minimizes the start window
 calls startTimer
 */
 function startGame() {
+    let start_menu = document.getElementById("start");
+
     startAnimations();
     replaceClass(start_menu, "minimize");
     startTimer();
@@ -220,6 +222,10 @@ resets, and then starts the timer
 resets the score and health
 */
 function restartGame() {
+    let game_over = document.getElementById("game_over");
+    let level_complete = document.getElementById("level_complete");
+
+
     startAnimations();
     if (game_over.className == "maximize") {    
         replaceClass(game_over, "minimize");
@@ -233,34 +239,36 @@ function restartGame() {
     resetHealth();
 }
 
-/* start, game over and level complete variables */
-let start_menu = document.getElementById("start");
-let game_over = document.getElementById("game_over");
-let level_complete = document.getElementById("level_complete");
+function addButtonlisteners() {
+    /* start and restart button variables */
+    let start_button = document.getElementById("start_button");
+    let restart_button1 = document.getElementById("restart_button1");
+    let restart_button2 = document.getElementById("restart_button2");
 
-/* start and restart button variables */
-let start_button = document.getElementById("start_button");
-let restart_button1 = document.getElementById("restart_button1");
-let restart_button2 = document.getElementById("restart_button2");
+    /* starts game when start button is clicked */
+    start_button.addEventListener("click", startGame);
+    /* restarts game when restart buttons are clicked */
+    restart_button1.addEventListener("click", restartGame);
+    restart_button2.addEventListener("click", restartGame);
+}
 
-/* starts game when start button is clicked */
-start_button.addEventListener('click', startGame);
-/* restarts game when restart buttons are clicked */
-restart_button1.addEventListener('click', restartGame);
-restart_button2.addEventListener("click", restartGame);
+function game() {
+    let start_menu = document.getElementById("start");
+    /* maximize start menu */
+    start_menu.className = "maximize";
+    addButtonlisteners();
+    addEvents("syringe");
+    addEvents("protein");
+    addEvents("chicken");
+    addEvents("beer");
+    addEvents("vodka");
+}
 
 /* variables for the players lives and score */
 let player_lives = 3;
 let player_score = 0;
 
-addEvents("syringe");
-addEvents("protein");
-addEvents("chicken");
-addEvents("beer");
-addEvents("vodka");
-
-/* maximize start menu */
-start_menu.className = "maximize";
+game();
 
 let timer = document.getElementById("time_bar_img");
 timer.addEventListener("animationend", function(){
