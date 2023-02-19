@@ -273,6 +273,7 @@ function endGame() {
         showGameover();
       }
     });
+    console.log("Out of time!");
 }
 
 /* variables for the players lives and score */
@@ -280,4 +281,4 @@ let player_lives = 3;
 let player_score = 0;
 
 game();
-endGame;
+endGame();
