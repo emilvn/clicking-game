@@ -167,7 +167,7 @@ body {
 #score_icon {
     grid-row: 1/2;
     grid-column: 1/4;
-    width: 8vw;
+    width: 10vw;
     margin-top: 2vw;
 }
 
