@@ -62,6 +62,8 @@ function toggleAnimation(element, animation) {
 function replaceClass(element, animation) {
     element.className = animation;
 }
+
+
 /* starts timer */
 function startTimer() {
     let timer = document.getElementById("time_bar_img");
@@ -74,15 +76,17 @@ function stopTimer() {
     timer.className = "";
 }
 
-/* shows game over screen */
+/* shows game over screen and stops the animations*/
 function showGameover() {
     let game_over = document.getElementById("game_over");
     game_over.className = "maximize";
+    hideElements();
 }
-/* shows level complete screen */
+/* shows level complete screen and stops the animations*/
 function showLevelcomplete() {
     let level_complete = document.getElementById("level_complete");
     level_complete.className = "maximize";
+    hideElements();
 }
 
 /* removes hidden class and starts animations */
@@ -92,13 +96,13 @@ function startAnimations() {
     let chicken = document.getElementById("chicken_container");
     let beer = document.getElementById("beer_container");
     let vodka = document.getElementById("vodka_container");
-
+    
     syringe.className = "";
     protein.className = "";
     chicken.className = "";
     beer.className = "";
     vodka.className = "";
-
+    
     addAnimation(syringe, pickAnimation());
     addAnimation(protein, pickAnimation());
     addAnimation(chicken, pickAnimation());
@@ -113,12 +117,14 @@ function hideElements() {
     let chicken = document.getElementById("chicken_container");
     let beer = document.getElementById("beer_container");
     let vodka = document.getElementById("vodka_container");
-
+    
     syringe.className = "hidden";
     protein.className = "hidden";
     chicken.className = "hidden";
     beer.className = "hidden";
     vodka.className = "hidden";
+
+    console.log("hide");
 }
 
 /* start, game over and level complete variables */
