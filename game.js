@@ -249,55 +249,9 @@ start_button.addEventListener('click', startGame);
 restart_button1.addEventListener('click', restartGame);
 restart_button2.addEventListener("click", restartGame);
 
-/* game element container variables */
-let syringe = document.getElementById("syringe_container");
-let protein = document.getElementById("protein_container");
-let chicken = document.getElementById("chicken_container");
-let beer = document.getElementById("beer_container");
-let vodka = document.getElementById("vodka_container");
-
-/* game element sprite variables */
-let syringe_sprite = document.getElementById("syringe_sprite");
-let protein_sprite = document.getElementById("protein_sprite");
-let chicken_sprite = document.getElementById("chicken_sprite");
-let beer_sprite = document.getElementById("beer_sprite");
-let vodka_sprite = document.getElementById("vodka_sprite");
-
-/* game element splash effect variables */
-let syringe_splash = document.getElementById("syringe_splash");
-let protein_splash = document.getElementById("protein_splash");
-let chicken_splash = document.getElementById("chicken_splash");
-let beer_splash = document.getElementById("beer_splash");
-let vodka_splash = document.getElementById("vodka_splash");
-
 /* variables for the players lives and score */
 let player_lives = 3;
 let player_score = 0;
-
-
-// syringe.addEventListener("click", function () {
-//     this.style.pointerEvents = "none";
-//     addAnimation(this, "pause");
-//     toggleAnimation(syringe_sprite, "explodeout");
-//     toggleAnimation(syringe_splash, "blur_in_out");
-//     player_score += 75;
-//     player_lives--;
-//     updateScore(player_score);
-//     updateHealth(player_lives);
-// });
-
-// /*
-// when the animation of the element stops
-// resets animations and picks a new animation
-// */
-// syringe.addEventListener("animationend", function () {
-//     this.style.pointerEvents = "";
-//     this.className = "";
-//     resetAnimation(this);
-//     addAnimation(this, pickAnimation());
-//     toggleAnimation(syringe_sprite, "explodeout");
-//     toggleAnimation(syringe_splash, "blur_in_out");
-// });
 
 addEvents("syringe");
 addEvents("protein");
@@ -307,7 +261,6 @@ addEvents("vodka");
 
 /* maximize start menu */
 start_menu.className = "maximize";
-
 
 let timer = document.getElementById("time_bar_img");
 timer.addEventListener("animationend", function(){
