@@ -70,20 +70,49 @@ function startTimer() {
 
 /* shows game over screen */
 function showGameover() {
+    let game_over = document.getElementById("game_over");
     game_over.className = "maximize";
 }
 /* shows level complete screen */
 function showLevelcomplete() {
+    let level_complete = document.getElementById("level_complete");
     level_complete.className = "maximize";
 }
 
-/* starts animations */
+/* removes hidden class and starts animations */
 function startAnimations() {
+    let syringe = document.getElementById("syringe_container");
+    let protein = document.getElementById("protein_container");
+    let chicken = document.getElementById("chicken_container");
+    let beer = document.getElementById("beer_container");
+    let vodka = document.getElementById("vodka_container");
+
+    syringe.className = "";
+    protein.className = "";
+    chicken.className = "";
+    beer.className = "";
+    vodka.className = "";
+
     addAnimation(syringe, pickAnimation());
     addAnimation(protein, pickAnimation());
     addAnimation(chicken, pickAnimation());
     addAnimation(beer, pickAnimation());
     addAnimation(vodka, pickAnimation());
+}
+
+/* hides elements by applying the "hidden" class */
+function hideElements() {
+    let syringe = document.getElementById("syringe_container");
+    let protein = document.getElementById("protein_container");
+    let chicken = document.getElementById("chicken_container");
+    let beer = document.getElementById("beer_container");
+    let vodka = document.getElementById("vodka_container");
+
+    syringe.className = "hidden";
+    protein.className = "hidden";
+    chicken.className = "hidden";
+    beer.className = "hidden";
+    vodka.className = "hidden";
 }
 
 /* start, game over and level complete variables */
@@ -98,8 +127,9 @@ let restart_button2 = document.getElementById("restart_button2");
 
 /* onclick listeners for starting the game and minimizing the menu */
 start_button.addEventListener('click', function () { startAnimations(); replaceClass(start_menu, "minimize"); startTimer(); });
-restart_button1.addEventListener('click', function () { playGame(); replaceClass(game_over, "minimize"); });
-restart_button2.addEventListener('click', function () { playGame(); replaceClass(level_complete, "minimize"); });
+/* reloads page when the restart buttons are clicked */
+restart_button1.addEventListener('click', function () { document.location.reload(); });
+restart_button2.addEventListener("click", function () { document.location.reload(); });
 
 /* game element container variables */
 let syringe = document.getElementById("syringe_container");
