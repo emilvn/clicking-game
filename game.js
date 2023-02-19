@@ -83,7 +83,6 @@ function replaceClass(element, animation) {
     element.className = animation;
 }
 
-
 /* starts timer */
 function startTimer() {
     let timer = document.getElementById("time_bar_img");
@@ -94,6 +93,12 @@ function startTimer() {
 function stopTimer() {
     let timer = document.getElementById("time_bar_img");
     timer.className = "";
+}
+
+/* resets the timer animation */
+function resetTimer() {
+    let timer = document.getElementById("time_bar_img");
+    resetAnimation(timer);
 }
 
 /* shows game over screen and stops the animations*/
@@ -146,8 +151,9 @@ function hideElements() {
 }
 
 /* 
-starts the game by calling startAnimation 
-minimizing the start window and calling startTimer
+calls startAnimations
+minimizes the start window 
+calls startTimer
 */
 function startGame() {
     startAnimations();
@@ -156,8 +162,9 @@ function startGame() {
 }
 
 /*
-restarts the game by starting the animation and the timer
+restarts animations
 minimizes either the game over or level complete window depending on which is open
+resets, and then starts the timer
 resets the score and health
 */
 function restartGame() {
@@ -168,6 +175,7 @@ function restartGame() {
     else if (level_complete.className == "maximize") {
         replaceClass(level_complete, "minimize");
     }
+    resetTimer();
     startTimer();
     resetScore();
     resetHealth();
@@ -183,9 +191,9 @@ let start_button = document.getElementById("start_button");
 let restart_button1 = document.getElementById("restart_button1");
 let restart_button2 = document.getElementById("restart_button2");
 
-/* onclick listeners for starting the game and minimizing the menu */
+/* starts game when start button is clicked */
 start_button.addEventListener('click', startGame);
-/* reloads page when the restart buttons are clicked */
+/* restarts game when restart buttons are clicked */
 restart_button1.addEventListener('click', restartGame);
 restart_button2.addEventListener("click", restartGame);
 
