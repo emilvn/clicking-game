@@ -1,6 +1,6 @@
 /*
 makes the health hearts grey depending on how many lives are left
-and pulls up the game over screen if no more lives are left 
+if no more lives are left, stops timer and shows game over screen 
 */
 function updateHealth(lives_left) {
     let heart1 = document.getElementById("life_heart1");
@@ -23,6 +23,7 @@ function updateHealth(lives_left) {
         heart3.style.filter = "grayscale(1)";
         
         showGameover();
+        stopTimer();
     }
     else {
         return
@@ -65,7 +66,12 @@ function replaceClass(element, animation) {
 function startTimer() {
     let timer = document.getElementById("time_bar_img");
     timer.className = "timer";
+}
 
+/* stops timer */
+function stopTimer() {
+    let timer = document.getElementById("time_bar_img");
+    timer.className = "";
 }
 
 /* shows game over screen */
