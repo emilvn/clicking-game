@@ -30,10 +30,27 @@ function updateHealth(lives_left) {
     }
 }
 
+function resetHealth() {
+    let heart1 = document.getElementById("life_heart1");
+    let heart2 = document.getElementById("life_heart2");
+    let heart3 = document.getElementById("life_heart3");
+
+    heart1.style.filter = "";
+    heart2.style.filter = "";
+    heart3.style.filter = "";
+
+    player_lives = 3;
+}
+
 /* updates the scoreboard to show the input score */
 function updateScore(score) {
     let score_element = document.getElementById("score_number");
     score_element.textContent = score;
+}
+
+function resetScore() {
+    player_score = 0;
+    updateScore(player_score);
 }
 
 /* randomly returns a class from an array of the animation classes */
@@ -123,8 +140,25 @@ function hideElements() {
     chicken.className = "hidden";
     beer.className = "hidden";
     vodka.className = "hidden";
+}
 
-    console.log("hide");
+function startGame() {
+    startAnimations();
+    replaceClass(start_menu, "minimize");
+    startTimer();
+}
+
+function restartGame() {
+    startAnimations();
+    if (game_over.className == "maximize") {    
+        replaceClass(game_over, "minimize");
+    }
+    else if (level_complete.className == "maximize") {
+        replaceClass(level_complete, "minimize");
+    }
+    startTimer();
+    resetScore();
+    resetHealth();
 }
 
 /* start, game over and level complete variables */
@@ -138,10 +172,10 @@ let restart_button1 = document.getElementById("restart_button1");
 let restart_button2 = document.getElementById("restart_button2");
 
 /* onclick listeners for starting the game and minimizing the menu */
-start_button.addEventListener('click', function () { startAnimations(); replaceClass(start_menu, "minimize"); startTimer(); });
+start_button.addEventListener('click', startGame);
 /* reloads page when the restart buttons are clicked */
-restart_button1.addEventListener('click', function () { document.location.reload(); });
-restart_button2.addEventListener("click", function () { document.location.reload(); });
+restart_button1.addEventListener('click', restartGame);
+restart_button2.addEventListener("click", restartGame);
 
 /* game element container variables */
 let syringe = document.getElementById("syringe_container");
