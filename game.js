@@ -150,6 +150,58 @@ function hideElements() {
     vodka.className = "hidden";
 }
 
+function addEvents(game_element) {
+    let container = document.getElementById(`${game_element}_container`);
+    let sprite = document.getElementById(`${game_element}_sprite`);
+    let splash = document.getElementById(`${game_element}_splash`);
+    let points = 0;
+    let lives_lost = 0;
+
+    /* 
+    checks what element it is
+    applies the correct points/lives to be added/subtracted on click
+    */
+    if (game_element == "syringe") {
+      points = 75;
+      lives_lost = 1;
+    } else if (game_element == "protein" || game_element == "chicken") {
+      points = 15;
+      lives_lost = 0;
+    } else if (game_element == "beer" || game_element == "vodka") {
+      points = 0;
+      lives_lost = 1;
+    }
+
+    /*
+    when element is clicked: 
+    becomes unclickable
+    gets paused
+    sprite animation plays
+    splash animation plays
+    adding points/subtracting lives where needed
+    updating scoreboard and/or health bar
+    */
+    container.addEventListener("click", function () {
+        this.style.pointerEvents = "none";
+        addAnimation(this, "pause");
+        toggleAnimation(sprite, "explodeout");
+        toggleAnimation(splash, "blur_in_out");
+        player_score += points;
+        player_lives -= lives_lost;
+        updateScore(player_score);
+        updateHealth(player_lives);
+    });
+
+    container.addEventListener("animationend", function () {
+        this.style.pointerEvents = "";
+        this.className = "";
+        resetAnimation(this);
+        addAnimation(this, pickAnimation());
+        toggleAnimation(sprite, "explodeout");
+        toggleAnimation(splash, "blur_in_out");
+    });
+}
+
 /* 
 calls startAnimations
 minimizes the start window 
@@ -222,107 +274,36 @@ let vodka_splash = document.getElementById("vodka_splash");
 let player_lives = 3;
 let player_score = 0;
 
-/*
-when element is clicked: 
-becomes unclickable
-gets paused
-sprite animation plays
-splash animation plays
-adding points/subtracting lives where needed
-updating scoreboard and/or health bar
-*/
-syringe.addEventListener("click", function () {
-    this.style.pointerEvents = "none";
-    addAnimation(this, "pause");
-    toggleAnimation(syringe_sprite, "explodeout");
-    toggleAnimation(syringe_splash, "blur_in_out");
-    player_score += 75;
-    player_lives--;
-    updateScore(player_score);
-    updateHealth(player_lives);
-});
 
-/*
-when the animation of the element stops
-resets animations and picks a new animation
-*/
-syringe.addEventListener("animationend", function () {
-    this.style.pointerEvents = "";
-    this.className = "";
-    resetAnimation(this);
-    addAnimation(this, pickAnimation());
-    toggleAnimation(syringe_sprite, "explodeout");
-    toggleAnimation(syringe_splash, "blur_in_out");
-});
+// syringe.addEventListener("click", function () {
+//     this.style.pointerEvents = "none";
+//     addAnimation(this, "pause");
+//     toggleAnimation(syringe_sprite, "explodeout");
+//     toggleAnimation(syringe_splash, "blur_in_out");
+//     player_score += 75;
+//     player_lives--;
+//     updateScore(player_score);
+//     updateHealth(player_lives);
+// });
 
-/* repeating above process on each game element */
-protein.addEventListener("click", function () {
-    this.style.pointerEvents = "none";
-    addAnimation(this, "pause");
-    addAnimation(protein_sprite, "explodeout");
-    addAnimation(protein_splash, "blur_in_out");
-    player_score += 15;
-    updateScore(player_score);
-});
-protein.addEventListener("animationend", function () {
-    this.style.pointerEvents = "";
-    this.className = "";
-    resetAnimation(this);
-    addAnimation(this, pickAnimation());
-    toggleAnimation(protein_sprite, "explodeout");
-    toggleAnimation(protein_splash, "blur_in_out");
-});
+// /*
+// when the animation of the element stops
+// resets animations and picks a new animation
+// */
+// syringe.addEventListener("animationend", function () {
+//     this.style.pointerEvents = "";
+//     this.className = "";
+//     resetAnimation(this);
+//     addAnimation(this, pickAnimation());
+//     toggleAnimation(syringe_sprite, "explodeout");
+//     toggleAnimation(syringe_splash, "blur_in_out");
+// });
 
-chicken.addEventListener("click", function () {
-    this.style.pointerEvents = "none";
-    addAnimation(this, "pause");
-    addAnimation(chicken_sprite, "explodeout");
-    addAnimation(chicken_splash, "blur_in_out");
-    player_score += 15;
-    updateScore(player_score);
-});
-chicken.addEventListener("animationend", function () {
-    this.style.pointerEvents = "";
-    this.className = "";
-    resetAnimation(this);
-    addAnimation(this, pickAnimation());
-    toggleAnimation(chicken_sprite, "explodeout");
-    toggleAnimation(chicken_splash, "blur_in_out");
-});
-
-beer.addEventListener("click", function () {
-    this.style.pointerEvents = "none";
-    addAnimation(this, "pause");
-    addAnimation(beer_sprite, "explodeout");
-    addAnimation(beer_splash, "blur_in_out");
-    player_lives--;
-    updateHealth(player_lives);
-});
-beer.addEventListener("animationend", function () {
-    this.style.pointerEvents = "";
-    this.className = "";
-    resetAnimation(this);
-    addAnimation(this, pickAnimation());
-    toggleAnimation(beer_sprite, "explodeout");
-    toggleAnimation(beer_splash, "blur_in_out");
-});
-
-vodka.addEventListener("click", function () {
-    this.style.pointerEvents = "none";
-    addAnimation(this, "pause");
-    addAnimation(vodka_sprite, "explodeout");
-    addAnimation(vodka_splash, "blur_in_out");
-    player_lives--; 
-    updateHealth(player_lives);
-});
-vodka.addEventListener("animationend", function () {
-    this.style.pointerEvents = "";
-    this.className = "";
-    resetAnimation(this);
-    addAnimation(this, pickAnimation());
-    toggleAnimation(vodka_sprite, "explodeout");
-    toggleAnimation(vodka_splash, "blur_in_out");
-});
+addEvents("syringe");
+addEvents("protein");
+addEvents("chicken");
+addEvents("beer");
+addEvents("vodka");
 
 /* maximize start menu */
 start_menu.className = "maximize";
