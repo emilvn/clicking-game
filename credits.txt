@@ -1,0 +1,51 @@
+Credit/source list for images and sound effects used in this game
+
+images:
+
+game elements:
+
+syringe.png:
+    link to image: https://vectorportal.com/vector/big-syringe.ai/21039
+    image by https://vectorportal.com
+    https://creativecommons.org/licenses/by/4.0/
+
+protein.png:
+    link to image: https://pxhere.com/da/photo/1165965
+
+chicken.png:
+    link to image: https://pixabay.com/vectors/chicken-roast-dinner-roasted-meal-37365/
+
+beer.png:
+    link to image: 
+    image by https://rawpixel.com
+
+vodka.png:
+    link to image: https://openclipart.org/detail/324407/russian-vodka-bottle
+
+
+splash effects:
+
+evil.png:
+    link to image: https://pixabay.com/vectors/clementine-orange-cartoon-emotions-2022509/
+
+good.png:
+    link to image: https://www.iconspng.com/image/100748/strong-arm
+
+bad.png:
+    link to image: https://openclipart.org/detail/321171/gross-emoji
+
+star.png:
+    link to image: https://www.iconspng.com/image/100748/strong-arm
+
+bodybuilder.png:
+    link to image: https://free-vectors.net/sports/male-bodybuilder-vector
+    image by https://free-vectors.net
+
+heart.png:
+    link to image: https://freesvg.org/1538347618
+
+bg.png:
+    link to image: https://pixabay.com/de/photos/fitnessstudio-ausr%c3%bcstung-gewichte-91849/
+
+timer, startscreen, gameover and levelcomplete:
+    link to gui pack: https://craftpix.net/freebies/free-jungle-cartoon-2d-game-ui/?num=1&count=17&sq=jungle%20ui%27&pos=11
