@@ -42,12 +42,21 @@ function resetHealth() {
     heart1.style.filter = "";
     heart2.style.filter = "";
     heart3.style.filter = "";
+
+    player_lives = 3;
+    updateHealth(player_lives);
 }
 
 /* updates the scoreboard to show the input score */
 function updateScore(score) {
     let score_element = document.querySelector("#score_number");
     score_element.textContent = score;
+}
+
+/* resets player score variable */
+function resetScore(){
+    player_score = 0;
+    updateScore(player_score);
 }
 
 /* randomly returns a class from an array of the animation classes */
@@ -92,8 +101,15 @@ function stopTimer() {
 /* resets the timer animation */
 function resetTimer() {
     let timer = document.querySelector("#time_bar_img");
-    resetAnimation(timer);
     timer.className = "";
+    resetAnimation(timer);
+}
+
+/* shows start menu screen */
+function showStartMenu() {
+    let start_menu = document.querySelector("#start");
+    /* maximize start menu */
+    start_menu.className = "maximize";
 }
 
 /* shows game over screen and stops the animations*/
@@ -163,6 +179,58 @@ function clickEvents(element_name) {
     toggleAnimation(sprite, "explode_away");
     toggleAnimation(splash, "fade_in_out");
 }
+
+function addEvents(game_element) {
+    let container = document.getElementById(`${game_element}_container`);
+    let sprite = document.getElementById(`${game_element}_sprite`);
+    let splash = document.getElementById(`${game_element}_splash`);
+    let points = 0;
+    let lives_lost = 0;
+
+    /* 
+    checks what element it is
+    applies the correct points/lives to be added/subtracted on click
+    */
+    if (game_element == "syringe") {
+      points = 75;
+      lives_lost = 1;
+    } else if (game_element == "protein" || game_element == "chicken") {
+      points = 15;
+      lives_lost = 0;
+    } else if (game_element == "beer" || game_element == "vodka") {
+      points = 0;
+      lives_lost = 1;
+    }
+
+    /*
+    when element is clicked: 
+    becomes unclickable
+    gets paused
+    sprite animation plays
+    splash animation plays
+    adding points/subtracting lives where needed
+    updating scoreboard and/or health bar
+    */
+    container.addEventListener("mousedown", function () {
+        this.style.pointerEvents = "none";
+        addAnimation(this, "pause");
+        toggleAnimation(sprite, "explode_away");
+        toggleAnimation(splash, "fade_in_out");
+        player_score += points;
+        player_lives -= lives_lost;
+        updateScore(player_score);
+        updateHealth(player_lives);
+    });
+
+    container.addEventListener("animationend", function () {
+        this.style.pointerEvents = "";
+        this.className = "";
+        resetAnimation(this);
+        addAnimation(this, pickAnimation());
+        toggleAnimation(sprite, "explode_away");
+        toggleAnimation(splash, "fade_in_out");
+    });
+}
     
 function animationendEvents(element_name) {
     let container = document.querySelector(`#${element_name}_container`);
@@ -216,7 +284,7 @@ function restartGame() {
     resetHealth();
 }
 
-function addButtonlisteners() {
+function addButtonEvents() {
     /* start and restart button variables */
     let start_button = document.querySelector("#start_button");
     let restart_button1 = document.querySelector("#restart_button1");
@@ -229,40 +297,15 @@ function addButtonlisteners() {
     restart_button2.addEventListener("click", restartGame);
 }
 
-function endGame() {
-    
-    console.log("Out of time!");
+function addAnimationEvents(){
+    addEvents("syringe");
+    addEvents("protein");
+    addEvents("chicken");
+    addEvents("beer");
+    addEvents("vodka");
 }
 
-
-function main() {
-    
-    let syringe = document.querySelector("#syringe_container");
-    let protein = document.querySelector("#protein_container");
-    let chicken = document.querySelector("#chicken_container");
-    let beer = document.querySelector("#beer_container");
-    let vodka = document.querySelector("#vodka_container");
-    
-    let player_lives = 3;
-    let player_score = 0;
-
-    syringe.addEventListener("mousedown", function () { clickEvents("syringe"); player_score += 75; player_lives--; updateHealth(player_lives); updateScore(player_score); });
-    protein.addEventListener("mousedown", function () { clickEvents("protein"); player_score += 15; updateScore(player_score); });
-    chicken.addEventListener("mousedown", function () { clickEvents("chicken"); player_score += 15; updateScore(player_score); });
-    beer.addEventListener("mousedown", function () { clickEvents("beer"); player_lives--; updateHealth(player_lives); });
-    vodka.addEventListener("mousedown", function () { clickEvents("vodka"); player_lives--; updateHealth(player_lives); });
-    
-    syringe.addEventListener("animationend", function () { animationendEvents("syringe"); });
-    protein.addEventListener("animationend", function () { animationendEvents("protein"); });
-    chicken.addEventListener("animationend", function () { animationendEvents("chicken"); });
-    beer.addEventListener("animationend", function () { animationendEvents("beer"); });
-    vodka.addEventListener("animationend", function () { animationendEvents("vodka"); });
-    
-    let start_menu = document.querySelector("#start");
-    /* maximize start menu */
-    start_menu.className = "maximize";
-    
-    addButtonlisteners();
+function endGame() {
     let timer = document.querySelector("#time_bar_img");
     timer.addEventListener("animationend", function () {
       if (player_score >= 300) {
@@ -271,4 +314,19 @@ function main() {
         showGameover();
       }
     });
+    console.log("Out of time!");
+}
+
+/* 
+main function, plays at window load
+defines global variables for health and score
+*/
+function main() {
+    window.player_lives = 3;
+    window.player_score = 0;
+
+    showStartMenu();
+    addButtonEvents();
+    addAnimationEvents();
+    endGame();
 }
