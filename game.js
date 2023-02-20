@@ -1,3 +1,5 @@
+window.addEventListener("load", main);
+
 /*
 makes the health hearts grey depending on how many lives are left
 if no more lives are left, stops timer and shows game over screen 
@@ -40,20 +42,12 @@ function resetHealth() {
     heart1.style.filter = "";
     heart2.style.filter = "";
     heart3.style.filter = "";
-
-    player_lives = 3;
 }
 
 /* updates the scoreboard to show the input score */
 function updateScore(score) {
     let score_element = document.querySelector("#score_number");
     score_element.textContent = score;
-}
-
-/* resets the player score to 0 */
-function resetScore() {
-    player_score = 0;
-    updateScore(player_score);
 }
 
 /* randomly returns a class from an array of the animation classes */
@@ -151,28 +145,10 @@ function hideElements() {
     vodka.className = "hidden";
 }
 
-function addEvents(game_element) {
-    let container = document.querySelector(`#${game_element}_container`);
-    let sprite = document.querySelector(`#${game_element}_sprite`);
-    let splash = document.querySelector(`#${game_element}_splash`);
-    let points = 0;
-    let lives_lost = 0;
-
-    /* 
-    checks what element it is
-    applies the correct points/lives to be added/subtracted on click
-    */
-    if (game_element == "syringe") {
-      points = 75;
-      lives_lost = 1;
-    } else if (game_element == "protein" || game_element == "chicken") {
-      points = 15;
-      lives_lost = 0;
-    } else if (game_element == "beer" || game_element == "vodka") {
-      points = 0;
-      lives_lost = 1;
-    }
-
+function clickEvents(element_name) {
+    let container = document.querySelector(`#${element_name}_container`);
+    let sprite = document.querySelector(`#${element_name}_sprite`);
+    let splash = document.querySelector(`#${element_name}_splash`);
     /*
     when element is clicked: 
     becomes unclickable
@@ -182,25 +158,24 @@ function addEvents(game_element) {
     adding points/subtracting lives where needed
     updating scoreboard and/or health bar
     */
-    container.addEventListener("mousedown", function () {
-        this.style.pointerEvents = "none";
-        addAnimation(this, "pause");
-        toggleAnimation(sprite, "explode_away");
-        toggleAnimation(splash, "fade_in_out");
-        player_score += points;
-        player_lives -= lives_lost;
-        updateScore(player_score);
-        updateHealth(player_lives);
-    });
+    container.style.pointerEvents = "none";
+    addAnimation(container, "pause");
+    toggleAnimation(sprite, "explode_away");
+    toggleAnimation(splash, "fade_in_out");
+}
+    
+function animationendEvents(element_name) {
+    let container = document.querySelector(`#${element_name}_container`);
+    let sprite = document.querySelector(`#${element_name}_sprite`);
+    let splash = document.querySelector(`#${element_name}_splash`);
 
-    container.addEventListener("animationend", function () {
-        this.style.pointerEvents = "";
-        this.className = "";
-        resetAnimation(this);
-        addAnimation(this, pickAnimation());
-        toggleAnimation(sprite, "explode_away");
-        toggleAnimation(splash, "fade_in_out");
-    });
+    container.style.pointerEvents = "";
+    container.className = "";
+    resetAnimation(container);
+    addAnimation(container, pickAnimation());
+    toggleAnimation(sprite, "explode_away");
+    toggleAnimation(splash, "fade_in_out");
+
 }
 
 /* 
@@ -226,6 +201,7 @@ function restartGame() {
     let game_over = document.querySelector("#game_over");
     let level_complete = document.querySelector("#level_complete");
 
+    
 
     startAnimations();
     if (game_over.className == "maximize") {    
@@ -253,19 +229,40 @@ function addButtonlisteners() {
     restart_button2.addEventListener("click", restartGame);
 }
 
-function game() {
+function endGame() {
+    
+    console.log("Out of time!");
+}
+
+
+function main() {
+    
+    let syringe = document.querySelector("#syringe_container");
+    let protein = document.querySelector("#protein_container");
+    let chicken = document.querySelector("#chicken_container");
+    let beer = document.querySelector("#beer_container");
+    let vodka = document.querySelector("#vodka_container");
+    
+    let player_lives = 3;
+    let player_score = 0;
+
+    syringe.addEventListener("mousedown", function () { clickEvents("syringe"); player_score += 75; player_lives--; updateHealth(player_lives); updateScore(player_score); });
+    protein.addEventListener("mousedown", function () { clickEvents("protein"); player_score += 15; updateScore(player_score); });
+    chicken.addEventListener("mousedown", function () { clickEvents("chicken"); player_score += 15; updateScore(player_score); });
+    beer.addEventListener("mousedown", function () { clickEvents("beer"); player_lives--; updateHealth(player_lives); });
+    vodka.addEventListener("mousedown", function () { clickEvents("vodka"); player_lives--; updateHealth(player_lives); });
+    
+    syringe.addEventListener("animationend", function () { animationendEvents("syringe"); });
+    protein.addEventListener("animationend", function () { animationendEvents("protein"); });
+    chicken.addEventListener("animationend", function () { animationendEvents("chicken"); });
+    beer.addEventListener("animationend", function () { animationendEvents("beer"); });
+    vodka.addEventListener("animationend", function () { animationendEvents("vodka"); });
+    
     let start_menu = document.querySelector("#start");
     /* maximize start menu */
     start_menu.className = "maximize";
+    
     addButtonlisteners();
-    addEvents("syringe");
-    addEvents("protein");
-    addEvents("chicken");
-    addEvents("beer");
-    addEvents("vodka");
-}
-
-function endGame() {
     let timer = document.querySelector("#time_bar_img");
     timer.addEventListener("animationend", function () {
       if (player_score >= 300) {
@@ -274,12 +271,4 @@ function endGame() {
         showGameover();
       }
     });
-    console.log("Out of time!");
 }
-
-/* variables for the players lives and score */
-let player_lives = 3;
-let player_score = 0;
-
-game();
-endGame();
