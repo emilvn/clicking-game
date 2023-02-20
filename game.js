@@ -5,6 +5,7 @@ makes the health hearts grey depending on how many lives are left
 if no more lives are left, stops timer and shows game over screen 
 */
 function updateHealth(lives_left) {
+    console.log("updateHealth");
     let heart1 = document.querySelector("#life_heart1");
     let heart2 = document.querySelector("#life_heart2");
     let heart3 = document.querySelector("#life_heart3");
@@ -35,6 +36,7 @@ function updateHealth(lives_left) {
 /* resets the player lives variable to 3
 and resets the player hearts */
 function resetHealth() {
+    console.log("resetHealth");
     let heart1 = document.querySelector("#life_heart1");
     let heart2 = document.querySelector("#life_heart2");
     let heart3 = document.querySelector("#life_heart3");
@@ -49,18 +51,21 @@ function resetHealth() {
 
 /* updates the scoreboard to show the input score */
 function updateScore(score) {
+    console.log("updateScore");
     let score_element = document.querySelector("#score_number");
     score_element.textContent = score;
 }
 
 /* resets player score variable */
 function resetScore(){
+    console.log("resetScore");
     player_score = 0;
     updateScore(player_score);
 }
 
 /* randomly returns a class from an array of the animation classes */
 function pickAnimation() {
+    console.log("pickAnimation");
     let arr = ["falling_pos_1", "falling_pos_2", "falling_pos_3", "falling_pos_4", "falling_pos_5", "zigzag_right", "zigzag_left"];
     let i = Math.floor(Math.random() * arr.length);
 
@@ -69,37 +74,44 @@ function pickAnimation() {
 
 /* resets the animation by asking for the height of the element */
 function resetAnimation(element) {
+    console.log("resetAnimation");
     element.offsetHeight;
 }
 
 /* adds the input class to the input element */
 function addAnimation(element, animation) {
+    console.log("addAnimation");
     element.classList.add(animation);
 }
 
 /* toggles a given class on an element */
 function toggleAnimation(element, animation) {
+    console.log("toggleAnimation");
     element.classList.toggle(animation);
 }
 /* replaces the class of the input element with the input class */
 function replaceClass(element, animation) {
+    console.log("replaceClass");
     element.className = animation;
 }
 
 /* starts timer */
 function startTimer() {
+    console.log("startTimer");
     let timer = document.querySelector("#time_bar_img");
     timer.className = "timer";
 }
 
 /* stops timer */
 function stopTimer() {
+    console.log("stopTimer");
     let timer = document.querySelector("#time_bar_img");
     timer.className = "";
 }
 
 /* resets the timer animation */
 function resetTimer() {
+    console.log("resetTimer");
     let timer = document.querySelector("#time_bar_img");
     timer.className = "";
     resetAnimation(timer);
@@ -107,6 +119,7 @@ function resetTimer() {
 
 /* shows start menu screen */
 function showStartMenu() {
+    console.log("showStartMenu");
     let start_menu = document.querySelector("#start");
     /* maximize start menu */
     start_menu.className = "maximize";
@@ -114,12 +127,14 @@ function showStartMenu() {
 
 /* shows game over screen and stops the animations*/
 function showGameover() {
+    console.log("showGameover");
     let game_over = document.querySelector("#game_over");
     replaceClass(game_over, "maximize");
     hideElements();
 }
 /* shows level complete screen and stops the animations*/
 function showLevelcomplete() {
+    console.log("showLevelComplete");
     let level_complete = document.querySelector("#level_complete");
     replaceClass(level_complete, "maximize");
     hideElements();
@@ -127,6 +142,7 @@ function showLevelcomplete() {
 
 /* removes hidden class and starts animations */
 function startAnimations() {
+    console.log("startAnimations");
     let syringe = document.querySelector("#syringe_container");
     let protein = document.querySelector("#protein_container");
     let chicken = document.querySelector("#chicken_container");
@@ -148,6 +164,7 @@ function startAnimations() {
 
 /* hides elements by applying the "hidden" class */
 function hideElements() {
+    console.log("hideElements");
     let syringe = document.querySelector("#syringe_container");
     let protein = document.querySelector("#protein_container");
     let chicken = document.querySelector("#chicken_container");
@@ -162,6 +179,7 @@ function hideElements() {
 }
 
 function clickEvents(element_name) {
+    console.log("clickEvents");
     let container = document.querySelector(`#${element_name}_container`);
     let sprite = document.querySelector(`#${element_name}_sprite`);
     let splash = document.querySelector(`#${element_name}_splash`);
@@ -181,6 +199,7 @@ function clickEvents(element_name) {
 }
 
 function addEvents(game_element) {
+    console.log("addEvents");
     let container = document.getElementById(`${game_element}_container`);
     let sprite = document.getElementById(`${game_element}_sprite`);
     let splash = document.getElementById(`${game_element}_splash`);
@@ -230,21 +249,7 @@ function addEvents(game_element) {
         toggleAnimation(sprite, "explode_away");
         toggleAnimation(splash, "fade_in_out");
     });
-}
-    
-function animationendEvents(element_name) {
-    let container = document.querySelector(`#${element_name}_container`);
-    let sprite = document.querySelector(`#${element_name}_sprite`);
-    let splash = document.querySelector(`#${element_name}_splash`);
-
-    container.style.pointerEvents = "";
-    container.className = "";
-    resetAnimation(container);
-    addAnimation(container, pickAnimation());
-    toggleAnimation(sprite, "explode_away");
-    toggleAnimation(splash, "fade_in_out");
-
-}
+}    
 
 /* 
 calls startAnimations
@@ -252,6 +257,7 @@ minimizes the start window
 calls startTimer
 */
 function startGame() {
+    console.log("startGame");
     let start_menu = document.querySelector("#start");
 
     startAnimations();
@@ -266,6 +272,7 @@ resets, and then starts the timer
 resets the score and health
 */
 function restartGame() {
+    console.log("restartGame");
     let game_over = document.querySelector("#game_over");
     let level_complete = document.querySelector("#level_complete");
 
@@ -285,6 +292,7 @@ function restartGame() {
 }
 
 function addButtonEvents() {
+    console.log("addButtonEvents");
     /* start and restart button variables */
     let start_button = document.querySelector("#start_button");
     let restart_button1 = document.querySelector("#restart_button1");
@@ -298,6 +306,7 @@ function addButtonEvents() {
 }
 
 function addAnimationEvents(){
+    console.log("addAnimationEvents");
     addEvents("syringe");
     addEvents("protein");
     addEvents("chicken");
@@ -306,6 +315,7 @@ function addAnimationEvents(){
 }
 
 function endGame() {
+    console.log("endGame");
     let timer = document.querySelector("#time_bar_img");
     timer.addEventListener("animationend", function () {
       if (player_score >= 300) {
@@ -314,7 +324,6 @@ function endGame() {
         showGameover();
       }
     });
-    console.log("Out of time!");
 }
 
 /* 
@@ -322,6 +331,8 @@ main function, plays at window load
 defines global variables for health and score
 */
 function main() {
+    console.log("main");
+    
     window.player_lives = 3;
     window.player_score = 0;
 
