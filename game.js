@@ -178,6 +178,10 @@ function hideElements() {
     vodka.className = "hidden";
 }
 
+/*
+adds mousedown event on the game element to play animations
+and then animationend listener to restart the animation on animation end
+*/
 function addEvents(game_element) {
     console.log("addEvents");
     let container = document.getElementById(`${game_element}_container`);
@@ -221,6 +225,13 @@ function addEvents(game_element) {
         updateHealth(player_lives);
     });
 
+    /*
+    when animation on element ends:
+    makes element clickable again
+    clears element classes
+    resets animation
+    toggles off sprite and splash animations
+    */
     container.addEventListener("animationend", function () {
         this.style.pointerEvents = "";
         this.className = "";
@@ -271,6 +282,7 @@ function restartGame() {
     resetHealth();
 }
 
+/* adds event listeners to start and restart buttons */
 function addButtonEvents() {
     console.log("addButtonEvents");
     /* start and restart button variables */
@@ -285,6 +297,7 @@ function addButtonEvents() {
     restart_button2.addEventListener("click", restartGame);
 }
 
+/* adds all the event listeners for the elements */
 function addAnimationEvents(){
     console.log("addAnimationEvents");
     addEvents("syringe");
@@ -294,6 +307,7 @@ function addAnimationEvents(){
     addEvents("vodka");
 }
 
+/* picks correct screen to show when timer ends */
 function endGame() {
     console.log("endGame");
     let timer = document.querySelector("#time_bar_img");
