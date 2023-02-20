@@ -178,26 +178,6 @@ function hideElements() {
     vodka.className = "hidden";
 }
 
-function clickEvents(element_name) {
-    console.log("clickEvents");
-    let container = document.querySelector(`#${element_name}_container`);
-    let sprite = document.querySelector(`#${element_name}_sprite`);
-    let splash = document.querySelector(`#${element_name}_splash`);
-    /*
-    when element is clicked: 
-    becomes unclickable
-    gets paused
-    sprite animation plays
-    splash animation plays
-    adding points/subtracting lives where needed
-    updating scoreboard and/or health bar
-    */
-    container.style.pointerEvents = "none";
-    addAnimation(container, "pause");
-    toggleAnimation(sprite, "explode_away");
-    toggleAnimation(splash, "fade_in_out");
-}
-
 function addEvents(game_element) {
     console.log("addEvents");
     let container = document.getElementById(`${game_element}_container`);
@@ -332,7 +312,7 @@ defines global variables for health and score
 */
 function main() {
     console.log("main");
-    
+
     window.player_lives = 3;
     window.player_score = 0;
 
