@@ -3,9 +3,9 @@ makes the health hearts grey depending on how many lives are left
 if no more lives are left, stops timer and shows game over screen 
 */
 function updateHealth(lives_left) {
-    let heart1 = document.getElementById("life_heart1");
-    let heart2 = document.getElementById("life_heart2");
-    let heart3 = document.getElementById("life_heart3");
+    let heart1 = document.querySelector("#life_heart1");
+    let heart2 = document.querySelector("#life_heart2");
+    let heart3 = document.querySelector("#life_heart3");
     
     if (lives_left == 3) {
         return;
@@ -33,9 +33,9 @@ function updateHealth(lives_left) {
 /* resets the player lives variable to 3
 and resets the player hearts */
 function resetHealth() {
-    let heart1 = document.getElementById("life_heart1");
-    let heart2 = document.getElementById("life_heart2");
-    let heart3 = document.getElementById("life_heart3");
+    let heart1 = document.querySelector("#life_heart1");
+    let heart2 = document.querySelector("#life_heart2");
+    let heart3 = document.querySelector("#life_heart3");
 
     heart1.style.filter = "";
     heart2.style.filter = "";
@@ -46,7 +46,7 @@ function resetHealth() {
 
 /* updates the scoreboard to show the input score */
 function updateScore(score) {
-    let score_element = document.getElementById("score_number");
+    let score_element = document.querySelector("#score_number");
     score_element.textContent = score;
 }
 
@@ -85,42 +85,42 @@ function replaceClass(element, animation) {
 
 /* starts timer */
 function startTimer() {
-    let timer = document.getElementById("time_bar_img");
+    let timer = document.querySelector("#time_bar_img");
     timer.className = "timer";
 }
 
 /* stops timer */
 function stopTimer() {
-    let timer = document.getElementById("time_bar_img");
+    let timer = document.querySelector("#time_bar_img");
     timer.className = "";
 }
 
 /* resets the timer animation */
 function resetTimer() {
-    let timer = document.getElementById("time_bar_img");
+    let timer = document.querySelector("#time_bar_img");
     resetAnimation(timer);
 }
 
 /* shows game over screen and stops the animations*/
 function showGameover() {
-    let game_over = document.getElementById("game_over");
+    let game_over = document.querySelector("#game_over");
     replaceClass(game_over, "maximize");
     hideElements();
 }
 /* shows level complete screen and stops the animations*/
 function showLevelcomplete() {
-    let level_complete = document.getElementById("level_complete");
+    let level_complete = document.querySelector("#level_complete");
     replaceClass(level_complete, "maximize");
     hideElements();
 }
 
 /* removes hidden class and starts animations */
 function startAnimations() {
-    let syringe = document.getElementById("syringe_container");
-    let protein = document.getElementById("protein_container");
-    let chicken = document.getElementById("chicken_container");
-    let beer = document.getElementById("beer_container");
-    let vodka = document.getElementById("vodka_container");
+    let syringe = document.querySelector("#syringe_container");
+    let protein = document.querySelector("#protein_container");
+    let chicken = document.querySelector("#chicken_container");
+    let beer = document.querySelector("#beer_container");
+    let vodka = document.querySelector("#vodka_container");
     
     syringe.className = "";
     protein.className = "";
@@ -137,11 +137,11 @@ function startAnimations() {
 
 /* hides elements by applying the "hidden" class */
 function hideElements() {
-    let syringe = document.getElementById("syringe_container");
-    let protein = document.getElementById("protein_container");
-    let chicken = document.getElementById("chicken_container");
-    let beer = document.getElementById("beer_container");
-    let vodka = document.getElementById("vodka_container");
+    let syringe = document.querySelector("#syringe_container");
+    let protein = document.querySelector("#protein_container");
+    let chicken = document.querySelector("#chicken_container");
+    let beer = document.querySelector("#beer_container");
+    let vodka = document.querySelector("#vodka_container");
     
     syringe.className = "hidden";
     protein.className = "hidden";
@@ -151,9 +151,9 @@ function hideElements() {
 }
 
 function addEvents(game_element) {
-    let container = document.getElementById(`${game_element}_container`);
-    let sprite = document.getElementById(`${game_element}_sprite`);
-    let splash = document.getElementById(`${game_element}_splash`);
+    let container = document.querySelector(`#${game_element}_container`);
+    let sprite = document.querySelector(`#${game_element}_sprite`);
+    let splash = document.querySelector(`#${game_element}_splash`);
     let points = 0;
     let lives_lost = 0;
 
@@ -208,7 +208,7 @@ minimizes the start window
 calls startTimer
 */
 function startGame() {
-    let start_menu = document.getElementById("start");
+    let start_menu = document.querySelector("#start");
 
     startAnimations();
     replaceClass(start_menu, "minimize");
@@ -222,8 +222,8 @@ resets, and then starts the timer
 resets the score and health
 */
 function restartGame() {
-    let game_over = document.getElementById("game_over");
-    let level_complete = document.getElementById("level_complete");
+    let game_over = document.querySelector("#game_over");
+    let level_complete = document.querySelector("#level_complete");
 
 
     startAnimations();
@@ -241,9 +241,9 @@ function restartGame() {
 
 function addButtonlisteners() {
     /* start and restart button variables */
-    let start_button = document.getElementById("start_button");
-    let restart_button1 = document.getElementById("restart_button1");
-    let restart_button2 = document.getElementById("restart_button2");
+    let start_button = document.querySelector("#start_button");
+    let restart_button1 = document.querySelector("#restart_button1");
+    let restart_button2 = document.querySelector("#restart_button2");
 
     /* starts game when start button is clicked */
     start_button.addEventListener("click", startGame);
@@ -253,7 +253,7 @@ function addButtonlisteners() {
 }
 
 function game() {
-    let start_menu = document.getElementById("start");
+    let start_menu = document.querySelector("#start");
     /* maximize start menu */
     start_menu.className = "maximize";
     addButtonlisteners();
@@ -265,7 +265,7 @@ function game() {
 }
 
 function endGame() {
-    let timer = document.getElementById("time_bar_img");
+    let timer = document.querySelector("#time_bar_img");
     timer.addEventListener("animationend", function () {
       if (player_score >= 300) {
         showLevelcomplete();
