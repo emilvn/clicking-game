@@ -184,9 +184,9 @@ and then animationend listener to restart the animation on animation end
 */
 function addEvents(game_element) {
     console.log("addEvents");
-    let container = document.getElementById(`${game_element}_container`);
-    let sprite = document.getElementById(`${game_element}_sprite`);
-    let splash = document.getElementById(`${game_element}_splash`);
+    let container = document.querySelector(`#${game_element}_container`);
+    let sprite = document.querySelector(`#${game_element}_sprite`);
+    let splash = document.querySelector(`#${game_element}_splash`);
     let points = 0;
     let lives_lost = 0;
 
