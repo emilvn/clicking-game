@@ -6,7 +6,7 @@ function updateHealth(lives_left) {
     let heart1 = document.querySelector("#life_heart1");
     let heart2 = document.querySelector("#life_heart2");
     let heart3 = document.querySelector("#life_heart3");
-    
+
     if (lives_left == 3) {
         return;
     }
@@ -99,6 +99,7 @@ function stopTimer() {
 function resetTimer() {
     let timer = document.querySelector("#time_bar_img");
     resetAnimation(timer);
+    timer.className = "";
 }
 
 /* shows game over screen and stops the animations*/
