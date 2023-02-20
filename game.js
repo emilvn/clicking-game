@@ -182,7 +182,7 @@ function addEvents(game_element) {
     adding points/subtracting lives where needed
     updating scoreboard and/or health bar
     */
-    container.addEventListener("click", function () {
+    container.addEventListener("mousedown", function () {
         this.style.pointerEvents = "none";
         addAnimation(this, "pause");
         toggleAnimation(sprite, "explode_away");
