@@ -170,7 +170,13 @@ function hideElements() {
     let chicken = document.querySelector("#chicken_container");
     let beer = document.querySelector("#beer_container");
     let vodka = document.querySelector("#vodka_container");
-    
+
+    removeEvents("syringe");
+    removeEvents("protein");
+    removeEvents("chicken");
+    removeEvents("beer");
+    removeEvents("vodka");
+
     syringe.className = "hidden";
     protein.className = "hidden";
     chicken.className = "hidden";
@@ -242,6 +248,32 @@ function addEvents(game_element) {
     });
 }    
 
+function removeEvents(game_element) {
+    console.log("removeEvents");
+    let container = document.querySelector(`#${game_element}_container`);
+    let sprite = document.querySelector(`#${game_element}_sprite`);
+    let splash = document.querySelector(`#${game_element}_splash`);
+
+    container.removeEventListener("mousedown", function () {
+        this.style.pointerEvents = "none";
+        addAnimation(this, "pause");
+        toggleAnimation(sprite, "explode_away");
+        toggleAnimation(splash, "fade_in_out");
+        player_score += points;
+        player_lives -= lives_lost;
+        updateScore(player_score);
+        updateHealth(player_lives);
+    });
+
+    container.removeEventListener("animationend", function () {
+        this.style.pointerEvents = "";
+        this.className = "";
+        resetAnimation(this);
+        addAnimation(this, pickAnimation());
+        toggleAnimation(sprite, "explode_away");
+        toggleAnimation(splash, "fade_in_out");
+    });
+}
 /* 
 calls startAnimations
 minimizes the start window 
@@ -300,6 +332,7 @@ function addButtonEvents() {
 /* adds all the event listeners for the elements */
 function addAnimationEvents(){
     console.log("addAnimationEvents");
+    // addEvents("syringe");
     addEvents("syringe");
     addEvents("protein");
     addEvents("chicken");
