@@ -1,6 +1,9 @@
 "use strict";
 window.addEventListener("load", main);
 
+let player_lives = 3;
+let player_score = 0;
+
 /*
 makes the health hearts grey depending on how many lives are left
 if no more lives are left, stops timer and shows game over screen 
@@ -381,9 +384,6 @@ defines global variables for health and score
 */
 function main() {
     console.log("main");
-
-    window.player_lives = 3;
-    window.player_score = 0;
 
     showStartMenu();
     addButtonEvents();
