@@ -170,18 +170,26 @@ function hideElements() {
     let chicken = document.querySelector("#chicken_container");
     let beer = document.querySelector("#beer_container");
     let vodka = document.querySelector("#vodka_container");
-
+    
     removeEvents("syringe");
     removeEvents("protein");
     removeEvents("chicken");
     removeEvents("beer");
     removeEvents("vodka");
+    
+    resetAnimation(syringe);
+    resetAnimation(protein);
+    resetAnimation(chicken);
+    resetAnimation(beer);
+    resetAnimation(vodka);
+    
+    replaceClass(syringe, "hidden");
+    replaceClass(protein, "hidden");
+    replaceClass(chicken, "hidden");
+    replaceClass(beer, "hidden");
+    replaceClass(vodka, "hidden");
 
-    syringe.className = "hidden";
-    protein.className = "hidden";
-    chicken.className = "hidden";
-    beer.className = "hidden";
-    vodka.className = "hidden";
+
 }
 
 /*
