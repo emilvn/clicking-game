@@ -18,16 +18,16 @@ function updateHealth(lives_left) {
         return;
     }
     else if (lives_left == 2){
-        heart3.style.filter = "grayscale(1)";
+        heart3.classList.add("gray_heart");
     }
     else if (lives_left == 1){
-        heart2.style.filter = "grayscale(1)";
-        heart3.style.filter = "grayscale(1)";
+        heart2.classList.add("gray_heart");
+        heart3.classList.add("gray_heart");
     }
     else if (lives_left == 0){
-        heart1.style.filter = "grayscale(1)";
-        heart2.style.filter = "grayscale(1)";
-        heart3.style.filter = "grayscale(1)";
+        heart1.classList.add("gray_heart");
+        heart2.classList.add("gray_heart");
+        heart3.classList.add("gray_heart");
         
         showGameover();
         stopTimer();

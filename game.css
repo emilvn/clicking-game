@@ -275,3 +275,7 @@ body {
 .hidden_splash {
     opacity: 0;
 }
+
+.gray_heart {
+    filter: grayscale(75%);
+}
