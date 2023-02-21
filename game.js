@@ -196,108 +196,126 @@ function hideElements() {
 
 }
 
+function neutralElementEvents(game_element) {
+    console.log("neutral events");
+    let container = document.querySelector(`#${game_element}_container`);
+    let sprite = document.querySelector(`#${game_element}_sprite`);
+    let splash = document.querySelector(`#${game_element}_splash`);
+    let points = 50;
+
+    container.style.pointerEvents = "none";
+    addAnimation(container, "pause");
+    toggleAnimation(sprite, "explode_away");
+    toggleAnimation(splash, "fade_in_out");
+    player_score += points;
+    player_lives --;
+    updateScore(player_score);
+    updateHealth(player_lives);
+
+    container.removeEventListener("mousedown", () => { neutralElementEvents(game_element); });
+}
+
+function goodElementEvents(game_element) {
+    console.log("good events");
+    let container = document.querySelector(`#${game_element}_container`);
+    let sprite = document.querySelector(`#${game_element}_sprite`);
+    let splash = document.querySelector(`#${game_element}_splash`);
+    let points = 10;
+
+    container.style.pointerEvents = "none";
+    addAnimation(container, "pause");
+    toggleAnimation(sprite, "explode_away");
+    toggleAnimation(splash, "fade_in_out");
+    player_score += points;
+    updateScore(player_score);
+    updateHealth(player_lives);
+
+    container.removeEventListener("mousedown", () => { goodElementEvents(game_element); });
+}
+
+function badElementEvents(game_element) {
+    console.log("bad events");
+    let container = document.querySelector(`#${game_element}_container`);
+    let sprite = document.querySelector(`#${game_element}_sprite`);
+    let splash = document.querySelector(`#${game_element}_splash`);
+
+    container.style.pointerEvents = "none";
+    addAnimation(container, "pause");
+    toggleAnimation(sprite, "explode_away");
+    toggleAnimation(splash, "fade_in_out");
+    player_lives--;
+    updateScore(player_score);
+    updateHealth(player_lives);
+
+    container.removeEventListener("mousedown", () => { badElementEvents(game_element); });
+}
+
+
+function splashEvents(game_element) {
+    console.log("splash events")
+    let container = document.querySelector(`#${game_element}_container`);
+    let sprite = document.querySelector(`#${game_element}_sprite`);
+    let splash = document.querySelector(`#${game_element}_splash`);
+
+    container.style.pointerEvents = "";
+    container.className = "";
+    resetAnimation(container);
+    addAnimation(container, pickAnimation());
+    toggleAnimation(sprite, "explode_away");
+    toggleAnimation(splash, "fade_in_out");
+    
+    splash.removeEventListener("animationend", () => { splashEvents(game_element) });
+}
+
+function unclickedEvents(game_element) {
+    console.log("unclicked events");
+    let container = document.querySelector(`#${game_element}_container`);
+
+    container.className = "";
+    resetAnimation(container);
+    addAnimation(container, pickAnimation());
+
+    container.removeEventListener("animationend", () => { unclickedEvents(game_element); });
+}
+
+
 /*
 adds mousedown event on the game element to play animations
 and then animationend listener to restart the animation on animation end
 */
-function addEvents(game_element) {
+function addEvents() {
     console.log("addEvents");
-    let container = document.querySelector(`#${game_element}_container`);
-    let sprite = document.querySelector(`#${game_element}_sprite`);
-    let splash = document.querySelector(`#${game_element}_splash`);
-    let points = 0;
-    let lives_lost = 0;
-
-    /* 
-    checks what element it is
-    applies the correct points/lives to be added/subtracted on click
-    */
-    if (game_element == "syringe") {
-      points = 50;
-      lives_lost = 1;
-    } else if (game_element == "protein" || game_element == "chicken") {
-      points = 10;
-      lives_lost = 0;
-    } else if (game_element == "beer" || game_element == "vodka") {
-      points = 0;
-      lives_lost = 1;
-    }
-
-    /*
-    when element is clicked: 
-    becomes unclickable
-    gets paused
-    sprite animation plays
-    splash animation plays
-    adding points/subtracting lives where needed
-    updating scoreboard and/or health bar
-    */
-    container.addEventListener("mousedown", function () {
-        this.style.pointerEvents = "none";
-        addAnimation(this, "pause");
-        toggleAnimation(sprite, "explode_away");
-        toggleAnimation(splash, "fade_in_out");
-        player_score += points;
-        player_lives -= lives_lost;
-        updateScore(player_score);
-        updateHealth(player_lives);
-    });
-
-    /*
-    when animation on element ends:
-    makes element clickable again
-    clears element classes
-    resets animation
-    toggles off sprite and splash animations
-    */
-    splash.addEventListener("animationend", function () {
-        container.style.pointerEvents = "";
-        container.className = "";
-        resetAnimation(container);
-        addAnimation(container, pickAnimation());
-        toggleAnimation(sprite, "explode_away");
-        toggleAnimation(this, "fade_in_out");
-    });
-
-    container.addEventListener("animationend", function () {
-        this.className = "";
-        resetAnimation(this);
-        addAnimation(this, pickAnimation());
-    });
+    let syringe = document.querySelector("#syringe_container");
+    let protein = document.querySelector("#protein_container");
+    let chicken = document.querySelector("#chicken_container");
+    let beer = document.querySelector("#beer_container");
+    let vodka = document.querySelector("#vodka_container");
+    
+    let syringe_splash = document.querySelector("#syringe_splash");
+    let protein_splash = document.querySelector("#protein_splash");
+    let chicken_splash = document.querySelector("#chicken_splash");
+    let beer_splash = document.querySelector("#beer_splash");
+    let vodka_splash = document.querySelector("#vodka_splash");
+    
+    syringe.addEventListener("mousedown", () => { neutralElementEvents("syringe") });
+    protein.addEventListener("mousedown", () => { goodElementEvents("protein") });
+    chicken.addEventListener("mousedown", () => { goodElementEvents("chicken") });
+    beer.addEventListener("mousedown", () => { badElementEvents("beer") });
+    vodka.addEventListener("mousedown", () => { badElementEvents("vodka") });
+    
+    syringe_splash.addEventListener("animationend", () => { splashEvents("syringe") });
+    protein_splash.addEventListener("animationend", () => { splashEvents("protein") });
+    chicken_splash.addEventListener("animationend", () => { splashEvents("chicken") });
+    beer_splash.addEventListener("animationend", () => { splashEvents("beer") });
+    vodka_splash.addEventListener("animationend", () => { splashEvents("vodka") });
+    
+    syringe.addEventListener("animationend", () => { unclickedEvents("syringe") });
+    protein.addEventListener("animationend", () => { unclickedEvents("protein") });
+    chicken.addEventListener("animationend", () => { unclickedEvents("chicken") });
+    beer.addEventListener("animationend", () => { unclickedEvents("beer") });
+    vodka.addEventListener("animationend", () => { unclickedEvents("vodka") });
+    
 }    
-
-// function removeEvents(game_element) {
-//     console.log("removeEvents");
-//     let container = document.querySelector(`#${game_element}_container`);
-//     let sprite = document.querySelector(`#${game_element}_sprite`);
-//     let splash = document.querySelector(`#${game_element}_splash`);
-
-//     container.removeEventListener("mousedown", function () {
-//         this.style.pointerEvents = "none";
-//         addAnimation(this, "pause");
-//         toggleAnimation(sprite, "explode_away");
-//         toggleAnimation(splash, "fade_in_out");
-//         player_score += points;
-//         player_lives -= lives_lost;
-//         updateScore(player_score);
-//         updateHealth(player_lives);
-//     });
-
-//     splash.removeEventListener("animationend", function () {
-//         container.style.pointerEvents = "";
-//         container.className = "";
-//         resetAnimation(container);
-//         addAnimation(container, pickAnimation());
-//         toggleAnimation(sprite, "explode_away");
-//         toggleAnimation(this, "fade_in_out");
-//     });
-
-//     container.removeEventListener("animationend", function () {
-//         this.className = "";
-//         resetAnimation(this);
-//         addAnimation(this, pickAnimation());
-//     });
-// }
 
 /* 
 calls startAnimations
@@ -354,17 +372,6 @@ function addButtonEvents() {
     restart_button2.addEventListener("click", restartGame);
 }
 
-/* adds all the event listeners for the elements */
-function addAnimationEvents(){
-    console.log("addAnimationEvents");
-    // addEvents("syringe");
-    addEvents("syringe");
-    addEvents("protein");
-    addEvents("chicken");
-    addEvents("beer");
-    addEvents("vodka");
-}
-
 /* picks correct screen to show when timer ends */
 function endGame() {
     console.log("endGame");
@@ -387,6 +394,6 @@ function main() {
 
     showStartMenu();
     addButtonEvents();
-    addAnimationEvents();
+    addEvents();
     endGame();
 }
