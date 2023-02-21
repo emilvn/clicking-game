@@ -45,9 +45,9 @@ function resetHealth() {
     let heart2 = document.querySelector("#life_heart2");
     let heart3 = document.querySelector("#life_heart3");
 
-    heart1.style.filter = "";
-    heart2.style.filter = "";
-    heart3.style.filter = "";
+    heart1.classList.remove("gray_heart");
+    heart2.classList.remove("gray_heart");
+    heart3.classList.remove("gray_heart");
 
     player_lives = 3;
     updateHealth(player_lives);
@@ -56,8 +56,7 @@ function resetHealth() {
 /* updates the scoreboard to show the input score */
 function updateScore(score) {
     console.log("updateScore");
-    let score_element = document.querySelector("#score_number");
-    score_element.textContent = score;
+    document.querySelector("#score_number").textContent = score;
 }
 
 /* resets player score variable */
@@ -202,6 +201,7 @@ function neutralElementEvents(game_element) {
     let sprite = document.querySelector(`#${game_element}_sprite`);
     let splash = document.querySelector(`#${game_element}_splash`);
     let points = 50;
+    container.removeEventListener("mousedown", () => { neutralElementEvents(game_element); });
 
     container.style.pointerEvents = "none";
     addAnimation(container, "pause");
@@ -211,8 +211,6 @@ function neutralElementEvents(game_element) {
     player_lives --;
     updateScore(player_score);
     updateHealth(player_lives);
-
-    container.removeEventListener("mousedown", () => { neutralElementEvents(game_element); });
 }
 
 function goodElementEvents(game_element) {
@@ -221,6 +219,7 @@ function goodElementEvents(game_element) {
     let sprite = document.querySelector(`#${game_element}_sprite`);
     let splash = document.querySelector(`#${game_element}_splash`);
     let points = 10;
+    container.removeEventListener("mousedown", () => { goodElementEvents(game_element); });
 
     container.style.pointerEvents = "none";
     addAnimation(container, "pause");
@@ -229,8 +228,6 @@ function goodElementEvents(game_element) {
     player_score += points;
     updateScore(player_score);
     updateHealth(player_lives);
-
-    container.removeEventListener("mousedown", () => { goodElementEvents(game_element); });
 }
 
 function badElementEvents(game_element) {
@@ -238,6 +235,7 @@ function badElementEvents(game_element) {
     let container = document.querySelector(`#${game_element}_container`);
     let sprite = document.querySelector(`#${game_element}_sprite`);
     let splash = document.querySelector(`#${game_element}_splash`);
+    container.removeEventListener("mousedown", () => { badElementEvents(game_element); });
 
     container.style.pointerEvents = "none";
     addAnimation(container, "pause");
@@ -246,8 +244,6 @@ function badElementEvents(game_element) {
     player_lives--;
     updateScore(player_score);
     updateHealth(player_lives);
-
-    container.removeEventListener("mousedown", () => { badElementEvents(game_element); });
 }
 
 
@@ -256,6 +252,7 @@ function splashEvents(game_element) {
     let container = document.querySelector(`#${game_element}_container`);
     let sprite = document.querySelector(`#${game_element}_sprite`);
     let splash = document.querySelector(`#${game_element}_splash`);
+    splash.removeEventListener("animationend", () => { splashEvents(game_element); });
 
     container.style.pointerEvents = "";
     container.className = "";
@@ -263,19 +260,16 @@ function splashEvents(game_element) {
     addAnimation(container, pickAnimation());
     toggleAnimation(sprite, "explode_away");
     toggleAnimation(splash, "fade_in_out");
-    
-    splash.removeEventListener("animationend", () => { splashEvents(game_element) });
 }
 
 function unclickedEvents(game_element) {
     console.log("unclicked events");
     let container = document.querySelector(`#${game_element}_container`);
+    container.removeEventListener("animationend", () => { unclickedEvents(game_element); });
 
     container.className = "";
     resetAnimation(container);
     addAnimation(container, pickAnimation());
-
-    container.removeEventListener("animationend", () => { unclickedEvents(game_element); });
 }
 
 
@@ -297,23 +291,23 @@ function addEvents() {
     let beer_splash = document.querySelector("#beer_splash");
     let vodka_splash = document.querySelector("#vodka_splash");
     
-    syringe.addEventListener("mousedown", () => { neutralElementEvents("syringe") });
-    protein.addEventListener("mousedown", () => { goodElementEvents("protein") });
-    chicken.addEventListener("mousedown", () => { goodElementEvents("chicken") });
-    beer.addEventListener("mousedown", () => { badElementEvents("beer") });
-    vodka.addEventListener("mousedown", () => { badElementEvents("vodka") });
+    syringe.addEventListener("mousedown", () => { neutralElementEvents("syringe"); });
+    protein.addEventListener("mousedown", () => { goodElementEvents("protein"); });
+    chicken.addEventListener("mousedown", () => { goodElementEvents("chicken"); });
+    beer.addEventListener("mousedown", () => { badElementEvents("beer"); });
+    vodka.addEventListener("mousedown", () => { badElementEvents("vodka"); });
     
-    syringe_splash.addEventListener("animationend", () => { splashEvents("syringe") });
-    protein_splash.addEventListener("animationend", () => { splashEvents("protein") });
-    chicken_splash.addEventListener("animationend", () => { splashEvents("chicken") });
-    beer_splash.addEventListener("animationend", () => { splashEvents("beer") });
-    vodka_splash.addEventListener("animationend", () => { splashEvents("vodka") });
+    syringe_splash.addEventListener("animationend", () => { splashEvents("syringe"); });
+    protein_splash.addEventListener("animationend", () => { splashEvents("protein"); });
+    chicken_splash.addEventListener("animationend", () => { splashEvents("chicken"); });
+    beer_splash.addEventListener("animationend", () => { splashEvents("beer"); });
+    vodka_splash.addEventListener("animationend", () => { splashEvents("vodka"); });
     
-    syringe.addEventListener("animationend", () => { unclickedEvents("syringe") });
-    protein.addEventListener("animationend", () => { unclickedEvents("protein") });
-    chicken.addEventListener("animationend", () => { unclickedEvents("chicken") });
-    beer.addEventListener("animationend", () => { unclickedEvents("beer") });
-    vodka.addEventListener("animationend", () => { unclickedEvents("vodka") });
+    syringe.addEventListener("animationend", () => { unclickedEvents("syringe"); });
+    protein.addEventListener("animationend", () => { unclickedEvents("protein"); });
+    chicken.addEventListener("animationend", () => { unclickedEvents("chicken"); });
+    beer.addEventListener("animationend", () => { unclickedEvents("beer"); });
+    vodka.addEventListener("animationend", () => { unclickedEvents("vodka"); });
     
 }    
 
