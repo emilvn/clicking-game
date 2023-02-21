@@ -280,7 +280,9 @@ function addButtonListeners() {
 /* functions for starting, restarting and ending the game */
 function startGame() {
     console.log("startGame");
+    let start_button = document.querySelector("#start_button");
     let start_menu = document.querySelector("#start");
+    start_button.removeEventListener("click", startGame);
 
     startAnimations();
     replaceAnimation(start_menu, "minimize");
@@ -288,10 +290,13 @@ function startGame() {
 }
 function restartGame() {
     console.log("restartGame");
+    let restart_button1 = document.querySelector("#restart_button1");
+    let restart_button2 = document.querySelector("#restart_button2");
     let game_over = document.querySelector("#game_over");
     let level_complete = document.querySelector("#level_complete");
+    restart_button1.removeEventListener("click", restartGame);
+    restart_button2.removeEventListener("click", restartGame);
 
-    startAnimations();
     if (game_over.className == "maximize") {    
         replaceAnimation(game_over, "minimize");
     }
@@ -299,9 +304,10 @@ function restartGame() {
         replaceAnimation(level_complete, "minimize");
     }
     resetTimer();
-    startTimer();
     resetScore();
     resetHealth();
+    startAnimations();
+    startTimer();
 }
 function endGame() {
     console.log("endGame");
