@@ -5,28 +5,47 @@ window.addEventListener("load", main);
 let player_lives = 3;
 let player_score = 0;
 
-/* update display functions */
-function updateHealth(lives_left) {
-    console.log("updateHealth");
-    let heart1 = document.querySelector("#life_heart1");
-    let heart2 = document.querySelector("#life_heart2");
-    let heart3 = document.querySelector("#life_heart3");
+/* gui variables */
+let score = document.querySelector("#score_number");
+let timer = document.querySelector("#time_bar_img");
+let heart1 = document.querySelector("#life_heart1");
+let heart2 = document.querySelector("#life_heart2");
+let heart3 = document.querySelector("#life_heart3");
 
-    if (lives_left == 3) {
+/* element variables */
+let syringe = document.querySelector("#syringe_container");
+let syringe_splash = document.querySelector("#syringe_splash");
+
+let protein = document.querySelector("#protein_container");
+let protein_splash = document.querySelector("#protein_splash");
+
+let chicken = document.querySelector("#chicken_container");
+let chicken_splash = document.querySelector("#chicken_splash");
+
+let beer = document.querySelector("#beer_container");
+let beer_splash = document.querySelector("#beer_splash");
+
+let vodka = document.querySelector("#vodka_container");
+let vodka_splash = document.querySelector("#vodka_splash");
+
+/* update display functions */
+function updateHealth() {
+    console.log("updateHealth");
+
+    if (player_lives == 3) {
         return;
     }
-    else if (lives_left == 2){
-        heart3.classList.add("gray_heart");
+    else if (player_lives == 2){
+        addAnimation(heart3, "gray_heart");
     }
-    else if (lives_left == 1){
-        heart2.classList.add("gray_heart");
-        heart3.classList.add("gray_heart");
+    else if (player_lives == 1){
+        addAnimation(heart2, "gray_heart");
+        addAnimation(heart3, "gray_heart");
     }
-    else if (lives_left == 0){
-        heart1.classList.add("gray_heart");
-        heart2.classList.add("gray_heart");
-        heart3.classList.add("gray_heart");
-        
+    else if (player_lives == 0){
+        addAnimation(heart1, "gray_heart");
+        addAnimation(heart2, "gray_heart");
+        addAnimation(heart3, "gray_heart");
         showGameover();
         stopTimer();
     }
@@ -34,29 +53,24 @@ function updateHealth(lives_left) {
         return
     }
 }
-function updateScore(score) {
+function updateScore() {
     console.log("updateScore");
-    document.querySelector("#score_number").textContent = score;
+    score.textContent = player_score;
 }
 
 /* reset display functions */
 function resetHealth() {
     console.log("resetHealth");
-    let heart1 = document.querySelector("#life_heart1");
-    let heart2 = document.querySelector("#life_heart2");
-    let heart3 = document.querySelector("#life_heart3");
-
-    heart1.classList.remove("gray_heart");
-    heart2.classList.remove("gray_heart");
-    heart3.classList.remove("gray_heart");
-
+    replaceAnimation(heart1, "");
+    replaceAnimation(heart2, "");
+    replaceAnimation(heart3, "");
     player_lives = 3;
-    updateHealth(player_lives);
+    updateHealth();
 }
 function resetScore(){
     console.log("resetScore");
     player_score = 0;
-    updateScore(player_score);
+    updateScore();
 }
 
 /* animation functions */
@@ -85,18 +99,7 @@ function replaceAnimation(element, animation) {
 }
 function startAnimations() {
     console.log("startAnimations");
-    let syringe = document.querySelector("#syringe_container");
-    let protein = document.querySelector("#protein_container");
-    let chicken = document.querySelector("#chicken_container");
-    let beer = document.querySelector("#beer_container");
-    let vodka = document.querySelector("#vodka_container");
-    
-    replaceAnimation(syringe, "");
-    replaceAnimation(protein, "");
-    replaceAnimation(chicken, "");
-    replaceAnimation(beer, "");
-    replaceAnimation(vodka, "");
-    
+    showElements();
     addAnimation(syringe, pickAnimation());
     addAnimation(protein, pickAnimation());
     addAnimation(chicken, pickAnimation());
@@ -107,18 +110,15 @@ function startAnimations() {
 /* timer functions */
 function startTimer() {
     console.log("startTimer");
-    let timer = document.querySelector("#time_bar_img");
-    timer.className = "timer";
+    addAnimation(timer, "timer");
 }
 function stopTimer() {
     console.log("stopTimer");
-    let timer = document.querySelector("#time_bar_img");
-    timer.className = "";
+    replaceAnimation(timer, "");
 }
 function resetTimer() {
     console.log("resetTimer");
-    let timer = document.querySelector("#time_bar_img");
-    timer.className = "";
+    replaceAnimation(timer, "");
     resetAnimation(timer);
 }
 
@@ -141,20 +141,22 @@ function showLevelcomplete() {
     hideElements();
 }
 
-/* hides game elements */
+/* functions for hiding and showing game elements */
+function showElements() {
+    console.log("showElements");
+    replaceAnimation(syringe, "");
+    replaceAnimation(protein, "");
+    replaceAnimation(chicken, "");
+    replaceAnimation(beer, "");
+    replaceAnimation(vodka, "");
+}
 function hideElements() {
     console.log("hideElements");
-    let syringe = document.querySelector("#syringe_container");
-    let protein = document.querySelector("#protein_container");
-    let chicken = document.querySelector("#chicken_container");
-    let beer = document.querySelector("#beer_container");
-    let vodka = document.querySelector("#vodka_container");
-    
-    replaceAnimation(syringe, "hidden");
-    replaceAnimation(protein, "hidden");
-    replaceAnimation(chicken, "hidden");
-    replaceAnimation(beer, "hidden");
-    replaceAnimation(vodka, "hidden");
+    addAnimation(syringe, "hidden");
+    addAnimation(protein, "hidden");
+    addAnimation(chicken, "hidden");
+    addAnimation(beer, "hidden");
+    addAnimation(vodka, "hidden");
 }
 
 /* event functions for event listeners */
@@ -172,8 +174,8 @@ function neutralElementEvents(game_element) {
     toggleAnimation(splash, "fade_in_out");
     player_score += points;
     player_lives --;
-    updateScore(player_score);
-    updateHealth(player_lives);
+    updateScore();
+    updateHealth();
 }
 function goodElementEvents(game_element) {
     console.log("good events");
@@ -188,8 +190,8 @@ function goodElementEvents(game_element) {
     toggleAnimation(sprite, "explode_away");
     toggleAnimation(splash, "fade_in_out");
     player_score += points;
-    updateScore(player_score);
-    updateHealth(player_lives);
+    updateScore();
+    updateHealth();
 }
 function badElementEvents(game_element) {
     console.log("bad events");
@@ -203,8 +205,8 @@ function badElementEvents(game_element) {
     toggleAnimation(sprite, "explode_away");
     toggleAnimation(splash, "fade_in_out");
     player_lives--;
-    updateScore(player_score);
-    updateHealth(player_lives);
+    updateScore();
+    updateHealth();
 }
 function splashEvents(game_element) {
     console.log("splash events")
@@ -233,17 +235,6 @@ function unclickedEvents(game_element) {
 /* event listener functions */
 function addEvents() {
     console.log("addEvents");
-    let syringe = document.querySelector("#syringe_container");
-    let protein = document.querySelector("#protein_container");
-    let chicken = document.querySelector("#chicken_container");
-    let beer = document.querySelector("#beer_container");
-    let vodka = document.querySelector("#vodka_container");
-    
-    let syringe_splash = document.querySelector("#syringe_splash");
-    let protein_splash = document.querySelector("#protein_splash");
-    let chicken_splash = document.querySelector("#chicken_splash");
-    let beer_splash = document.querySelector("#beer_splash");
-    let vodka_splash = document.querySelector("#vodka_splash");
     
     syringe.addEventListener("mousedown", () => { neutralElementEvents("syringe"); });
     protein.addEventListener("mousedown", () => { goodElementEvents("protein"); });
@@ -311,7 +302,6 @@ function restartGame() {
 }
 function endGame() {
     console.log("endGame");
-    let timer = document.querySelector("#time_bar_img");
     timer.addEventListener("animationend", function () {
       if (player_score >= 300) {
         showLevelcomplete();
