@@ -278,12 +278,8 @@ function startGame() {
 }
 function restartGame() {
     console.log("restartGame");
-    let restart_button1 = document.querySelector("#restart_button1");
-    let restart_button2 = document.querySelector("#restart_button2");
     let game_over = document.querySelector("#game_over");
     let level_complete = document.querySelector("#level_complete");
-    restart_button1.removeEventListener("click", restartGame);
-    restart_button2.removeEventListener("click", restartGame);
 
     if (game_over.className == "maximize") {    
         replaceAnimation(game_over, "minimize");
