@@ -1,13 +1,11 @@
 "use strict";
 window.addEventListener("load", main);
 
+/* player variables */
 let player_lives = 3;
 let player_score = 0;
 
-/*
-makes the health hearts grey depending on how many lives are left
-if no more lives are left, stops timer and shows game over screen 
-*/
+/* update display functions */
 function updateHealth(lives_left) {
     console.log("updateHealth");
     let heart1 = document.querySelector("#life_heart1");
@@ -36,9 +34,12 @@ function updateHealth(lives_left) {
         return
     }
 }
+function updateScore(score) {
+    console.log("updateScore");
+    document.querySelector("#score_number").textContent = score;
+}
 
-/* resets the player lives variable to 3
-and resets the player hearts */
+/* reset display functions */
 function resetHealth() {
     console.log("resetHealth");
     let heart1 = document.querySelector("#life_heart1");
@@ -52,21 +53,13 @@ function resetHealth() {
     player_lives = 3;
     updateHealth(player_lives);
 }
-
-/* updates the scoreboard to show the input score */
-function updateScore(score) {
-    console.log("updateScore");
-    document.querySelector("#score_number").textContent = score;
-}
-
-/* resets player score variable */
 function resetScore(){
     console.log("resetScore");
     player_score = 0;
     updateScore(player_score);
 }
 
-/* randomly returns a class from an array of the animation classes */
+/* animation functions */
 function pickAnimation() {
     console.log("pickAnimation");
     let arr = ["falling_pos_1", "falling_pos_2", "falling_pos_3", "falling_pos_4", "falling_pos_5", "zigzag_right", "zigzag_left"];
@@ -74,76 +67,22 @@ function pickAnimation() {
 
     return arr[i];
 }
-
-/* resets the animation by asking for the height of the element */
 function resetAnimation(element) {
     console.log("resetAnimation");
     element.offsetHeight;
 }
-
-/* adds the input class to the input element */
 function addAnimation(element, animation) {
     console.log("addAnimation");
     element.classList.add(animation);
 }
-
-/* toggles a given class on an element */
 function toggleAnimation(element, animation) {
     console.log("toggleAnimation");
     element.classList.toggle(animation);
 }
-/* replaces the class of the input element with the input class */
-function replaceClass(element, animation) {
-    console.log("replaceClass");
+function replaceAnimation(element, animation) {
+    console.log("replaceAnimation");
     element.className = animation;
 }
-
-/* starts timer */
-function startTimer() {
-    console.log("startTimer");
-    let timer = document.querySelector("#time_bar_img");
-    timer.className = "timer";
-}
-
-/* stops timer */
-function stopTimer() {
-    console.log("stopTimer");
-    let timer = document.querySelector("#time_bar_img");
-    timer.className = "";
-}
-
-/* resets the timer animation */
-function resetTimer() {
-    console.log("resetTimer");
-    let timer = document.querySelector("#time_bar_img");
-    timer.className = "";
-    resetAnimation(timer);
-}
-
-/* shows start menu screen */
-function showStartMenu() {
-    console.log("showStartMenu");
-    let start_menu = document.querySelector("#start");
-    /* maximize start menu */
-    start_menu.className = "maximize";
-}
-
-/* shows game over screen and stops the animations*/
-function showGameover() {
-    console.log("showGameover");
-    let game_over = document.querySelector("#game_over");
-    replaceClass(game_over, "maximize");
-    hideElements();
-}
-/* shows level complete screen and stops the animations*/
-function showLevelcomplete() {
-    console.log("showLevelComplete");
-    let level_complete = document.querySelector("#level_complete");
-    replaceClass(level_complete, "maximize");
-    hideElements();
-}
-
-/* removes hidden class and starts animations */
 function startAnimations() {
     console.log("startAnimations");
     let syringe = document.querySelector("#syringe_container");
@@ -152,11 +91,11 @@ function startAnimations() {
     let beer = document.querySelector("#beer_container");
     let vodka = document.querySelector("#vodka_container");
     
-    syringe.className = "";
-    protein.className = "";
-    chicken.className = "";
-    beer.className = "";
-    vodka.className = "";
+    replaceAnimation(syringe, "");
+    replaceAnimation(protein, "");
+    replaceAnimation(chicken, "");
+    replaceAnimation(beer, "");
+    replaceAnimation(vodka, "");
     
     addAnimation(syringe, pickAnimation());
     addAnimation(protein, pickAnimation());
@@ -165,7 +104,44 @@ function startAnimations() {
     addAnimation(vodka, pickAnimation());
 }
 
-/* hides elements by applying the "hidden" class */
+/* timer functions */
+function startTimer() {
+    console.log("startTimer");
+    let timer = document.querySelector("#time_bar_img");
+    timer.className = "timer";
+}
+function stopTimer() {
+    console.log("stopTimer");
+    let timer = document.querySelector("#time_bar_img");
+    timer.className = "";
+}
+function resetTimer() {
+    console.log("resetTimer");
+    let timer = document.querySelector("#time_bar_img");
+    timer.className = "";
+    resetAnimation(timer);
+}
+
+/* functions for displaying start/end game screens */
+function showStartMenu() {
+    console.log("showStartMenu");
+    let start_menu = document.querySelector("#start");
+    replaceAnimation(start_menu, "maximize");
+}
+function showGameover() {
+    console.log("showGameover");
+    let game_over = document.querySelector("#game_over");
+    replaceAnimation(game_over, "maximize");
+    hideElements();
+}
+function showLevelcomplete() {
+    console.log("showLevelComplete");
+    let level_complete = document.querySelector("#level_complete");
+    replaceAnimation(level_complete, "maximize");
+    hideElements();
+}
+
+/* hides game elements */
 function hideElements() {
     console.log("hideElements");
     let syringe = document.querySelector("#syringe_container");
@@ -174,27 +150,14 @@ function hideElements() {
     let beer = document.querySelector("#beer_container");
     let vodka = document.querySelector("#vodka_container");
     
-    // removeEvents("syringe");
-    // removeEvents("protein");
-    // removeEvents("chicken");
-    // removeEvents("beer");
-    // removeEvents("vodka");
-    
-    resetAnimation(syringe);
-    resetAnimation(protein);
-    resetAnimation(chicken);
-    resetAnimation(beer);
-    resetAnimation(vodka);
-    
-    replaceClass(syringe, "hidden");
-    replaceClass(protein, "hidden");
-    replaceClass(chicken, "hidden");
-    replaceClass(beer, "hidden");
-    replaceClass(vodka, "hidden");
-
-
+    replaceAnimation(syringe, "hidden");
+    replaceAnimation(protein, "hidden");
+    replaceAnimation(chicken, "hidden");
+    replaceAnimation(beer, "hidden");
+    replaceAnimation(vodka, "hidden");
 }
 
+/* event functions for event listeners */
 function neutralElementEvents(game_element) {
     console.log("neutral events");
     let container = document.querySelector(`#${game_element}_container`);
@@ -212,7 +175,6 @@ function neutralElementEvents(game_element) {
     updateScore(player_score);
     updateHealth(player_lives);
 }
-
 function goodElementEvents(game_element) {
     console.log("good events");
     let container = document.querySelector(`#${game_element}_container`);
@@ -229,7 +191,6 @@ function goodElementEvents(game_element) {
     updateScore(player_score);
     updateHealth(player_lives);
 }
-
 function badElementEvents(game_element) {
     console.log("bad events");
     let container = document.querySelector(`#${game_element}_container`);
@@ -245,8 +206,6 @@ function badElementEvents(game_element) {
     updateScore(player_score);
     updateHealth(player_lives);
 }
-
-
 function splashEvents(game_element) {
     console.log("splash events")
     let container = document.querySelector(`#${game_element}_container`);
@@ -261,7 +220,6 @@ function splashEvents(game_element) {
     toggleAnimation(sprite, "explode_away");
     toggleAnimation(splash, "fade_in_out");
 }
-
 function unclickedEvents(game_element) {
     console.log("unclicked events");
     let container = document.querySelector(`#${game_element}_container`);
@@ -272,11 +230,7 @@ function unclickedEvents(game_element) {
     addAnimation(container, pickAnimation());
 }
 
-
-/*
-adds mousedown event on the game element to play animations
-and then animationend listener to restart the animation on animation end
-*/
+/* event listener functions */
 function addEvents() {
     console.log("addEvents");
     let syringe = document.querySelector("#syringe_container");
@@ -308,51 +262,8 @@ function addEvents() {
     chicken.addEventListener("animationend", () => { unclickedEvents("chicken"); });
     beer.addEventListener("animationend", () => { unclickedEvents("beer"); });
     vodka.addEventListener("animationend", () => { unclickedEvents("vodka"); });
-    
 }    
-
-/* 
-calls startAnimations
-minimizes the start window 
-calls startTimer
-*/
-function startGame() {
-    console.log("startGame");
-    let start_menu = document.querySelector("#start");
-
-    startAnimations();
-    replaceClass(start_menu, "minimize");
-    startTimer();
-}
-
-/*
-restarts animations
-minimizes either the game over or level complete window depending on which is open
-resets, and then starts the timer
-resets the score and health
-*/
-function restartGame() {
-    console.log("restartGame");
-    let game_over = document.querySelector("#game_over");
-    let level_complete = document.querySelector("#level_complete");
-
-    
-
-    startAnimations();
-    if (game_over.className == "maximize") {    
-        replaceClass(game_over, "minimize");
-    }
-    else if (level_complete.className == "maximize") {
-        replaceClass(level_complete, "minimize");
-    }
-    resetTimer();
-    startTimer();
-    resetScore();
-    resetHealth();
-}
-
-/* adds event listeners to start and restart buttons */
-function addButtonEvents() {
+function addButtonListeners() {
     console.log("addButtonEvents");
     /* start and restart button variables */
     let start_button = document.querySelector("#start_button");
@@ -366,7 +277,32 @@ function addButtonEvents() {
     restart_button2.addEventListener("click", restartGame);
 }
 
-/* picks correct screen to show when timer ends */
+/* functions for starting, restarting and ending the game */
+function startGame() {
+    console.log("startGame");
+    let start_menu = document.querySelector("#start");
+
+    startAnimations();
+    replaceAnimation(start_menu, "minimize");
+    startTimer();
+}
+function restartGame() {
+    console.log("restartGame");
+    let game_over = document.querySelector("#game_over");
+    let level_complete = document.querySelector("#level_complete");
+
+    startAnimations();
+    if (game_over.className == "maximize") {    
+        replaceAnimation(game_over, "minimize");
+    }
+    else if (level_complete.className == "maximize") {
+        replaceAnimation(level_complete, "minimize");
+    }
+    resetTimer();
+    startTimer();
+    resetScore();
+    resetHealth();
+}
 function endGame() {
     console.log("endGame");
     let timer = document.querySelector("#time_bar_img");
@@ -379,15 +315,11 @@ function endGame() {
     });
 }
 
-/* 
-main function, plays at window load
-defines global variables for health and score
-*/
+/* main function */
 function main() {
     console.log("main");
-
     showStartMenu();
-    addButtonEvents();
+    addButtonListeners();
     addEvents();
     endGame();
 }
