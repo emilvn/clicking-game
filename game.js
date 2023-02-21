@@ -1,18 +1,18 @@
 "use strict";
 window.addEventListener("load", main);
 
-/* player variables */
+/* =============== player variables =============== */
 let player_lives = 3;
 let player_score = 0;
 
-/* gui variables */
+/* =============== gui variables =============== */
 let score = document.querySelector("#score_number");
 let timer = document.querySelector("#time_bar_img");
 let heart1 = document.querySelector("#life_heart1");
 let heart2 = document.querySelector("#life_heart2");
 let heart3 = document.querySelector("#life_heart3");
 
-/* element variables */
+/* =============== element variables =============== */
 let syringe = document.querySelector("#syringe_container");
 let syringe_splash = document.querySelector("#syringe_splash");
 
@@ -28,7 +28,7 @@ let beer_splash = document.querySelector("#beer_splash");
 let vodka = document.querySelector("#vodka_container");
 let vodka_splash = document.querySelector("#vodka_splash");
 
-/* update display functions */
+/* =============== update display functions =============== */
 function updateHealth() {
     console.log("updateHealth");
 
@@ -58,7 +58,7 @@ function updateScore() {
     score.textContent = player_score;
 }
 
-/* reset display functions */
+/* =============== reset display functions =============== */
 function resetHealth() {
     console.log("resetHealth");
     replaceAnimation(heart1, "");
@@ -73,7 +73,7 @@ function resetScore(){
     updateScore();
 }
 
-/* animation functions */
+/* =============== animation functions =============== */
 function pickAnimation() {
     console.log("pickAnimation");
     let arr = ["falling_pos_1", "falling_pos_2", "falling_pos_3", "falling_pos_4", "falling_pos_5", "zigzag_right", "zigzag_left"];
@@ -107,7 +107,7 @@ function startAnimations() {
     addAnimation(vodka, pickAnimation());
 }
 
-/* timer functions */
+/* =============== timer functions =============== */
 function startTimer() {
     console.log("startTimer");
     addAnimation(timer, "timer");
@@ -122,7 +122,7 @@ function resetTimer() {
     resetAnimation(timer);
 }
 
-/* functions for displaying start/end game screens */
+/* =============== start/endgame screen functions =============== */
 function showStartMenu() {
     console.log("showStartMenu");
     let start_menu = document.querySelector("#start");
@@ -141,7 +141,7 @@ function showLevelcomplete() {
     hideElements();
 }
 
-/* functions for hiding and showing game elements */
+/* =============== hide/show elements functions =============== */
 function showElements() {
     console.log("showElements");
     replaceAnimation(syringe, "");
@@ -159,7 +159,7 @@ function hideElements() {
     addAnimation(vodka, "hidden");
 }
 
-/* event functions for event listeners */
+/* =============== event functions =============== */
 function neutralElementEvents(game_element) {
     console.log("neutral events");
     let container = document.querySelector(`#${game_element}_container`);
@@ -232,7 +232,7 @@ function unclickedEvents(game_element) {
     addAnimation(container, pickAnimation());
 }
 
-/* event listener functions */
+/* =============== event listener functions =============== */
 function addEvents() {
     console.log("addEvents");
     
@@ -256,19 +256,16 @@ function addEvents() {
 }    
 function addButtonListeners() {
     console.log("addButtonEvents");
-    /* start and restart button variables */
     let start_button = document.querySelector("#start_button");
     let restart_button1 = document.querySelector("#restart_button1");
     let restart_button2 = document.querySelector("#restart_button2");
 
-    /* starts game when start button is clicked */
     start_button.addEventListener("click", startGame);
-    /* restarts game when restart buttons are clicked */
     restart_button1.addEventListener("click", restartGame);
     restart_button2.addEventListener("click", restartGame);
 }
 
-/* functions for starting, restarting and ending the game */
+/* =============== start/restart/end game functions =============== */
 function startGame() {
     console.log("startGame");
     let start_button = document.querySelector("#start_button");
@@ -311,7 +308,7 @@ function endGame() {
     });
 }
 
-/* main function */
+/* =============== main function =============== */
 function main() {
     console.log("main");
     showStartMenu();
