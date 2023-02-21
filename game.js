@@ -171,11 +171,11 @@ function hideElements() {
     let beer = document.querySelector("#beer_container");
     let vodka = document.querySelector("#vodka_container");
     
-    removeEvents("syringe");
-    removeEvents("protein");
-    removeEvents("chicken");
-    removeEvents("beer");
-    removeEvents("vodka");
+    // removeEvents("syringe");
+    // removeEvents("protein");
+    // removeEvents("chicken");
+    // removeEvents("beer");
+    // removeEvents("vodka");
     
     resetAnimation(syringe);
     resetAnimation(protein);
@@ -209,10 +209,10 @@ function addEvents(game_element) {
     applies the correct points/lives to be added/subtracted on click
     */
     if (game_element == "syringe") {
-      points = 75;
+      points = 50;
       lives_lost = 1;
     } else if (game_element == "protein" || game_element == "chicken") {
-      points = 15;
+      points = 10;
       lives_lost = 0;
     } else if (game_element == "beer" || game_element == "vodka") {
       points = 0;
@@ -246,42 +246,55 @@ function addEvents(game_element) {
     resets animation
     toggles off sprite and splash animations
     */
+    splash.addEventListener("animationend", function () {
+        container.style.pointerEvents = "";
+        container.className = "";
+        resetAnimation(container);
+        addAnimation(container, pickAnimation());
+        toggleAnimation(sprite, "explode_away");
+        toggleAnimation(this, "fade_in_out");
+    });
+
     container.addEventListener("animationend", function () {
-        this.style.pointerEvents = "";
         this.className = "";
         resetAnimation(this);
         addAnimation(this, pickAnimation());
-        toggleAnimation(sprite, "explode_away");
-        toggleAnimation(splash, "fade_in_out");
     });
 }    
 
-function removeEvents(game_element) {
-    console.log("removeEvents");
-    let container = document.querySelector(`#${game_element}_container`);
-    let sprite = document.querySelector(`#${game_element}_sprite`);
-    let splash = document.querySelector(`#${game_element}_splash`);
+// function removeEvents(game_element) {
+//     console.log("removeEvents");
+//     let container = document.querySelector(`#${game_element}_container`);
+//     let sprite = document.querySelector(`#${game_element}_sprite`);
+//     let splash = document.querySelector(`#${game_element}_splash`);
 
-    container.removeEventListener("mousedown", function () {
-        this.style.pointerEvents = "none";
-        addAnimation(this, "pause");
-        toggleAnimation(sprite, "explode_away");
-        toggleAnimation(splash, "fade_in_out");
-        player_score += points;
-        player_lives -= lives_lost;
-        updateScore(player_score);
-        updateHealth(player_lives);
-    });
+//     container.removeEventListener("mousedown", function () {
+//         this.style.pointerEvents = "none";
+//         addAnimation(this, "pause");
+//         toggleAnimation(sprite, "explode_away");
+//         toggleAnimation(splash, "fade_in_out");
+//         player_score += points;
+//         player_lives -= lives_lost;
+//         updateScore(player_score);
+//         updateHealth(player_lives);
+//     });
 
-    container.removeEventListener("animationend", function () {
-        this.style.pointerEvents = "";
-        this.className = "";
-        resetAnimation(this);
-        addAnimation(this, pickAnimation());
-        toggleAnimation(sprite, "explode_away");
-        toggleAnimation(splash, "fade_in_out");
-    });
-}
+//     splash.removeEventListener("animationend", function () {
+//         container.style.pointerEvents = "";
+//         container.className = "";
+//         resetAnimation(container);
+//         addAnimation(container, pickAnimation());
+//         toggleAnimation(sprite, "explode_away");
+//         toggleAnimation(this, "fade_in_out");
+//     });
+
+//     container.removeEventListener("animationend", function () {
+//         this.className = "";
+//         resetAnimation(this);
+//         addAnimation(this, pickAnimation());
+//     });
+// }
+
 /* 
 calls startAnimations
 minimizes the start window 

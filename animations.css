@@ -60,7 +60,7 @@
 
 .fade_in_out {
     animation-name: fade_in_out;
-    animation-duration: 1.5s;
+    animation-duration: 1s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
@@ -116,7 +116,7 @@
         transform: scale(1);
     }
     0% {
-        transform: translate(35vw, -57vw);
+        transform: translate(35vw, -15vw);
     }
     100% {
         transform: translate(35vw, 57vw);
@@ -136,7 +136,7 @@
         transform: scale(1);
     }
     0% {
-        transform: translate(50vw, -57vw);
+        transform: translate(50vw, -15vw);
     }
     100% {
         transform: translate(50vw, 57vw);
@@ -156,7 +156,7 @@
         transform: scale(1);
     }
     0% {
-        transform: translate(65vw, -57vw);
+        transform: translate(65vw, -15vw);
     }
     100% {
         transform: translate(65vw, 57vw);
@@ -176,7 +176,7 @@
         transform: scale(1);
     }
     0% {
-        transform: translate(80vw, -57vw);
+        transform: translate(80vw, -15vw);
     }
     100% {
         transform: translate(80vw, 57vw);
@@ -196,7 +196,7 @@
         transform: scale(1);
     }
     0% {
-        transform: translate(90vw, -57vw);
+        transform: translate(90vw, -15vw);
     }
     100% {
         transform: translate(90vw, 57vw);
@@ -215,7 +215,7 @@
 @keyframes zigzag_right {
     0%, 100% {transform: scale(1)}
     0% {
-        transform: translate(33vw, -57vw);
+        transform: translate(33vw, -15vw);
     }
     50% {
         transform: translate(90vw, 20vw);
@@ -237,7 +237,7 @@
 @keyframes zigzag_left {
     0%, 100% {transform: scale(1)}
     0% {
-        transform: translate(100vw, -57vw);
+        transform: translate(100vw, -15vw);
     }
     50% {
         transform: translate(33vw, 20vw);
