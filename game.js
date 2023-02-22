@@ -217,7 +217,7 @@ function splashEvents(game_element) {
 
     container.style.pointerEvents = "";
     container.className = "";
-    resetAnimation(container);
+    resetAnimation(container); 
     addAnimation(container, pickAnimation());
     toggleAnimation(sprite, "explode_away");
     toggleAnimation(splash, "fade_in_out");
