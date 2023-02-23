@@ -147,7 +147,6 @@ function showLevelcomplete() {
 /* =============== hide/show elements functions =============== */
 function showElements() {
     console.log("showElements");
-    
     resetAnimation(syringe);
     resetAnimation(protein);
     resetAnimation(chicken);
@@ -166,7 +165,6 @@ function showElements() {
 }
 function hideElements() {
     console.log("hideElements");
-
     syringe.style.scale = 0;
     protein.style.scale = 0;
     chicken.style.scale = 0;
