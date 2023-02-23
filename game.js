@@ -97,6 +97,9 @@ function replaceAnimation(element, animation) {
     console.log("replaceAnimation");
     element.className = animation;
 }
+function removeAnimation(element, animation) {
+    element.classList.remove(animation);
+}
 function startAnimations() {
     console.log("startAnimations");
     showElements();
@@ -144,19 +147,31 @@ function showLevelcomplete() {
 /* =============== hide/show elements functions =============== */
 function showElements() {
     console.log("showElements");
-    replaceAnimation(syringe, "");
-    replaceAnimation(protein, "");
-    replaceAnimation(chicken, "");
-    replaceAnimation(beer, "");
-    replaceAnimation(vodka, "");
+    
+    resetAnimation(syringe);
+    resetAnimation(protein);
+    resetAnimation(chicken);
+    resetAnimation(beer);
+    resetAnimation(vodka);
+    removeAnimation(syringe, "hidden");
+    removeAnimation(protein, "hidden");
+    removeAnimation(chicken, "hidden");
+    removeAnimation(beer, "hidden");
+    removeAnimation(vodka, "hidden");
+    syringe.style.scale = 1;
+    protein.style.scale = 1;
+    chicken.style.scale = 1;
+    beer.style.scale = 1;
+    vodka.style.scale = 1;
 }
 function hideElements() {
     console.log("hideElements");
-    addAnimation(syringe, "hidden");
-    addAnimation(protein, "hidden");
-    addAnimation(chicken, "hidden");
-    addAnimation(beer, "hidden");
-    addAnimation(vodka, "hidden");
+
+    syringe.style.scale = 0;
+    protein.style.scale = 0;
+    chicken.style.scale = 0;
+    beer.style.scale = 0;
+    vodka.style.scale = 0;
 }
 
 /* =============== event functions =============== */
@@ -169,7 +184,7 @@ function neutralElementEvents(game_element) {
     container.removeEventListener("mousedown", () => { neutralElementEvents(game_element); });
 
     container.style.pointerEvents = "none";
-    addAnimation(container, "pause");
+    toggleAnimation(container, "pause");
     toggleAnimation(sprite, "explode_away");
     toggleAnimation(splash, "fade_in_out");
     player_score += points;
@@ -186,7 +201,7 @@ function goodElementEvents(game_element) {
     container.removeEventListener("mousedown", () => { goodElementEvents(game_element); });
 
     container.style.pointerEvents = "none";
-    addAnimation(container, "pause");
+    toggleAnimation(container, "pause");
     toggleAnimation(sprite, "explode_away");
     toggleAnimation(splash, "fade_in_out");
     player_score += points;
@@ -216,7 +231,7 @@ function splashEvents(game_element) {
     splash.removeEventListener("animationend", () => { splashEvents(game_element); });
 
     container.style.pointerEvents = "";
-    container.className = "";
+    removeAnimation(container, "pause");
     resetAnimation(container); 
     addAnimation(container, pickAnimation());
     toggleAnimation(sprite, "explode_away");
@@ -227,7 +242,7 @@ function unclickedEvents(game_element) {
     let container = document.querySelector(`#${game_element}_container`);
     container.removeEventListener("animationend", () => { unclickedEvents(game_element); });
 
-    container.className = "";
+    replaceAnimation(container, "");
     resetAnimation(container);
     addAnimation(container, pickAnimation());
 }
