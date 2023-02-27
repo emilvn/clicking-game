@@ -233,7 +233,7 @@ function splashEvents() {
     let container = this.parentElement;
     let sprite = container.querySelector(".sprite");
     let splash = this;
-    // splash.removeEventListener("animationend", () => { splashEvents(game_element); });
+    // splash.removeEventListener("animationend", splashEvents);
 
     container.style.pointerEvents = "";
     removeClass(container, "pause");
