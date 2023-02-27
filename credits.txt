@@ -49,3 +49,18 @@ bg.png:
 
 timer, startscreen, gameover and levelcomplete:
     link to gui pack: https://craftpix.net/freebies/free-jungle-cartoon-2d-game-ui/?num=1&count=17&sq=jungle%20ui%27&pos=11
+
+Music/sound effects:
+All music/sound effects are from pixabay:
+    
+    background.mp3: https://pixabay.com/de/sound-effects/kick-bass-148-bpm-c-23553/
+
+    evil.mp3: https://pixabay.com/de/sound-effects/086884-oh-shit-70808/
+
+    good.mp3: https://pixabay.com/de/sound-effects/shouting-yeah-7043/
+
+    bad.mp3: https://pixabay.com/de/sound-effects/oof-97698/
+
+    levelcomplete.mp3: https://pixabay.com/de/sound-effects/success-fanfare-trumpets-6185/
+
+    gameover.mp3: https://pixabay.com/de/sound-effects/080556-quotyou-losequot-88884/
