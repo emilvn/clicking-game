@@ -6,8 +6,7 @@ let player_lives = 3;
 let player_score = 0;
 
 /* =============== gui variables =============== */
-let score = document.querySelector("#score_number");
-let timer = document.querySelector("#time_bar_img");
+let time_bar = document.querySelector("#time_bar_img");
 let heart1 = document.querySelector("#life_heart1");
 let heart2 = document.querySelector("#life_heart2");
 let heart3 = document.querySelector("#life_heart3");
@@ -43,7 +42,8 @@ function updateHealth() {
 }
 function updateScore() {
     console.log("updateScore");
-    score.textContent = player_score;
+    let score_board = document.querySelector("#score_number");
+    score_board.textContent = player_score;
 }
 
 /* =============== reset display functions =============== */
@@ -106,16 +106,17 @@ function startAnimations() {
 /* =============== timer functions =============== */
 function startTimer() {
     console.log("startTimer");
-    addAnimation(timer, "timer");
+    addAnimation(time_bar, "timer");
+    time_bar.addEventListener("animationend", endGame);
 }
 function stopTimer() {
     console.log("stopTimer");
-    replaceAnimation(timer, "");
+    replaceAnimation(time_bar, "");
 }
 function resetTimer() {
     console.log("resetTimer");
-    replaceAnimation(timer, "");
-    resetAnimation(timer);
+    replaceAnimation(time_bar, "");
+    resetAnimation(time_bar);
 }
 
 /* =============== start/endgame screen functions =============== */
@@ -342,13 +343,12 @@ function restartGame() {
 }
 function endGame() {
     console.log("endGame");
-    timer.addEventListener("animationend", function () {
       if (player_score >= 300) {
         showLevelcomplete();
       } else {
         showGameover();
-      }
-    });
+    }
+    time_bar.removeEventListener("animationend", endGame);
 }
 
 /* =============== main function =============== */
@@ -356,5 +356,4 @@ function main() {
     console.log("main");
     showStartMenu();
     addButtonListeners();
-    endGame();
 }
