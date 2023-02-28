@@ -14,19 +14,10 @@ let heart3 = document.querySelector("#life_heart3");
 
 /* =============== element variables =============== */
 let syringe = document.querySelector("#syringe_container");
-let syringe_splash = document.querySelector("#syringe_splash");
-
 let protein = document.querySelector("#protein_container");
-let protein_splash = document.querySelector("#protein_splash");
-
 let chicken = document.querySelector("#chicken_container");
-let chicken_splash = document.querySelector("#chicken_splash");
-
 let beer = document.querySelector("#beer_container");
-let beer_splash = document.querySelector("#beer_splash");
-
 let vodka = document.querySelector("#vodka_container");
-let vodka_splash = document.querySelector("#vodka_splash");
 
 /* =============== update display functions =============== */
 function updateHealth() {
