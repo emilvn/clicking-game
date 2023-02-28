@@ -31,25 +31,23 @@ let vodka_splash = document.querySelector("#vodka_splash");
 /* =============== update display functions =============== */
 function updateHealth() {
     console.log("updateHealth");
-    if (player_lives == 3) {
-        return;
-    }
-    else if (player_lives == 2){
-        addAnimation(heart3, "gray_heart");
-    }
-    else if (player_lives == 1){
-        addAnimation(heart2, "gray_heart");
-        addAnimation(heart3, "gray_heart");
-    }
-    else if (player_lives == 0){
-        addAnimation(heart1, "gray_heart");
-        addAnimation(heart2, "gray_heart");
-        addAnimation(heart3, "gray_heart");
-        showGameover();
-        stopTimer();
-    }
-    else {
-        return
+    switch(player_lives){
+        case 2: 
+            addAnimation(heart3, "gray_heart");
+            break;
+        case 1:
+            addAnimation(heart2, "gray_heart");
+            addAnimation(heart3, "gray_heart");
+            break;
+        case 0:
+            addAnimation(heart1, "gray_heart");
+            addAnimation(heart2, "gray_heart");
+            addAnimation(heart3, "gray_heart");
+            showGameover();
+            stopTimer();
+            break;
+        default:
+            break;    
     }
 }
 function updateScore() {
@@ -77,7 +75,6 @@ function pickAnimation() {
     console.log("pickAnimation");
     let arr = ["falling_pos_1", "falling_pos_2", "falling_pos_3", "falling_pos_4", "falling_pos_5", "zigzag_right", "zigzag_left"];
     let i = Math.floor(Math.random() * arr.length);
-
     return arr[i];
 }
 function resetAnimation(element) {
@@ -152,29 +149,26 @@ function showLevelcomplete() {
 /* =============== hide/show elements functions =============== */
 function showElements() {
     console.log("showElements");
-    resetAnimation(syringe);
-    resetAnimation(protein);
-    resetAnimation(chicken);
-    resetAnimation(beer);
-    resetAnimation(vodka);
+    removeAnimations(syringe);
+    removeAnimations(protein);
+    removeAnimations(chicken);
+    removeAnimations(beer);
+    removeAnimations(vodka);
+
     removeClass(syringe, "hidden");
     removeClass(protein, "hidden");
     removeClass(chicken, "hidden");
     removeClass(beer, "hidden");
     removeClass(vodka, "hidden");
-    syringe.style.scale = 1;
-    protein.style.scale = 1;
-    chicken.style.scale = 1;
-    beer.style.scale = 1;
-    vodka.style.scale = 1;
 }
 function hideElements() {
     console.log("hideElements");
-    syringe.style.scale = 0;
-    protein.style.scale = 0;
-    chicken.style.scale = 0;
-    beer.style.scale = 0;
-    vodka.style.scale = 0;
+    removeUnclickedEvents();
+    addAnimation(syringe, "hidden");
+    addAnimation(protein, "hidden");
+    addAnimation(chicken, "hidden");
+    addAnimation(beer, "hidden");
+    addAnimation(vodka, "hidden");
 }
 
 /* =============== event functions =============== */
@@ -185,9 +179,8 @@ function neutralElementEvents() {
     let sprite = this.querySelector(".sprite");
     let splash = this.querySelector(".splash");
     let points = 50;
-    // container.removeEventListener("mousedown", neutralElementEvents);
+    container.removeEventListener("mousedown", neutralElementEvents);
 
-    container.style.pointerEvents = "none";
     toggleAnimation(container, "pause");
     toggleAnimation(sprite, "explode_away");
     toggleAnimation(splash, "fade_in_out");
@@ -195,6 +188,8 @@ function neutralElementEvents() {
     player_lives --;
     updateScore();
     updateHealth();
+
+    splash.addEventListener("animationend", splashEvents);
 }
 function goodElementEvents() {
     console.log("good events");
@@ -202,30 +197,32 @@ function goodElementEvents() {
     let sprite = this.querySelector(".sprite");
     let splash = this.querySelector(".splash");
     let points = 10;
-    // container.removeEventListener("mousedown", goodElementEvents);
+    container.removeEventListener("mousedown", goodElementEvents);
 
-    container.style.pointerEvents = "none";
     toggleAnimation(container, "pause");
     toggleAnimation(sprite, "explode_away");
     toggleAnimation(splash, "fade_in_out");
     player_score += points;
     updateScore();
     updateHealth();
+
+    splash.addEventListener("animationend", splashEvents);
 }
 function badElementEvents() {
     console.log("bad events");
     let container = this;
     let sprite = this.querySelector(".sprite");
     let splash = this.querySelector(".splash");
-    // container.removeEventListener("mousedown", badElementEvents);
+    container.removeEventListener("mousedown", badElementEvents);
 
-    container.style.pointerEvents = "none";
     addAnimation(container, "pause");
     toggleAnimation(sprite, "explode_away");
     toggleAnimation(splash, "fade_in_out");
     player_lives--;
     updateScore();
     updateHealth();
+
+    splash.addEventListener("animationend", splashEvents);
 }
 function splashEvents() {
     console.log("splash events")
@@ -233,23 +230,59 @@ function splashEvents() {
     let container = this.parentElement;
     let sprite = container.querySelector(".sprite");
     let splash = this;
-    // splash.removeEventListener("animationend", splashEvents);
+    let event;
 
-    container.style.pointerEvents = "";
     removeClass(container, "pause");
+    removeAnimations(container);
     resetAnimation(container); 
     addAnimation(container, pickAnimation());
     toggleAnimation(sprite, "explode_away");
     toggleAnimation(splash, "fade_in_out");
+
+    switch(container){
+        case syringe:
+            event = neutralElementEvents;
+            break;
+        case protein:
+        case chicken:
+            event = goodElementEvents;
+            break;
+        case beer:
+        case vodka:
+            event = badElementEvents;
+            break;
+        default:
+            console.log("unknown element");
+            break;
+    }
+    container.addEventListener("mousedown", event);
 }
 function unclickedEvents() {
     console.log("unclicked events");
     let container = this;
-    // container.removeEventListener("animationend", unclickedEvents);
+    let event;
 
     removeAnimations(container);
     resetAnimation(container);
     addAnimation(container, pickAnimation());
+
+     switch(container){
+        case syringe:
+            event = neutralElementEvents;
+            break;
+        case protein:
+        case chicken:
+            event = goodElementEvents;
+            break;
+        case beer:
+        case vodka:
+            event = badElementEvents;
+            break;
+        default:
+            console.log("unknown element");
+            break;
+    }
+    container.addEventListener("mousedown", event);
 }
 
 /* =============== event listener functions =============== */
@@ -261,12 +294,6 @@ function addEvents() {
     chicken.addEventListener("mousedown", goodElementEvents);
     beer.addEventListener("mousedown", badElementEvents);
     vodka.addEventListener("mousedown", badElementEvents);
-    
-    syringe_splash.addEventListener("animationend", splashEvents);
-    protein_splash.addEventListener("animationend", splashEvents);
-    chicken_splash.addEventListener("animationend", splashEvents);
-    beer_splash.addEventListener("animationend", splashEvents);
-    vodka_splash.addEventListener("animationend", splashEvents);
     
     syringe.addEventListener("animationend", unclickedEvents);
     protein.addEventListener("animationend", unclickedEvents);
@@ -284,6 +311,13 @@ function addButtonListeners() {
     restart_button1.addEventListener("click", restartGame);
     restart_button2.addEventListener("click", restartGame);
 }
+function removeUnclickedEvents(){
+    syringe.removeEventListener("animationend", unclickedEvents);
+    protein.removeEventListener("animationend", unclickedEvents);
+    chicken.removeEventListener("animationend", unclickedEvents);
+    beer.removeEventListener("animationend", unclickedEvents);
+    vodka.removeEventListener("animationend", unclickedEvents);
+}
 
 /* =============== start/restart/end game functions =============== */
 function startGame() {
@@ -295,6 +329,7 @@ function startGame() {
     startAnimations();
     replaceAnimation(start_menu, "minimize");
     startTimer();
+    addEvents();
 }
 function restartGame() {
     console.log("restartGame");
@@ -312,6 +347,7 @@ function restartGame() {
     resetHealth();
     startAnimations();
     startTimer();
+    addEvents();
 }
 function endGame() {
     console.log("endGame");
@@ -329,6 +365,5 @@ function main() {
     console.log("main");
     showStartMenu();
     addButtonListeners();
-    addEvents();
     endGame();
 }
