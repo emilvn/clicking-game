@@ -185,7 +185,6 @@ function hideElements() {
 
 /* =============== event functions =============== */
 function neutralElementEvents() {
-    console.log(this);
     console.log("neutral events");
     let container = this;
     let sprite = this.querySelector(".sprite");
@@ -312,6 +311,7 @@ function addButtonListeners() {
     restart_button2.addEventListener("click", restartGame);
 }
 function removeUnclickedEvents() {
+    console.log("removeUnclickedEvents");
     syringe.removeEventListener("animationend", unclickedEvents);
     protein.removeEventListener("animationend", unclickedEvents);
     chicken.removeEventListener("animationend", unclickedEvents);
