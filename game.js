@@ -18,6 +18,13 @@ let chicken = document.querySelector("#chicken_container");
 let beer = document.querySelector("#beer_container");
 let vodka = document.querySelector("#vodka_container");
 
+/* =============== main function =============== */
+function main() {
+    console.log("main");
+    showStartMenu();
+    addButtonListeners();
+}
+
 /* =============== update display functions =============== */
 function updateHealth() {
     console.log("updateHealth");
@@ -367,11 +374,4 @@ function endGame() {
         showGameover();
     }
     time_bar.removeEventListener("animationend", endGame);
-}
-
-/* =============== main function =============== */
-function main() {
-    console.log("main");
-    showStartMenu();
-    addButtonListeners();
 }
