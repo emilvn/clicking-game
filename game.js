@@ -29,6 +29,8 @@ function main() {
 function updateHealth() {
     console.log("updateHealth");
     switch(player_lives){
+        case 3:
+            break;
         case 2: 
             addAnimation(heart3, "gray_heart");
             break;
@@ -44,6 +46,7 @@ function updateHealth() {
             stopTimer();
             break;
         default:
+            console.log("Invalid amount of lives");
             break;    
     }
 }
@@ -62,7 +65,7 @@ function resetHealth() {
     player_lives = 3;
     updateHealth();
 }
-function resetScore(){
+function resetScore() {
     console.log("resetScore");
     player_score = 0;
     updateScore();
@@ -190,7 +193,7 @@ function neutralElementEvents() {
     let points = 50;
     container.removeEventListener("mousedown", neutralElementEvents);
 
-    document.querySelector("#evil_sound").currentTime = 0;;
+    document.querySelector("#evil_sound").currentTime = 0;
     document.querySelector("#evil_sound").play();
     toggleAnimation(container, "pause");
     toggleAnimation(sprite, "explode_away");
@@ -229,7 +232,7 @@ function badElementEvents() {
     let splash = this.querySelector(".splash");
     container.removeEventListener("mousedown", badElementEvents);
 
-    document.querySelector("#bad_sound").currentTime = 0;;
+    document.querySelector("#bad_sound").currentTime = 0;
     document.querySelector("#bad_sound").play();
     addAnimation(container, "pause");
     toggleAnimation(sprite, "explode_away");
@@ -308,7 +311,7 @@ function addButtonListeners() {
     restart_button1.addEventListener("click", restartGame);
     restart_button2.addEventListener("click", restartGame);
 }
-function removeUnclickedEvents(){
+function removeUnclickedEvents() {
     syringe.removeEventListener("animationend", unclickedEvents);
     protein.removeEventListener("animationend", unclickedEvents);
     chicken.removeEventListener("animationend", unclickedEvents);
