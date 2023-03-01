@@ -107,6 +107,8 @@ function startAnimations() {
 function startTimer() {
     console.log("startTimer");
     addAnimation(time_bar, "timer");
+    
+    document.querySelector("#background_music").currentTime = 0;
     document.querySelector("#background_music").play();
     time_bar.addEventListener("animationend", endGame);
 }
@@ -130,6 +132,8 @@ function showStartMenu() {
 function showGameover() {
     console.log("showGameover");
     let game_over = document.querySelector("#game_over");
+    
+    document.querySelector("#gameover_sound").currentTime = 0;
     document.querySelector("#gameover_sound").play();
     replaceAnimation(game_over, "maximize");
     hideElements();
@@ -137,6 +141,8 @@ function showGameover() {
 function showLevelcomplete() {
     console.log("showLevelComplete");
     let level_complete = document.querySelector("#level_complete");
+    
+    document.querySelector("#levelcomplete_sound").currentTime = 0;
     document.querySelector("#levelcomplete_sound").play();
     replaceAnimation(level_complete, "maximize");
     hideElements();
@@ -177,6 +183,7 @@ function neutralElementEvents() {
     let points = 50;
     container.removeEventListener("mousedown", neutralElementEvents);
 
+    document.querySelector("#evil_sound").currentTime = 0;;
     document.querySelector("#evil_sound").play();
     toggleAnimation(container, "pause");
     toggleAnimation(sprite, "explode_away");
@@ -196,6 +203,8 @@ function goodElementEvents() {
     let points = 10;
     container.removeEventListener("mousedown", goodElementEvents);
 
+    
+    document.querySelector("#good_sound").currentTime = 0;
     document.querySelector("#good_sound").play();
     toggleAnimation(container, "pause");
     toggleAnimation(sprite, "explode_away");
@@ -213,6 +222,7 @@ function badElementEvents() {
     let splash = this.querySelector(".splash");
     container.removeEventListener("mousedown", badElementEvents);
 
+    document.querySelector("#bad_sound").currentTime = 0;;
     document.querySelector("#bad_sound").play();
     addAnimation(container, "pause");
     toggleAnimation(sprite, "explode_away");
