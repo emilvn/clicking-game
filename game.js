@@ -276,29 +276,10 @@ function splashEvents() {
 function unclickedEvents() {
     console.log("unclicked events");
     let container = this;
-    let event;
 
     removeAnimations(container);
     resetAnimation(container);
     addAnimation(container, pickAnimation());
-
-     switch(container){
-        case syringe:
-            event = neutralElementEvents;
-            break;
-        case protein:
-        case chicken:
-            event = goodElementEvents;
-            break;
-        case beer:
-        case vodka:
-            event = badElementEvents;
-            break;
-        default:
-            console.log("unknown element");
-            break;
-    }
-    container.addEventListener("mousedown", event);
 }
 
 /* =============== event listener functions =============== */
