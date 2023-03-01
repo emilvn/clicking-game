@@ -102,7 +102,6 @@ function removeClass(element, animation) {
     console.log("removeClass");
     element.classList.remove(animation);
 }
-
 function startAnimations() {
     console.log("startAnimations");
     showElements();
@@ -278,7 +277,6 @@ function splashEvents() {
 function unclickedEvents() {
     console.log("unclicked events");
     let container = this;
-
     removeAnimations(container);
     resetAnimation(container);
     addAnimation(container, pickAnimation());
