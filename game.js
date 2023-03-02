@@ -1,6 +1,9 @@
 "use strict";
 window.addEventListener("load", main);
 
+/* =============== game running variable =============== */
+let game_running = false;
+
 /* =============== player variables =============== */
 let player_lives = 3;
 let player_score = 0;
@@ -141,7 +144,8 @@ function showStartMenu() {
 function showGameover() {
     console.log("showGameover");
     let game_over = document.querySelector("#game_over");
-    
+    game_running = false;
+
     document.querySelector("#gameover_sound").currentTime = 0;
     document.querySelector("#gameover_sound").play();
     replaceAnimation(game_over, "maximize");
@@ -150,7 +154,8 @@ function showGameover() {
 function showLevelcomplete() {
     console.log("showLevelComplete");
     let level_complete = document.querySelector("#level_complete");
-    
+    game_running = false;
+
     document.querySelector("#levelcomplete_sound").currentTime = 0;
     document.querySelector("#levelcomplete_sound").play();
     replaceAnimation(level_complete, "maximize");
@@ -250,11 +255,14 @@ function splashEvents() {
     let event;
 
     removeClass(container, "pause");
-    removeAnimations(container);
-    resetAnimation(container); 
-    addAnimation(container, pickAnimation());
-    toggleAnimation(sprite, "explode_away");
-    toggleAnimation(splash, "fade_in_out");
+    
+    if (game_running) {
+        removeAnimations(container);
+        resetAnimation(container);
+        addAnimation(container, pickAnimation());
+        toggleAnimation(sprite, "explode_away");
+        toggleAnimation(splash, "fade_in_out");
+    }
 
     switch(container){
         case syringe:
@@ -323,6 +331,7 @@ function startGame() {
     let start_button = document.querySelector("#start_button");
     let start_menu = document.querySelector("#start");
     start_button.removeEventListener("click", startGame);
+    game_running = true;
 
     startAnimations();
     replaceAnimation(start_menu, "minimize");
@@ -333,6 +342,8 @@ function restartGame() {
     console.log("restartGame");
     let game_over = document.querySelector("#game_over");
     let level_complete = document.querySelector("#level_complete");
+
+    game_running = true;
 
     if (game_over.className == "maximize") {    
         replaceAnimation(game_over, "minimize");
