@@ -105,6 +105,16 @@ function removeClass(element, animation) {
 function startAnimations() {
     console.log("startAnimations");
     showElements();
+    removeAnimations(syringe);
+    removeAnimations(protein);
+    removeAnimations(chicken);
+    removeAnimations(beer);
+    removeAnimations(vodka);
+    resetAnimation(syringe);
+    resetAnimation(protein);
+    resetAnimation(chicken);
+    resetAnimation(beer);
+    resetAnimation(vodka);
     addAnimation(syringe, pickAnimation());
     addAnimation(protein, pickAnimation());
     addAnimation(chicken, pickAnimation());
