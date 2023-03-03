@@ -5,11 +5,8 @@ window.addEventListener("load", main);
 let player_lives = 3;
 let player_score = 0;
 
-/* =============== gui variables =============== */
+/* =============== time bar variable =============== */
 let time_bar = document.querySelector("#time_bar_img");
-let heart1 = document.querySelector("#life_heart1");
-let heart2 = document.querySelector("#life_heart2");
-let heart3 = document.querySelector("#life_heart3");
 
 /* =============== element variables =============== */
 let syringe = document.querySelector("#syringe_container");
@@ -27,27 +24,14 @@ function main() {
 
 /* =============== update display functions =============== */
 function updateHealth() {
+    let heart = document.querySelector(`#life_heart${player_lives + 1}`);
     console.log("updateHealth");
-    switch(player_lives){
-        case 3:
-            break;
-        case 2: 
-            addAnimation(heart3, "gray_heart");
-            break;
-        case 1:
-            addAnimation(heart2, "gray_heart");
-            addAnimation(heart3, "gray_heart");
-            break;
-        case 0:
-            addAnimation(heart1, "gray_heart");
-            addAnimation(heart2, "gray_heart");
-            addAnimation(heart3, "gray_heart");
-            showGameover();
-            stopTimer();
-            break;
-        default:
-            console.log("Invalid amount of lives");
-            break;    
+    if (player_lives < 3) {
+        addAnimation(heart, "gray_heart");
+    }
+    if (player_lives == 0) {
+        showGameover();
+        stopTimer();
     }
 }
 function updateScore() {
@@ -58,6 +42,9 @@ function updateScore() {
 
 /* =============== reset display functions =============== */
 function resetHealth() {
+    let heart1 = document.querySelector("#life_heart1");
+    let heart2 = document.querySelector("#life_heart2");
+    let heart3 = document.querySelector("#life_heart3");
     console.log("resetHealth");
     replaceAnimation(heart1, "");
     replaceAnimation(heart2, "");
