@@ -207,7 +207,6 @@ function goodElementEvents() {
     let splash = this.querySelector(".splash");
     let points = 10;
     container.removeEventListener("mousedown", goodElementEvents);
-
     
     document.querySelector("#good_sound").currentTime = 0;
     document.querySelector("#good_sound").play();
