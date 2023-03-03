@@ -6,7 +6,7 @@ body {
     overflow: hidden;
 }
 
-.position1 {
+.position0 {
     top: 0;
     left: 0;
 }
@@ -246,6 +246,19 @@ body {
     width: 100%;
 }
 
+#restart_button0 {
+    position: absolute;
+    width: 10vw;
+    height: 10vw;
+    top: 61%;
+    left: 45%;
+    cursor: pointer;
+}
+
+#restart_button0 img {
+    width: 100%;
+}
+
 #restart_button1 {
     position: absolute;
     width: 10vw;
@@ -256,19 +269,6 @@ body {
 }
 
 #restart_button1 img {
-    width: 100%;
-}
-
-#restart_button2 {
-    position: absolute;
-    width: 10vw;
-    height: 10vw;
-    top: 61%;
-    left: 45%;
-    cursor: pointer;
-}
-
-#restart_button2 img {
     width: 100%;
 }
 

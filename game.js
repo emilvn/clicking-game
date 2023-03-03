@@ -61,7 +61,7 @@ function resetScore() {
 /* =============== animation functions =============== */
 function pickAnimation() {
     console.log("pickAnimation");
-    let arr = ["falling_pos_1", "falling_pos_2", "falling_pos_3", "falling_pos_4", "falling_pos_5", "zigzag_right", "zigzag_left"];
+    let arr = ["falling_pos_0", "falling_pos_1", "falling_pos_2", "falling_pos_3", "falling_pos_4", "zigzag_right", "zigzag_left"];
     let i = Math.floor(Math.random() * arr.length);
     return arr[i];
 }
@@ -83,7 +83,7 @@ function replaceAnimation(element, animation) {
 }
 function removeAnimations(element) {
     console.log("removeAnimations");
-    element.classList.remove("falling_pos_1", "falling_pos_2", "falling_pos_3", "falling_pos_4", "falling_pos_5", "zigzag_right", "zigzag_left");
+    element.classList.remove("falling_pos_0", "falling_pos_1", "falling_pos_2", "falling_pos_3", "falling_pos_4", "zigzag_right", "zigzag_left");
 }
 function removeClass(element, animation) {
     console.log("removeClass");
@@ -298,12 +298,12 @@ function addEvents() {
 function addButtonListeners() {
     console.log("addButtonEvents");
     let start_button = document.querySelector("#start_button");
+    let restart_button0 = document.querySelector("#restart_button0");
     let restart_button1 = document.querySelector("#restart_button1");
-    let restart_button2 = document.querySelector("#restart_button2");
 
     start_button.addEventListener("click", startGame);
+    restart_button0.addEventListener("click", restartGame);
     restart_button1.addEventListener("click", restartGame);
-    restart_button2.addEventListener("click", restartGame);
 }
 function removeUnclickedEvents() {
     console.log("removeUnclickedEvents");
