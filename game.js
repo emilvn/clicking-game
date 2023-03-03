@@ -24,7 +24,7 @@ function main() {
 
 /* =============== update display functions =============== */
 function updateHealth() {
-    let heart = document.querySelector(`#life_heart${player_lives + 1}`);
+    let heart = document.querySelector(`#life_heart${player_lives}`);
     console.log("updateHealth");
     if (player_lives < 3) {
         addAnimation(heart, "gray_heart");
@@ -42,13 +42,13 @@ function updateScore() {
 
 /* =============== reset display functions =============== */
 function resetHealth() {
+    let heart0 = document.querySelector("#life_heart0");
     let heart1 = document.querySelector("#life_heart1");
     let heart2 = document.querySelector("#life_heart2");
-    let heart3 = document.querySelector("#life_heart3");
     console.log("resetHealth");
+    replaceAnimation(heart0, "");
     replaceAnimation(heart1, "");
     replaceAnimation(heart2, "");
-    replaceAnimation(heart3, "");
     player_lives = 3;
     updateHealth();
 }
