@@ -157,12 +157,6 @@ function showLevelcomplete() {
 /* =============== hide/show elements functions =============== */
 function showElements() {
     console.log("showElements");
-    removeAnimations(syringe);
-    removeAnimations(protein);
-    removeAnimations(chicken);
-    removeAnimations(beer);
-    removeAnimations(vodka);
-
     removeClass(syringe, "hidden");
     removeClass(protein, "hidden");
     removeClass(chicken, "hidden");
@@ -301,8 +295,8 @@ function addButtonListeners() {
     let restart_button1 = document.querySelector("#restart_button1");
 
     start_button.addEventListener("click", startGame);
-    restart_button0.addEventListener("click", restartGame);
-    restart_button1.addEventListener("click", restartGame);
+    restart_button0.addEventListener("click", startGame);
+    restart_button1.addEventListener("click", startGame);
 }
 function removeUnclickedEvents() {
     console.log("removeUnclickedEvents");
@@ -313,29 +307,27 @@ function removeUnclickedEvents() {
     vodka.removeEventListener("animationend", unclickedEvents);
 }
 
-/* =============== start/restart/end game functions =============== */
 function startGame() {
-    console.log("startGame");
-    let start_button = document.querySelector("#start_button");
-    let start_menu = document.querySelector("#start");
-    start_button.removeEventListener("click", startGame);
-
-    startAnimations();
-    replaceAnimation(start_menu, "minimize");
-    startTimer();
-    addEvents();
-}
-function restartGame() {
     console.log("restartGame");
     let game_over = document.querySelector("#game_over");
     let level_complete = document.querySelector("#level_complete");
+    let start_menu = document.querySelector("#start");
+    
+    switch ("maximize") {
+        case start_menu.className:
+            replaceAnimation(start_menu, "minimize");
+            break;
+        case level_complete.className:
+            replaceAnimation(level_complete, "minimize");
+            break;
+        case game_over.className:
+            replaceAnimation(game_over, "minimize");
+            break;
+        default:
+            console.log("Invalid screen");
+            break;
+    }
 
-    if (game_over.className == "maximize") {    
-        replaceAnimation(game_over, "minimize");
-    }
-    else if (level_complete.className == "maximize") {
-        replaceAnimation(level_complete, "minimize");
-    }
     resetTimer();
     resetScore();
     resetHealth();
