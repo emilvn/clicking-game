@@ -5,6 +5,9 @@ body {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     overflow: hidden;
 }
+*{
+    user-select: none;
+}
 
 .position0 {
     top: 0;
